@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>样本</title>
+    <style>
+        /* 标签选择器 */
+        strong {
+            color: #00ffea;
+        }
+
+        /* id选择器 */
+        #divid {
+            color: chartreuse;
+        }
+
+        /* class选择器 */
+        .divclass1 {
+            color: brown;
+        }
+
+        .divclass2 {
+            background-color: red;
+        }
+
+        /* 属性选择器 */
+        [title] {
+            color: gold !important;
+        }
+
+        /* 属性和值选择器 */
+        [title=yu] {
+            color: darkgray;
+        }
+
+        /* 通配符选择器 */
+        * {
+            background-color: bisque;
+        }
+
+        /* 父子选择器 */
+        li strong {
+            color: red;
+        }
+
+        #pid a {
+            color: blue;
+        }
+
+        /* 直接子元素选择器 */
+        p>strong {
+            font-size: 25px;
+        }
+
+        /* 并列选择器 */
+
+        /* 分组选择器 */
+
+        /* 伪类选择器 */
+        a:hover {
+            background-color: coral;
+        }
+
+        /* 伪元素选择器 */
+        .weielem::before {
+            content: "yuyu";
+        }
+
+        .weielem::after {
+            content: "gugu";
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <strong>hello</strong>
+    <ul>
+        <li><strong>yuyu</strong></li>
+    </ul>
+    </p>
+
+    <div id="divid">guyu</div>
+
+    <p id="pid">
+        我和你<br />
+        <a href="#">刷新</a>
+        </pid>
+
+    <div class="divclass1 divclass2">yuyu and gugu</div>
+
+    <p title="yu">p标签</p>
+    <p title="gu">love</p>
+
+    <div class="weielem">
+        很喜欢
+    </div>
+
+
+
+
+</body>
+
+</html>

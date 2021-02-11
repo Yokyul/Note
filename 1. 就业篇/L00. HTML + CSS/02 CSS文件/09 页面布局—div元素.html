@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>div元素的布局</title>
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+        }
+
+        .plat {
+            height: 1000px;
+            width: 100%;
+            background-color: cornsilk;
+        }
+
+        .heading .logo {
+            position: absolute;
+            right: 0;
+            height: 100px;
+            width: 10%;
+            background-color: red;
+            opacity: 0.5;
+        }
+
+        .heading .text {
+            height: 100px;
+            width: 90%;
+            background-color: rgb(0, 102, 255);
+        }
+
+        .content_menu {
+            height: 700px;
+            width: 20%;
+            background-color: brown;
+            float: left;
+            /*设置浮动*/
+        }
+
+        .content_body {
+            height: 700px;
+            width: 80%;
+            background-color: darkgoldenrod;
+            float: left;
+            /*设置浮动*/
+        }
+
+        .footing {
+            height: 200px;
+            width: 100%;
+            background-color: chocolate;
+            clear: both;
+            /*清除浮动*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="plat">
+        <!-- 两栏布局 -->
+        <div class="heading">
+            <div class="logo">图标</div>
+            <div class="text">文字</div>
+        </div>
+        <div class="content_menu">内容菜单</div>
+        <div class="content_body">内容主体</div>
+        <div class="footing">底部</div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航栏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .list-style {
+            float: left;
+            margin: 0 10px;
+            height: 30px;
+            line-height: 30px;
+            border: 0px solid black;
+        }
+
+        a {
+            padding: 0 5px;
+            text-decoration: none;
+            color: #f40;
+            font-weight: bold;
+            height: 30px;
+            display: block;
+            border-radius: 15px;
+        }
+
+        a:hover {
+            background-color: #f40;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="menu">
+        <li class="list-style">
+            <a href="#">yuyu</a>
+        </li>
+        <li class="list-style">
+            <a href="#">gugu</a>
+        </li>
+        <li class="list-style">
+            <a href="#">yugu</a>
+        </li>
+    </ul>
+    123
+</body>
+
+</html>

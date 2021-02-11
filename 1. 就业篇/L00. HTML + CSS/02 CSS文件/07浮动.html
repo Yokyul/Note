@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>浮动</title>
+    <style>
+        .fu {
+            width: 300px;
+            height: 300px;
+            background-color: antiquewhite;
+
+        }
+
+        /* fu1到fu3从左到右浮动 */
+        .fu1 {
+            width: 100px;
+            height: 150px;
+            background-color: gold;
+            float: left;
+        }
+
+        .fu2 {
+            width: 150px;
+            height: 100px;
+            background-color: red;
+            float: left;
+        }
+
+        .fu3 {
+            width: 100px;
+            height: 100px;
+            background-color: #00ffea;
+            float: left;
+        }
+
+        /* 清除浮动效果 */
+        .fu4 {
+            clear: both;
+        }
+
+        /* 法二： */
+        .div1 {
+            border: 1px solid black;
+            /* position: absolute; */
+        }
+
+        /* 法一： */
+        .div1::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .div2,
+        .div3 {
+            float: left;
+            width: 50px;
+            height: 50px;
+            background-color: rgb(228, 145, 22);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fu">
+        <div class="fu1"></div>
+        <div class="fu2"></div>
+        <div class="fu3"></div>
+        <p class="fu4">yuyu and gugu</p>
+    </div>
+    <br />
+
+    <!-- 1.所有产生了浮动流的元素，块级元素看不到他们。
+         2.产生了bfc的元素和文本类属性（带有inline属性就是文本类属性）的元素以及文本都能看到浮动元素。   -->
+
+    <!-- 块级元素div想包裹住内部的浮动元素怎么办？ -->
+    <!-- 方法一：只需在父元素最后添加一个伪元素after，在伪元素中清除其周围浮动效果即可  -->
+    <!-- 方法二：让父级块元素触发bfc -->
+    <div class="div1">
+        <div class="div2">1</div>
+        <div class="div2">2</div>
+    </div>
+
+
+
+
+</body>
+
+</html>

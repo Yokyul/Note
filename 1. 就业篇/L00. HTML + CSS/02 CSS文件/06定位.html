@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定位</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .div1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* 透明度 */
+            opacity: 0.5;
+            /* 绝对定位 */
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        .div2 {
+            width: 300px;
+            height: 300px;
+            background-color: green;
+        }
+
+        .div3 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            opacity: 0.5;
+            /* 相对定位 */
+            position: relative;
+            left: 20px;
+            top: 0px;
+        }
+
+        .div4 {
+            width: 300px;
+            height: 300px;
+            background-color: green;
+        }
+
+        .divclass {
+            width: 300px;
+            height: 300px;
+            background-color: darkturquoise;
+        }
+
+        .div5 {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            position: relative;
+        }
+
+        .div6 {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position: absolute;
+            left: 20px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 知识点 -->
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    
+    <!-- 正常用法 -->
+    <div class="divclass">
+        <div class="div5">
+            <div class="div6"></div>
+        </div>
+    </div>
+</body>
+
+</html>

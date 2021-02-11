@@ -1,0 +1,16 @@
+h1{
+    color: red;
+}
+
+#divid p{
+    color: #00ffea;
+}
+
+
+#divid a{
+    color: #ff003b;
+}
+
+#spanid span{
+    color: chartreuse;
+}
