@@ -1,0 +1,154 @@
+@keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+@-webkit-keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+@-moz-keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+@-ms-keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+
+
+.header,.main,.footer{
+	width: 100%;
+}
+.header{
+	height: 375px;
+	background-color: red;
+}
+.inner{
+	width: 1002px;
+	margin:0 auto;
+}
+.header-top{
+	width: 100%;
+	height: 74px;
+	background-color: white;
+	border-bottom: 1px solid #d4cec2;
+	box-shadow: 0px 0px 5px #cecfcf inside
+}
+.header-top .inner{
+	height: 74px;
+/*	background-color: blue;
+*/}
+.header-top .inner .logo{
+	width: 134px;
+	height: 74px;
+	float: left;
+	margin-right: 65px;
+}
+.header-top .inner .logo:hover{
+	animation:fade 1s linear infinite;/*infinite无限调用*/
+}
+.header-top .inner .logo h1{
+	width: 134px;
+	height: 74px;
+	background-image: url(../img/logo_02.png);
+}
+.header-top .inner .logo h1 a{
+	display: block;
+	width: 134px;
+	height: 74px;
+	text-indent: -3000px
+}
+.header-top .inner .nav{
+	width: 400px;
+	height: 74px;
+	float: left;
+}
+.header-top .inner .nav ul li{
+	padding-top: 34px;
+	float: left;
+	margin-right: 48px;
+	font-size: 20px;
+	color: black;
+	
+}
+.header-top .inner .nav ul li a{
+	color: black;
+}
+.header-top .inner .nav ul .active a{
+	color: #ff3a35
+}
+.header-top .inner .nav ul li a:hover{
+	color:#ff3a35;
+	text-decoration: none;
+}
+.header-top .inner .nav ul li:last-child{
+	margin-right: 0
+}
+.search .icon{
+	float: right;
+	margin-top: 25px;
+	font-size: 20px;
+	transition: all .1s linear;
+}
+.search .icon:hover{
+	/*font-size: 22px;*/
+	transform:scale(1.4,1.4);
+	-webkit-transform:scale(1.4,1.4);
+	-moz-transform:scale(1.4,1.4);
+	-ms-transform:scale(1.4,1.4);
+}
+.login{
+	float: right;
+	display: block;
+	width: 50px;
+	height: 30px;
+	border:1px solid #fa553f;;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 2px;
+	color: #fa553f;
+	margin-top: 21px;
+	margin-left: 34px;
+	transition:all .2s linear;
+}
+.login:hover{
+	background-color: #fe5341;
+	color:white;
+}
+
+.main{
+	height: 2504px;
+	background: green;
+}
+.footer{
+	height: 360px;
+	background-color: blue;
+}

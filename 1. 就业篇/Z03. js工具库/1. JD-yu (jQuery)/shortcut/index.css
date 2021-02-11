@@ -1,0 +1,24 @@
+.shortcut {
+    border-bottom: 1px solid #ddd;
+    background-color: #e3e4e5;
+    font-size: 12px;
+}
+.shortcut .w {
+    height: 30px;
+    line-height: 30px;
+    color: #999;
+}
+
+.ttbar-mycity {
+    float: left;
+}
+
+.nav {
+    float: right;
+}
+.nav li {
+    float: left;
+}
+.nav a{
+    color: #999;
+}

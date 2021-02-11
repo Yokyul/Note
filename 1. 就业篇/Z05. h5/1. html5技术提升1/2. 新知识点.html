@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<script>
+
+        /*
+            两个图形重合的话，重合部分的处理方式：见图
+                lighter: 重合部分颜色叠加
+
+        */
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+		context.beginPath();
+		context.fillStyle = 'red';
+		context.fillRect(50, 50, 200, 100);
+
+		context.globalCompositeOperation='lighter';         // 两个图形重合部分，颜色叠加
+
+		context.beginPath();
+		context.fillStyle = 'green';
+		context.arc(100, 100, 70, 0, Math.PI * 2, 0);
+		context.fill(); 
+
+
+		context.beginPath();
+		context.strokeRect(400,200,100,100);
+		context.font='30px sans';
+		context.textAlign='right';                  // 文字与图形起点，水平方向的对齐方式
+		context.textBaseline='middle';              // 文字与图形起点，垂直方向的对齐方式
+		context.fillText('陈学辉',400,200);
+	</script>
+</body>
+
+</html>

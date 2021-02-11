@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<script src="js/gaussBlur.js"></script>
+	<title></title>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		canvas {
+			border: 1px solid #000;
+		}
+
+		img {
+			border: 1px solid #000;
+		}
+		#box{
+			width: 300px;
+			height: 300px;
+			border: 1px solid #000;
+			background-size: cover;
+		}
+	</style>
+</head>
+
+<body>
+	<canvas id="canvas" width="500" height="500"></canvas>
+	<img src="" alt="">
+	<div id="box"></div>
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+
+        /*
+            理论上，Photoshop中的图片处理方法，都可以用canvas实现。
+            canvas 操作图片的方法：
+                1.画图：drawImage()  参数很多，最多9个
+                    参数3个时：图片对象，图片绘画起点坐标(x, y)
+                    参数5个时：图片对象，图片绘画起点坐标(x, y), 图片的宽高
+                    参数9个时：图片对象; 图片要绘画的部分的起点坐标(x, y)，图片要绘画的部分的宽高;
+                              选中部分在画布的起点坐标，选中部分绘画时的宽高。
+                
+                2.导出图片：canvas.toDataURL()
+                    canvas本身不能直接保存绘画出的图片。但可以将整个画板的dataURL 导出，然后通过<img>标签展示在页面上，然后保存。这个dataURL 是base64格式的。其中data: 是一种协议。
+
+                3.操作像素
+                    3.1 获取像素信息：getImageData() 
+                        得到的是一个对象，对象有一个属性data。该属性是一个数组，有100万项。
+                        每4项组成一个像素，分别代表grba (范围：0-255)。
+                        4个参数：选取的画布起点坐标(x, y), 选取的画布自起点开始的宽高
+                    3.2 在画布中使用这些像素信息，将图片再次绘画出来：putImageData()
+                        3个参数：获取的像素信息数组，再次绘画的起点坐标(x, y)
+
+        */
+
+		var img = new Image();
+		img.src = 'images/img_01.jpg';
+		img.onload = function () {
+
+			// context.drawImage(img,50,50);
+			// context.drawImage(img,50,50,300,300);
+			context.drawImage(img, 450, 70, 130, 150, 0, 0, 200, 200);      // 选取佩奇的鼻子画到画布上
+
+
+			var imgSrc = canvas.toDataURL();
+			//console.log(imgSrc);
+			var newImg = document.querySelector('img');
+			newImg.src = imgSrc;
+
+
+			var pxInfo = context.getImageData(0, 0, 500, 500);
+			console.log(pxInfo);	                                        // [] 500*500=250000*4=1000000	RGBA
+			context.putImageData(pxInfo, 150, 150);
+		};
+
+	</script>
+
+	<script>
+		var img=new Image();
+		img.src='images/img_01.jpg';
+		img.onload=function(){
+			window.player.blurImg(img,document.getElementById('box'));
+		}
+	</script>
+</body>
+
+</html>

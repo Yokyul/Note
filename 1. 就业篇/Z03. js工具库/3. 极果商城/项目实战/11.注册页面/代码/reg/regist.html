@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>注册</title>
+  <link href="css/common.css" rel="stylesheet"/>
+  <link href="css/themes.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+  <script src="js/jquery.min.js"></script>
+  <script>
+  		//登录账号：只能是数字或字母且以字母开头
+
+		// 密码：大于8位且需要有字母和数字之外的字符
+
+		// E-mail：基本格式
+
+		// 手机号验证：/^[1][3,4,5,7,8][0-9]{9}$/
+
+		// 两次密码必须相同
+		//正则表达式的使用 火星文
+		//函数式编程
+		function print(val){//将用户所输入的值，前后的空格删除 就是为了优化用户体验
+			var exp=/(^\s*)|(\s*$)/g
+			val=val.replace(exp,"")
+			return val
+		}
+		function checkPhone(){ //验证当前所输入的手机号是否符合规定
+			var exp=/^[1][3,4,5,7,8][0-9]{9}$///16933547845
+			var tel=document.my_f1.tel.value;
+			tel=print(tel);//过滤一下空格
+			if(exp.test(tel)){
+				return true
+			}else{
+				alert("手机号码格式不正确")
+				return false
+			}
+		}
+		function checkEmail(){
+			var exp=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+			var eml=print(document.my_f1.code.value);
+			if(exp.test(eml)){
+				return true
+			}else{
+				alert("邮箱格式不正确")
+				return false
+			}
+		}
+		function checkName(){
+			var exp=/^[a-zA-Z][a-zA-Z0-9]+$/ //全数字或者全英文都行
+			var uname=print(document.my_f1.uname.value);
+			// if(uname.charAt(0)>"a"&&uname.charAt(0)<"z"||)
+			if(exp.test(uname)){
+				return true
+			}else{
+				alert("用户名格式不正确,开头必须是字母")
+				return false
+			}
+		}
+		function checkPass(){//大于8位且需要有字母和数字之外的字符
+			var exp=/[a-zA-Z0-9]+$/ //只包含数字和字母的
+			// exp.test(val)=true
+			var upass=print(document.my_f1.psw1.value);
+			if(upass.length>=8){
+				if(!exp.test(upass)){
+					var psw2=print(document.my_f1.psw2.value);
+					if(upass==psw2){
+						return true
+					}else{
+						alert('前后密码输入不一致')
+						return false
+					}
+					
+				}else{
+					alert("需要有字母和数字之外的字符")
+					return false
+				}
+			}else{
+				alert("必须为8位以上的密码")
+				return false
+			}
+		}
+		function check(){
+			//当这个函数返回true时，那么证明 可以提交 false
+			
+			if(checkPhone()&&checkEmail()&&checkName()&&checkPass()){
+				return true
+			}else{
+				return false
+			}
+			
+		}
+ </script>
+ </head>
+ <body>
+	<!--头部-->
+	<header class="header">
+		<div class="wrap fix">
+			<div class="logo left">
+				<a href="index.html"><img src="img/logonew.png" width="132"/></a>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="index.html">首页</a></li>
+					<li><a href="play/index.html">酷玩</a></li>
+					<li><a href="guid/index.html">导购</a></li>
+					<li><a href="use/index.html">试用</a></li>
+					<li><a href="report/index.html">报告</a></li>
+				</ul>
+			</nav>
+			<a href="regist.html" class="login right">注册</a>
+			<a href="" class="search right">搜索</a>
+		</div>
+	</header>
+	<section class="report-box regMain">
+		<div class="wrap regBox">
+			<h2 class="title">注册极果</h2>
+			<form class="regForm" name="my_f1" action="" method="post" onsubmit="return check(this);">
+				<p><input type="text" placeholder="请输入登录手机号"  name="tel"/></p>
+
+				<p>
+					<input type="text" placeholder="请输入图片校验码"  name="imgCode"/>
+					<img src="img/imgCode.jpg" width="132" height="35"/>
+				</p>
+
+				<p>
+					<input type="text" placeholder="邮箱" name="code"/>
+				
+				</p>
+
+				<p><input type="text" placeholder="请输入用户名" name="uname"/></p>
+
+				<p><input type="password" placeholder="请输入新密码" name="psw1"/></p>
+
+				<p><input type="password" placeholder="确定新密码"  name="psw2"/></p>
+				
+				<p><button id="submit">立即注册</button></p>
+			</form>
+		</div>
+	</section>
+	<!--底部-->
+	<footer class="foot">
+		<section class="wrap">
+			<div class="fix">
+				<dl><img src="img/code.png" width="160" height="160"/></dl>
+				<dl>
+					<dt><img src="img/logoImg.jpg"/></dt>
+					<dd>全球酷玩试用导购平台<br>酷·新奇·好玩·品质</dd>
+					<dd>微信添加“JguoJguo” <br>获取我们的服务。</dd>
+				</dl>
+				<dl>
+					<dt>免费试用</dt>
+					<dd><a href="help.html#lc">试用流程</a></dd>
+					<dd><a href="help.html#cg">如何提高成功率</a></dd>
+				</dl>
+				<dl>
+					<dt>友情链接</dt>
+					<dd><a href="http://www.zhidx.com/">智东西</a><a href="http://www.weibusi.net/">WEIBUSI</a></dd>
+					<dd><a href="http://it.sohu.com/">搜狐IT</a><a href="http://tech.qq.com/">腾讯科技</a></dd>
+					<dd><a href="http://digi.it.sohu.com/">搜狐数码</a><a href="http://tech.ifeng.com/">凤凰科技</a></dd>
+					<dd><a href="http://digi.ifeng.com/">凤凰数码</a><a href="http://product.pconline.com.cn/">PConline</a></dd>
+					<dd><a href="http://www.pcpop.com/">泡泡网</a><a href="http://www.3wcoffee.com/">3W咖啡</a></dd>
+					<dd><a href="http://bbs.zuk.cn/">ZUK社区</a><a href="http://emie.com/">亿觅emie</a></dd>
+					<dd><a href="http://www.geekpark.net/">极客公园</a><a href="http://zdm.yixun.com/index.html">易迅易启玩</a></dd>
+					<dd><a href="http://www.guoku.com/">果库</a></dd>
+				</dl>
+				<dl>
+					<dt>购买攻略</dt>
+					<dd><a href="#">美亚海淘教程</a></dd>
+					<dd><a href="#">日亚海淘教程</a></dd>
+					<dd><a href="#">海淘转运攻略</a></dd>
+					<dd><a href="#">kickstarter 众筹购买攻略</a></dd>
+					<dd><a href="#">indiegogo 众筹购买攻略</a></dd>
+				</dl>
+				<dl>
+					<dt>厂商合作</dt>
+					<dd><a href="about.html">关于极果</a></dd>
+					<dd><a href="about.html#connect">联系我们</a></dd>
+					<dd><a href="mailto:BD@jiguo.com">商务合作：BD@jiguo.com</a></dd>
+					<dd><a href="mailto:CEO@jiguo.com">CEO邮箱：CEO@jiguo.com</a></dd>
+				</dl>
+			</div>
+			<p class="copy">© 2016 极果版权所有</p>
+		</section>
+	</footer>
+ </body>
+</html>
+
+<!-- vue react 小程序 node es6 webpack -->

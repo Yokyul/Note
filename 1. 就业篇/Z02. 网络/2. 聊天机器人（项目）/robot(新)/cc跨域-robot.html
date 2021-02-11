@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    我是robot
+    <script>
+        var data = {
+            name: 'test',
+            age: 2
+        }
+        console.log("robot", window.parent.data);
+        window.onmessage = function (e) {
+            console.log('我是儿子robot，接收到的数据是', e.data)
+        }
+        window.parent.postMessage(data, 'http://127.0.0.1:5500')
+    </script>
+</body>
+
+</html>

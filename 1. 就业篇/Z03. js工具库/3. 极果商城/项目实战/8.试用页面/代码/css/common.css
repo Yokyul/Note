@@ -1,0 +1,301 @@
+@keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+@-webkit-keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+@-moz-keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+@-ms-keyframes fade{
+	0%{
+		opacity: 1
+	}
+	50%{
+		opacity: 0.5
+	}
+	100%{
+		opacity: 1
+	}
+}
+
+
+.header,.main,.footer{
+	width: 100%;
+}
+.header{
+	overflow: hidden; /*块元素是可以通过内容将其撑大的，但是如果内容浮动了，就无法将其
+	撑大，所以加上overflow:hidden 可以取消其子集元素浮动对其的影响，一样可以撑大;*/
+	/*background-color: red;
+	height: 300px;*/
+}
+.inner{
+	width: 1002px;
+	margin:0 auto;
+}
+.header-top{
+	width: 100%;
+	height: 74px;
+	background-color: white;
+	border-bottom: 1px solid #d4cec2;
+	box-shadow: 0px 0px 5px #cecfcf inside
+}
+.header-top .inner{
+	height: 74px;
+/*	background-color: blue;
+*/}
+.header-top .inner .logo{
+	width: 134px;
+	height: 74px;
+	float: left;
+	margin-right: 65px;
+}
+.header-top .inner .logo:hover{
+	animation:fade 1s linear infinite;/*infinite无限调用*/
+}
+.header-top .inner .logo h1{
+	width: 134px;
+	height: 74px;
+	background-image: url(../img/logo_02.png);
+}
+.header-top .inner .logo h1 a{
+	display: block;
+	width: 134px;
+	height: 74px;
+	text-indent: -3000px
+}
+.header-top .inner .nav{
+	width: 400px;
+	height: 74px;
+	float: left;
+}
+.header-top .inner .nav ul li{
+	padding-top: 34px;
+	float: left;
+	margin-right: 48px;
+	font-size: 20px;
+	color: black;
+	
+}
+.header-top .inner .nav ul li a{
+	color: black;
+}
+.header-top .inner .nav ul .active a{
+	color: #ff3a35
+}
+.header-top .inner .nav ul li a:hover{
+	color:#ff3a35;
+	text-decoration: none;
+}
+.header-top .inner .nav ul li:last-child{
+	margin-right: 0
+}
+.search .icon{
+	float: right;
+	margin-top: 25px;
+	font-size: 20px;
+	transition: all .1s linear;
+}
+.search .icon:hover{
+	/*font-size: 22px;*/
+	transform:scale(1.4,1.4);
+	-webkit-transform:scale(1.4,1.4);
+	-moz-transform:scale(1.4,1.4);
+	-ms-transform:scale(1.4,1.4);
+}
+.login{
+	float: right;
+	display: block;
+	width: 50px;
+	height: 30px;
+	border:1px solid #fa553f;;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 2px;
+	color: #fa553f;
+	margin-top: 21px;
+	margin-left: 34px;
+	transition:all .2s linear;
+}
+.login:hover{
+	background-color: #fe5341;
+	color:white;
+}
+/*要求 将图片加上动画 第二个要求 文字颜色变成黑*/
+.con{
+	width: 220px;
+	height: 285px;
+	display: block;
+	border:1px solid #ccc;
+	border-radius: 6px;
+	position: relative;
+	overflow: hidden;
+	float: left;
+	margin-right: 38px;
+	color: black
+}
+.con:hover img,.common li:hover img{
+	animation: fade 2s linear infinite
+}
+.con .top-tip{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 4px 8px; /*上下 左右*/
+	border-radius: 0 0 0 6px;
+	z-index: 10;
+
+}
+.con .sf{
+	background-color: red;
+	color: white;
+}
+.con .ty{
+	background-color: #f7f2ca;
+	color:#cdc295;
+
+}
+.con .name{
+	padding: 8px;
+	text-align: center;
+}
+.con .label{
+	text-align: center;
+}
+.con .label span{
+	display: inline-block;
+	/*行内元素大小和内容是相同的*/
+	padding: 6px 10px;	
+	border-radius: 4px;
+}
+.con .red{
+	color: red;
+	
+}
+.con .green{
+	color: green;
+}
+.con .label .red{
+	border:1px solid red;
+}
+.con .label .green{
+	border:1px solid green;
+}
+.con .sq{
+	padding: 10px 0;
+	text-align: center;
+	font-size: 20px;
+}
+.con .current{
+	text-align: center;
+	font-size: 18px;
+}
+.common ul{
+	overflow: hidden;
+}
+.common ul li{
+	width: 222px;
+	height: 233px;
+	float: left;
+	margin:0 27px 20px 0;
+	border-radius: 6px;
+	background: white;
+	border:1px solid #ccc;
+
+}
+.common ul li img{
+	border-radius: 6px 6px 0 0
+}
+.common ul li:nth-child(4n+4){ /*找到4或者4的倍数的li */
+	margin-right: 0
+}
+.common ul li .info{
+	padding: 10px;
+	height: 98px;
+
+}
+.common ul li .list{
+	background:url(../img/listbg.jpg) no-repeat left bottom;
+}
+.common ul li .info .name{
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 15px;
+}
+.common ul li .info .left{
+	float: left;
+}
+.common ul li .info .price{
+	color: red
+}
+.common ul li .info .right{
+	float: right
+}
+.common ul li .info .right span{
+	padding-left: 15px;
+}
+.common ul li .info .right .xin{
+	background: url(../img/xin.png) no-repeat left center;
+}
+.common ul li .info .right .look{
+	background: url(../img/xin.png) no-repeat left center;
+}
+.common .btn-more{
+	text-align: center;
+	padding-bottom: 20px;
+}
+.common .btn-more .comMore{
+	color: red;
+	padding-left: 20px;
+	
+}
+.common .btn-more .cl{
+	background: url(../img/more.png) no-repeat left center;
+}
+.common .btn-more .loading{
+	background: url(../img/loading-icon.gif) no-repeat left center;
+}
+.common .btn-more .no-more{
+	color: blue
+}
+.footer{
+	height: 360px;
+	
+}	
+dl dd{margin:0;}
+.foot{padding:40px 0 15px;background-color: #666;overflow: hidden;}
+.foot dl{float:left;font-size:13px;padding-left:22px;line-height:20px;}
+.foot dl dt{font-size:16px;padding-bottom:25px;}
+.foot dl:nth-child(2) dd:last-child{margin-top:13px;}
+.foot dl:nth-child(4) dd a{display:inline-block;width:69px;}
+.foot dl:nth-child(1){padding-left:0;}
+.foot dl:nth-child(2){width:140px;}
+.foot dl:nth-child(3){width:100px;}
+.foot dl:nth-child(4){width:140px;}
+.foot dl:nth-child(5){width:148px;}
+.foot dl:nth-child(6){width:180px;}
+.foot .copy{text-align:center;padding-top:80px;font-size:13px;}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    我是demo
+
+    <!-- 同源目录下 -->
+    <!-- <iframe src="./cc跨域-子.html" id="oIfr" frameborder="0"></iframe>
+    <script>
+        var oIfr = document.getElementById('oIfr');
+        oIfr.onload = function () {
+            console.log(oIfr.contentWindow.data)
+        }
+        var data = {
+            name: 'demo',
+            age: 10
+        }      
+    </script> -->
+
+
+    <!-- 非同源目录下,假设有那么一个目录：127.0.0.1:5501/robot-class/robot.html -->
+    <iframe id="oIfr" src="http://127.0.0.1:5501/robot-class/robot.html" frameborder="1"></iframe>
+    <script>
+        var oIfr = document.getElementById('oIfr');
+        var data = {
+            name: 'demo',
+            age: 10
+        }
+        oIfr.onload = function () {
+            console.log(oIfr.contentWindow.data)
+            oIfr.contentWindow.postMessage(data, 'http://127.0.0.1:5501');  //window.postMessage(要传递的数据, 允许拿到这个数据的源)
+        }
+        // 接收信息的事件  结合着postMessage用
+        window.onmessage = function (e) {
+            console.log('我是爸爸demo，我接受到的儿子给我信息是：' , e.data)
+        }
+    </script>
+
+
+
+</body>
+
+</html>

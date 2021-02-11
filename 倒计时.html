@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .campaign_countdown {
+            position: fixed;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff2d8;
+            width: 100%;
+            padding: 15px;
+            z-index: 1001;
+            display: none;
+        }
+
+        .campaign_countdown>.row {
+            max-width: 1570px;
+            margin: 0 auto;
+        }
+
+        .campaign_countdown_content {
+            background-image: linear-gradient(#a70007,
+                    #a70007),
+                linear-gradient(180deg,
+                    rgba(197, 40, 40, 0.97) 0%,
+                    rgba(125, 23, 23, 0.97) 100%),
+                linear-gradient(#99270d,
+                    #99270d);
+            background-blend-mode: normal,
+                normal,
+                normal;
+            box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.1);
+            border-radius: 34px;
+            padding: 8px 8px 6px;
+        }
+
+        .campaign_countdown_content .large-5 {
+            text-align: right;
+            padding-right: 0;
+            width: 40%;
+        }
+
+        .campaign_countdown_content span.text {
+            font-size: 33px;
+            font-weight: 500;
+        }
+
+        .campaign_countdown_content .large-7 {
+            padding-left: 0;
+            width: 60%;
+        }
+
+        .campaign_countdown_content .large-5 span.text {
+            position: relative;
+            top: 2px;
+        }
+
+        .campaign_countdown_content .large-7 span.text {
+            position: relative;
+            top: -6px;
+        }
+
+        .campaign_countdown_content .large-7 strong {
+            display: inline-block;
+            font-size: 45px;
+            color: #4c0903;
+            background-image: linear-gradient(2deg,
+                    #f7ab3d 0%,
+                    #ffe399 100%),
+                linear-gradient(#f6f6f6,
+                    #f6f6f6);
+            background-blend-mode: normal,
+                normal;
+            border-radius: 10px;
+            padding: 0;
+            width: 80px;
+            height: 55px;
+            line-height: 55px;
+            text-align: center;
+            margin-right: 7px;
+            margin-left: 12px;
+        }
+
+        .campaign_countdown_content .large-7 strong.day {
+            margin-left: 0;
+        }
+
+        .campaign_countdown_content .large-7 a {
+            float: right;
+            display: inline-block;
+            padding-right: 20px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 未完成 -->
+    <div class="campaign_countdown_content">
+        <div class="row">
+            <div class="large-5 small-12 columns">
+                <span class="text">距離感恩節活動結束僅剩：</span>
+            </div>
+            <div class="large-7 small-12 columns">
+                <strong class="day"></strong><span class="text">天</span>
+                <strong class="hour"></strong><span class="text">时</span>
+                <strong class="minute"></strong><span class="text">分</span>
+                <strong class="second"></strong><span class="text">秒</span>
+                <a href="{{ acd.path( 'campaign/wm6ursouvj' ) }}">
+                    <img src="/images/campaign/arrow-btn.png" alt="" class="img_btn">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            window['ttt'] = setInterval(function () {
+                TimeTo('Mon November 25 2020 14:00:00 GMT+0800');
+            }, 50);
+        })();
+        
+        function TimeTo(dd) {
+            var t = new Date(dd),
+                n = new Date().getTime(),
+                c = t - n;
+            if (c <= 0) {
+                clearInterval(window['ttt']);
+                $('.campaign_countdown').hide();
+                return;
+            }
+
+            var remain_hour = c / 1000 / 60 / 60;
+
+            if (remain_hour <= 48) {
+                $('.campaign_countdown').show();
+            }
+
+            var d = parseInt(c / 1000 / 60 / 60 / 24),
+                h = parseInt(c / 1000 / 60 / 60 - (24 * d)),
+                m = parseInt(c / 1000 / 60 - (24 * 60 * d) - (60 * h)),
+                s = parseInt(c / 1000 - (24 * 60 * 60 * d) - (60 * 60 * h) - (60 * m));
+
+            if (s < 10) {
+                s = "0" + s;
+            }
+            if (m < 10) {
+                m = "0" + m;
+            }
+            if (h < 10) {
+                h = "0" + h;
+            }
+            $('.campaign_countdown .day').html(d);
+            $('.campaign_countdown .hour').html(h);
+            $('.campaign_countdown .minute').html(m);
+            $('.campaign_countdown .second').html(s);
+        }
+
+    </script>
+</body>
+
+</html>

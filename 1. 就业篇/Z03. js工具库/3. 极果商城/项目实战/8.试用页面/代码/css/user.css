@@ -1,0 +1,77 @@
+.main{
+	width: 100%;
+	overflow: hidden;
+}
+.main .title{
+	height: 130px;
+}
+.main .title .inner{
+	height: 130px;
+/*	background-color:red;
+*/}
+.main .title .inner h2{
+	font-size: 30px;
+	line-height: 130px;
+	text-align: center;
+}
+.main>div{
+	width: 100%;
+}
+.main .webNav{
+	height: 40px;
+	border-bottom: 1px solid #f2f2f2
+}
+.main .webNav .inner{
+	height: 40px;
+	text-align: center;
+}
+.main .webNav .inner a{
+	padding: 3px 45px 10px 45px;
+	font-size: 20px;
+	color: #ccc; 
+}
+.main .webNav .inner .active{
+	color: #fb5a2e;
+	border-bottom: 4px solid  #fb5a2e
+}
+.main .tabNav{
+	height: 48px;
+}
+.main .tabNav .inner{
+	height: 48px;
+}
+.main .tabNav .inner ul{
+	padding-left: 236px;
+}
+.main .tabNav .inner ul li{
+	float: left;
+	font-size: 18px;
+	line-height: 48px;
+	margin-right: 115px;
+	cursor:pointer;/* 将光标改成手势 cursor*/
+	color: #ccc
+}
+.main .tabNav .inner ul .active{
+	color: black
+}
+.main .tabBox{
+	overflow: hidden;
+	background-color: #f7f7f7;
+}
+.main .tabBox .inner{
+	overflow: hidden;
+	padding-top: 20px
+}
+.main .tabBox .inner .box{
+	overflow: hidden;
+	display: none;
+}
+.main .tabBox .inner .show{
+	display: block;
+}
+.main .tabBox .inner .box .con{
+	margin-bottom: 20px;
+}
+.main .tabBox .inner .box .con:nth-child(4n+4){
+	margin-right: 0;
+}

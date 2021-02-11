@@ -1,0 +1,77 @@
+.main{
+	width: 100%;
+	overflow: hidden;
+}
+.main .title{
+	height: 130px;
+	
+}
+.main .title .inner{
+	height: 130px;
+	
+}
+.main .title .inner h2{
+	line-height: 130px;
+	font-size: 40px;
+	text-align: center;
+}
+.main .webNav{
+	height: 40px;
+	border-bottom: 1px solid #f2f2f2
+}
+.main .webNav .inner{
+	height: 40px;
+	text-align: center;
+}
+.main .webNav .inner a{
+	font-size: 20px;
+	color: #ccc;
+	padding: 0 24px 10px
+}
+.main .webNav .inner .active{
+	color: #fd5842;
+	border-bottom: 4px solid #fd5842
+}
+.main .tabNav{
+	height: 48px;
+}
+.main .tabNav .inner{
+
+	height: 48px;
+}
+.main .tabNav .inner ul{
+	padding-left: 240px;
+}
+.main .tabNav .inner ul li{
+	float: left;
+	margin-right: 120px;
+	font-size: 20px;
+	line-height: 48px;
+	color: #ccc;
+	cursor: pointer; /*将光标编程手势*/
+}
+.main .tabNav .inner ul .active{
+	color: #000;
+}
+.main .tabBox{
+	overflow: hidden;
+	background-color: #f7f7f7;
+}
+.main .inner{
+	overflow: hidden;
+}
+.main .inner .box{
+	width: 100%;
+	overflow: hidden;
+	padding-top: 20px;
+	display: none;
+}
+.main .inner .box .con{
+	margin-bottom: 30px;
+}
+.main .inner .box .con:nth-child(4n+4){
+   margin-right: 0;
+}
+.main .inner .show{
+	display: block;
+}
