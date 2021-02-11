@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- v-text -->
+    <div id="demo" v-text="msg">
+        hahhahah!
+        <script>  const a = 1;  </script>
+        <style> div {opacity: 1;} </style>
+    </div>
+
+    <hr>
+
+    <!-- v-html -->
+    <input type="text">
+    <button>点击</button>
+    <div id="app">
+        <div v-html="msg"></div>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // v-text
+        console.log(demo.textContent);  //会获取某个dom元素内的所有元素的内容，包括 <script> 和 <style>元素，然而 innerText 不会。
+        console.log(demo.innerText);
+
+        // v-html
+        const oInput = document.getElementsByTagName('input')[0];
+        const oButton = document.getElementsByTagName('button')[0];
+        let msg = null;
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world'
+            }
+        });
+        oButton.onclick = function () {
+            vm.msg = oInput.value;
+        };
+    </script>
+</body>
+
+</html>

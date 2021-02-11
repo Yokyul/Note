@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <div id="app">
+        <my-cmp ref="cmp"></my-cmp>
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('my-cmp', {
+            data() {
+                return {
+                    share: 'yuyu',
+                }
+            },
+            template: `<div>cmp-parent</div>`
+        });
+
+        const vm = new Vue({
+            el: '#app',
+        });
+
+        
+        let res = vm.$refs.cmp.share; //yuyu
+        console.log(res);
+
+    </script>
+</body>
+
+</html>

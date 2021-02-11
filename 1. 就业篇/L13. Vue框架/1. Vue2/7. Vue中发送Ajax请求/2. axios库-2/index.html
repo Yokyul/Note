@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="username">
+            <input type="text" placeholder="用户名" v-model="name">
+        </div>
+        <div class="mail">
+            <input type="text" placeholder="邮箱" v-model="mail">
+        </div>
+        <div class="upload-btn" @click="handleUpload">上传</div>
+        <div class="show-btn" @click="handleShow">显示人物信息</div>
+        <button @click="handleCancelGet">取消get请求</button>
+        <ul class="person-list" v-if="personList.length">
+            <li class="person" v-for="person in personList">
+                <span>{{ person.name }}</span>
+                <span>{{ person.mail }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./axios.js"></script>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局配置
+        // axios.defaults.baseURL = 'https://developer.duyiedu.com/vue';
+        axios.defaults.baseURL = 'http://127.0.0.1:12306';
+
+        // 1.请求拦截器
+        axios.interceptors.request.use(config => {
+            // console.log(config);
+            if (config.method === 'get') {
+                // ...
+            } else if (config.method === 'post') {
+                // ..
+            }
+            return config;
+        }, error => {
+            alert('xxxx');
+            return Promise.reject(error);
+        });
+
+        // 2.响应拦截器
+        const interceptor = axios.interceptors.response.use(response => {
+            // console.log(response);
+            if (response.status === 200) {
+                return response.data;
+            } else {
+                // ...
+            }
+        },
+            // 6.错误处理
+            error => {
+                if (error.response) {
+                    console.log('响应时错误');
+                    // const { status } = error.response;
+                    // switch (status) {
+                    //   case 404:
+                    //     alert('url地址错误');
+                    //     break;
+                    //   case 401:
+                    //     alert('xxx')
+                    // }
+                } else if (error.request) {
+                    console.log('请求时错误');
+                } else {
+                    console.log(error.message);
+                }
+
+                return Promise.reject(error);
+            });
+
+        // 3.移除拦截器
+        // axios.interceptors.response.eject(interceptor);
+
+        // 4.为实例添加拦截器
+        const instance = axios.create();
+        instance.interceptors.request.use();
+
+        // 5.取消请求
+        const source = axios.CancelToken.source();
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                mail: '',
+                msg: '',
+                personList: []
+            },
+            methods: {
+                handleUpload() {
+                    axios.post('setUserInfo', {
+                        name: 'shan',
+                        mail: 'shan@qq.com'
+                    });
+                },
+                handleShow() {
+                    axios.get('/getUserInfo', {
+                        cancelToken: source.token
+                    }).then(res => {
+                        console.log(res);
+                    }).catch(error => { })     // 在某一个具体的请求进行错误处理。一般不这样做，而是将错误处理写在拦截器。
+                },
+                handleCancelGet() {
+                    source.cancel('取消请求');
+                }
+            },
+            watch: {
+                msg() {
+                    if (this.msg === '') {
+                        return;
+                    } else {
+                        alert(this.msg);
+                    }
+                    this.msg = '';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

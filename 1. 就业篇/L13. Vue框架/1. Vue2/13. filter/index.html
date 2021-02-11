@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{ content | filterA | filterB }}
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        Vue.filter('filterA', (val, a) => {
+            console.log(val, a);
+            return 'aaa';
+        });
+
+        Vue.filter('filterB', (val) => {
+            console.log(val);
+            return 'bbb';
+        });
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                content: 'shanshan',
+                money: 82736582365287,
+                likes: 7675876
+            },
+            // filters: {
+            //   filter () {
+            //     return 'aaaa';
+            //   }
+            // },
+        })
+    </script>
+</body>
+
+</html>

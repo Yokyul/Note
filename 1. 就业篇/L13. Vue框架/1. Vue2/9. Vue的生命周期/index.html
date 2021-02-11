@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue生命周期</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="app">{{ msg }}</div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        // 创建、挂载、更新、销毁
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello world'
+            },
+            methods: {
+                handle() {
+                    console.log('xx');
+                }
+            },
+            watch: {
+                msg: {
+                    handler() {
+                        console.log('侦听msg的值');
+                    },
+                    immediate: true
+                }
+            },
+            beforeCreate() {
+                // this.timer = setInterval(() => {
+                //   console.log(1);
+                // }, 1000)
+
+                console.log(this.msg); //undefined
+                console.log(this.handle); //undefined
+                console.log('----beforeCreate----');
+            },
+            created() {
+                console.log(1);
+                console.log(this.msg); //hello world
+                console.log(this.handle); //function() { console.log('xx'); }
+                console.log(this.$el); //undefined
+                console.log('-----created------');
+            },
+            beforeMount() {
+                console.log(2);
+                console.log(this.$el); //<div id="app">{{ msg }}</div>
+                console.log('----beforeMount----');
+            },
+            mounted() {
+                console.log(this.$el); //<div id="app">hello world</div>
+                console.log('------mounted------');
+            },
+            beforeUpdate() {
+                console.log(this.msg);
+                console.log(this.$el.outerHTML);
+                console.log('----beforeUpdate----');
+            },
+            updated() {
+                console.log(this.msg);
+                console.log(this.$el.outerHTML);
+                console.log('------updated------');
+            },
+            beforeDestroy() {
+                clearInterval(this.timer);
+                console.log('----beforeDestroy----');
+            },
+            destroyed() {
+                console.log('-----destoryed-----');
+            },
+        });
+
+        const a = {};
+        // console.log(a);
+        a.haha = 'haha';
+    </script>
+</body>
+
+</html>

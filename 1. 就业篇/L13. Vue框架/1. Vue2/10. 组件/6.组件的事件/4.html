@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 之前写法 -->
+        <!-- <base-input2 :value="name" @update:value="name=$event"></base-input2> -->
+
+        <!-- 现在写法 -->
+        <base-input2 :value.sync="name"></base-input2>
+    </div>
+
+    <script>
+
+        // v-bind .sync 语法糖 :prop @updata:prop
+        Vue.component("base-input2", {
+            props: {
+                value: String
+            },
+            template: `
+            <label>
+                姓名：
+                <input type="text" :value="value" @input="$emit('update:value', $event.target.value)"/>
+            </label>
+            `
+        })
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: 'yuyu',
+            }
+        })
+    </script>
+</body>
+
+</html>

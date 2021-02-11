@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios1</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="app">
+        {{ msg }}
+        <div class="username">
+            <input type="text" placeholder="用户名" v-model="name">
+        </div>
+        <div class="mail">
+            <input type="text" placeholder="邮箱" v-model="mail">
+        </div>
+        <div class="upload-btn" @click="handleUpload">上传</div>
+        <div class="show-btn" @click="handleShow">显示人物信息</div>
+        <ul class="person-list" v-if="personList.length">
+            <li class="person" v-for="person in personList">
+                <span>{{ person.name }}</span>
+                <span>{{ person.mail }}</span>
+            </li>
+        </ul>
+    </div>
+
+    <script src="./axios.js"></script>
+    <script src="../../js/vue.js"></script>
+    <script>
+        // 全局配置：
+        axios.defaults.baseURL = 'https://developer.duyiedu.com/vue';
+
+        // 实例配置：
+        const instance = axios.create({
+            baseURL: 'https://developer.duyiedu.com/vue'
+        });
+        const aInstance = axios.create({
+            baseURL: 'https://developer.duyiedu.com/vue/a'
+        })
+        const bInstance = axios.create({
+            baseURL: 'https://developer.duyiedu.com/vue/b'
+        })
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                name: '',
+                mail: '',
+                msg: '',
+                personList: []
+            },
+            methods: {
+                handleUpload() {
+                    // 发送post请求
+                    const { name, mail } = this;
+                    if(!name){
+                        alert("请填写用户名");
+                        return;
+                    }
+                    if(!mail){
+                        alert("请填写邮箱");
+                        return;
+                    }
+                    axios.post('/setUserInfo', { name, mail }, {
+                        baseURL: 'https://developer.duyiedu.com/vue',
+                    }).then(res => {
+                        console.log(res);
+                        this.msg = res.data.msg;
+                    });
+                },
+                handleShow() {
+                    // 写法一：一个参数
+                    // axios({
+                    //   method: 'get',
+                    //   baseURL: 'https://developer.duyiedu.com/vue',
+                    //   url: '/getUserInfo'
+                    // }).then(res => {
+                    //   console.log(res);           // des是这个库拿到返回的数据后又加了一些东西，最终形成的对象数据。原本只有data值。
+                    //   this.msg = res.data.msg;    // 拿到状态信息msg
+                    //   this.personList = res.data.data;    // 将拿到的数据放到vue的data中，然后在HTML文件中通过v-for渲染出来。
+                    // })
+
+                    // 写法二：两个参数
+                    // axios('/getUserInfo', {
+                    //   method: 'get',
+                    //   baseURL: 'https://developer.duyiedu.com/vue',
+                    // }).then(res => {
+                    //   this.msg = res.data.msg;
+                    //   this.personList = res.data.data;
+                    // })
+
+                    // 写法三：利用别名。如：发送get请求就写成axios.get()
+                    // axios.get('/getUserInfo', {
+                    //   baseURL: 'https://developer.duyiedu.com/vue',
+                    // }).then(res => {
+                    //   this.msg = res.data.msg;
+                    //   this.personList = res.data.data;
+                    // })
+
+                    // 用到了全局配置
+                    // axios.get('/getUserInfo').then(res => {
+                    //   this.msg = res.data.msg;
+                    //   this.personList = res.data.data;
+                    // })
+
+                    // 用到了实例配置
+                    // instance.get('/getUserInfo').then(res => {
+                    //   this.msg = res.data.msg;
+                    //   this.personList = res.data.data;
+                    // })
+                    // aInstance.get('/xxx');
+                    // bInstance.get('/xxx');
+
+                    // 并发：
+                    axios.all([
+                        axios.post('/setUserInfo', { name: 'shanshan', mail: 'haah@qq.com' }),
+                        axios.get('/getUserInfo'),
+                    ]).then(axios.spread((postRes, getRes) => {
+                        console.log(postRes, getRes);
+                    }));
+                }
+            },
+            watch: {
+                msg() {
+                    if (this.msg === '') {
+                        return;
+                    }else {
+                        alert(this.msg);
+                    }
+                    this.msg = '';
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

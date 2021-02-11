@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-mymodel="content">
+        {{ content }}
+    </div>
+
+    <script>
+
+        // v-model
+        // 1. 通过绑定的数据，给元素设置value  -> bind()
+        // 2. 当触发input事件时，更改绑定的数据值   -> bind()
+        // 3. 更改数据后，同步input的value值    -> update()
+        Vue.directive('mymodel', {
+            bind(el, binding, vnode) {
+                const vm = vnode.context;
+                const { value, expression } = binding;
+                el.value = value;
+
+                el.oninput = function () {
+                    const inputVal = el.value;
+                    vm[expression] = inputVal;
+                }
+            },
+            update(el, binding) {
+                const { value } = binding;
+                el.value = value;
+            },
+        })
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                content:"yuyu"
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>

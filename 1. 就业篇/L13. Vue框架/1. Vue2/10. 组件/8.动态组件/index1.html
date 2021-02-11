@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态组件 + 无缓存</title>
+    <style>
+        button {
+            width: 80px;
+            height: 40px;
+            margin: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .title1 {
+            background-color: skyblue;
+        }
+        .title2 {
+            background-color: rgb(135, 235, 157);
+        }
+
+        #cam1 {
+            background-color:  #886131;
+            height: 700px;
+        }
+        #cam2 {
+            background-color:  #c2a481;
+            height: 700px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button class="title1" v-for="page in pages" @click="pageCmp = page.cmp" :key="page.id">{{ page.name }}</button>
+
+        <!-- 动态组件就是写一个component标签，特性is是展示的组件名 -->
+        <component :is="pageCmp"></component>
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+        Vue.component('base-post', {
+            data() {
+                return {
+                    postCmp: '',
+                    posts: [
+                        { title: "标题1", content: { template: `<div>内容1</div>` }, id: 11 },
+                        { title: "标题2", content: { template: `<div>内容2</div>` }, id: 12 },
+                        { title: "标题3", content: { template: `<div>内容3</div>` }, id: 13 },
+                    ],
+                }
+            },
+            mounted() {
+                this.postCmp = this.posts[0].content;
+            },
+            template: `
+                <div id="cam1">
+                    <button class="title2" 
+                        v-for="post in posts"
+                        @click="postCmp = post.content"
+                        :key="post.id"
+                    >{{ post.title }}</button>
+                    <hr style="width: 80%; margin: 10px 0 0">
+                    <component :is="postCmp"></component>
+                </div>
+            `
+        });
+
+        Vue.component('base-more', {
+            template: `<div id="cam2">更多内容</div>`
+        });
+
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                pages: [
+                    { name: '博客', cmp: 'base-post', id: 0 },
+                    { name: '更多', cmp: 'base-more', id: 1 }
+                ],
+                pageCmp: 'base-post'
+            },
+        });
+    </script>
+</body>
+
+</html>
