@@ -1,0 +1,28 @@
+
+
+// 1.变量是有作用域的
+
+@height: 60px;
+.header{
+    @height: 56px;
+
+    height: @height;
+
+    .menu{
+        height: @height;
+    }
+}
+
+.abc{
+    height: @height;
+}
+
+
+
+// 2.less有两种注释。(单行注释和多行注释)
+
+// 单行注释(less注释),不会显示在css文件里
+
+/*
+    多行注释(css注释)，会显示在css文件里
+*/
