@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文件下载</title>
+</head>
+
+<body>
+    <a resrole="thunder" href="/res/hill.zip">下载</a>
+
+    <!-- 迅雷下载协议：
+        1.拿到完整的下载地址
+        2.前加AA，后加ZZ，变成：AA地址ZZ
+        3.将该字符串进行 base64 编码
+        4.最后下载地址写成：thunder://base64编码    
+    -->
+
+    <script>
+        const a = document.querySelector("a[resrole=thunder]");
+        let thunderLink = `AA${a.href}ZZ`;
+        thunderLink = btoa(thunderLink);
+        thunderLink = "thunder://" + thunderLink;
+        a.href = thunderLink;
+    </script>
+</body>
+
+</html>
