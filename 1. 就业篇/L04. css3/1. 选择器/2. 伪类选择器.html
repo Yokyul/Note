@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪类选择器</title>
+    <style>
+        body{
+            margin-bottom: 500px;
+        }
+        /* 1 */
+        div:target{
+            color: red;
+            border: 1px solid black;
+        }
+
+        /* 2 */
+        p:nth-child(even){
+            background-color: red;
+        }
+        p:nth-last-child(1){
+            background-color: blue;
+        }
+
+        /* 3 */
+        div:empty{
+            border: 1px solid black;
+            height: 100px;
+            width: 100px;
+        }
+
+        /* 4 */
+        input:checked + span::after{
+            content: "爱你";
+            background-color: green;
+            color: #0ff;
+        }
+
+        /* 5 */
+        input.yu:enabled{
+            background-color: hotpink;
+        }
+        input.yu:disabled{
+            background-color: yellow;
+        }
+
+        /* 6 */
+        input.gu:read-only{
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- :target -->
+    <a href="#box1">1</a>
+    <a href="#box2">2</a>
+    <div id="box1">123</div>
+    <div id="box2">234</div>
+    <hr>
+
+    <!-- :nth-child(n) 和 :nth-last-child(n) -->
+    <div>
+        <span>0</span>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+    </div>
+    <hr>
+
+
+    
+    <!-- :empty -->
+    <div><span>123</span></div>
+    <div></div>
+    <div>234</div>
+    <div><!--  --></div>
+    <div> </div>
+    <hr>
+
+    <!-- checked  -->
+    <label>
+        surpreise!
+        <input type="checkbox">
+        <span></span>
+    </label>
+    <hr>
+
+    <!-- :enabled 和 :disabled -->
+    <input class="yu" type="text">
+    <input class="yu" type="text" disabled>
+    <hr>
+
+    <!-- :read-only 和 :read-write -->
+    <input class="gu" type="text">
+    <input class="gu" type="text" readonly value="只读">
+</body>
+
+</html>

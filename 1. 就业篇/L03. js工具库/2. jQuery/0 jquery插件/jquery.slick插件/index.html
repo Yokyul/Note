@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slick插件</title>
+    <link rel="stylesheet" href="./slick-master/slick/slick.css">
+
+    <style>
+        body {
+            background-color: skyblue;
+        }
+        .damImg {
+            width: 700px;
+            margin-left: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="damImg">
+        <div><img src="https://res.acdsee.cn/images/products/acdsee2020/ultimate/DAM/Ult2020-DAM-DuplicateFinder.jpg"></div>
+        <div><img src="https://res.acdsee.cn/images/products/acdsee2020/ultimate/DAM/Ult2020-DAM.jpg"></div>
+        <div><img src="https://res.acdsee.cn/images/products/acdsee2020/ultimate/DAM/Ult2020-DAM-ImageBasket.jpg"></div>
+    </section>
+
+
+    <script src="../../js/jquery-3.4.1.min.js"></script>
+    <script src="./slick-master/slick/slick.js"></script>
+    <script>
+        $(".damImg").slick({
+            fade: true,
+            arrows: true,
+            dots: true,             // 指示小圆点
+            infinite: true,         // 循环播放
+            slidesToShow: 1,        // 幻灯片每屏显示个数
+            slidesToScroll: 1       // 幻灯片每次滑动个数
+        });
+    </script>
+</body>
+
+</html>

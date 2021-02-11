@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.绘制圆弧需要： 圆心(x, y)  半径(r)  弧度(起始弧度, 结束弧度)  方向(顺时针, 逆时针)
+        2.弧度单位：π 。   写法：Math.PI
+        3.以圆水平直径为轴，顺时针旋转计算角度。
+        4.顺时针：0 。  逆时针：1
+     -->
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        /** @type {HTMLCanvasElement} */ 
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, Math.PI * 2, 0);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(250, 100, 50, 0, Math.PI / 2, 0);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(400, 100, 50, 0, Math.PI / 2, 1);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(100, 300, 50, 0, Math.PI * 1.8, 0);
+        ctx.lineTo(100, 300);
+        ctx.closePath();
+        ctx.stroke();
+
+    </script>
+</body>
+
+</html>

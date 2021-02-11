@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img data-original="https://res.acdsee.cn/images/luxea/home/summary/screenshot.png" alt="" class="lazy">
+    <img data-original="https://res.acdsee.cn/images/luxea/home/effects/effects.png" alt="" class="lazy">
+    <img data-original="https://res.acdsee.cn/images/luxea/home/effects/summer-bg.png" alt="" class="lazy">
+    <img data-original="https://res.acdsee.cn/images/luxea/home/scene/01.jpg" alt="" class="lazy">
+    <img data-original="https://res.acdsee.cn/images/luxea/home/scene/02.jpg" alt="" class="lazy">
+
+    <script src="./jquery.lazyload.min.js"></script>
+    <script>
+        /* 
+            1.图片延迟加载: https://www.jq22.com/jquery-info390
+            2.使用方法:
+                - 为图片加入样式lazy，图片路径引用方法用 data-original。
+                - js 初始化 lazyload 并设置图片显示方式。
+
+            注：在图片中也可以不使用 class="lazy"，这样就对全局的图片都有效。
+        */
+        $(function () {
+            $("img.lazy").lazyload({ 
+                effect: "fadeIn",    // 载入使用何种效果
+
+            });
+        });
+    </script>
+</body>
+
+</html>

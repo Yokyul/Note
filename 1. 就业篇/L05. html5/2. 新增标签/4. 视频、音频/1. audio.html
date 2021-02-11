@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>audio</title>
+</head>
+
+<body>
+
+    <!-- 
+        加上controls，就是默认音频样式
+        但一般不加，自己写样式
+     -->
+
+    <!-- 1.默认样式 -->
+    <audio id="aud" src="./audio/下凡.mp3" controls></audio>
+    <hr>
+
+    <!-- 2.自定义样式 -->
+    <button onclick="yu()">播放/暂停</button>
+    <audio id="aud" src="./audio/下凡.mp3"></audio>
+
+
+    <script>
+        var x = document.getElementById("aud");
+        function yu() {
+            if (x.paused) {
+                x.play();
+            } else {
+                x.pause();
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>渲染模式</title>
+    <style>
+        /* div {
+            border: 1px solid black;
+            width: 200px;
+            height: 100px;;
+        } */
+
+        body {
+            height: 3000px;
+        }
+
+        #wrapper {
+            position: absolute;
+            top: 1500px;
+        }
+    </style>
+</head>
+<body>
+    
+    <input type="text" value='ccc' id='demo2'>
+    <input type="checkbox" checked='checked' id='demo3'>
+
+    
+
+    <script>
+
+        // DOCTYPE 渲染模式，其和最后页面被展示的效果有关系
+
+        
+        // 浏览器请求页面大致经历了哪些过程
+        // 1. 发送url，DNS查询，请求IP地址
+        // 2. TCP三次握手
+        // 3. 服务器响应内容
+        // 4. 按照成哥讲的js时间线理解js解析执行的过程就好   (js部分)
+        // 5. 渲染页面： DOM树 CSSDOM树，生成RENDER树，布局，渲染   （html、css部分）
+        // 6. TCP四次挥手
+
+
+        // 浏览器的组成，和组成部分的功能。
+        // 这里着重说一下渲染页面这部分，有渲染引擎主要参与
+        // 细化一下来说其渲染的过程：
+             // 解析html从而构建DOM树->CSS Rule 树->构建Render树->布局Render树->绘制Render树
+
+
+        // 在布局这块 是由不同渲染模式来定义不同的规则的
+        // 拿一个举例子  IE6怪异模式盒子模型 和 标准模式盒子模型    IE6怪异模式和标准模式的margin: 100 auto 0;
+        // 总结一下: 渲染的最后效果，由于采取模式的不同而产生了不同的效果
+        // 我们能大概了解了渲染模式是什么意思有什么样的作用。
+
+
+
+        // IE6怪异模式，其实现在主流浏览器都已经不兼容了（不去迎合了，被废弃掉了）但我们可以见到了解一下历史以及上述的过程。
+
+        // 为什么要有怪异模式和标准模式的区别？   向前兼容
+
+        // 如何控制显示页面的浏览器采取什么样的模式来渲染  DOCTYPE
+        // console.log(document.compatMode);可以输出当前的模式
+
+
+    </script>
+
+</body>
+</html>

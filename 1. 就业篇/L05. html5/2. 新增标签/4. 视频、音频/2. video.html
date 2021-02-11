@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .video_player {
+            position: relative;
+            width: 600px;
+            height: 420px;
+            margin: 0 auto;
+        }
+
+        video {
+            width: 600px;
+            height: 400px;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+
+        .menu {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .3);
+            display: none;
+        }
+
+        .play {
+            position: absolute;
+            top: calc(50% - 15px);
+            width: 50px;
+            height: 30px;
+            font-size: 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .time {
+            position: absolute;
+            top: calc(50% - 15px);
+            width: 100px;
+            height: 30px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            margin-left: 60px;
+            cursor: pointer;
+        }
+
+        .progress {
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            top: -2px;
+            left: 0;
+            background: rgb(248, 241, 241);
+            cursor: pointer;
+        }
+
+        .progress div {
+            width: 0px;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgb(255, 255, 0);
+            cursor: pointer;
+        }
+
+        .progress i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            position: absolute;
+            top: -2px;
+            left: -3px;
+            background: #f00;
+            cursor: pointer;
+        }
+
+        .speed {
+            position: absolute;
+            right: 100px;
+            top: calc(50% - 15px);
+            width: 50px;
+            height: 30px;
+            font-size: 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .speed_list {
+            position: absolute;
+            right: 95px;
+            top: -110px;
+            width: 60px;
+            height: 120px;
+            background-color: rgba(0, 0, 0, .5);
+            display: none;
+        }
+
+        .speed_list li {
+            position: relative;
+            height: 30px;
+            width: 100%;
+            list-style: none;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 30px;
+        }
+
+        .speed_list li:hover {
+            color: skyblue;
+        }
+
+        .vol_increase {
+            position: absolute;
+            right: 300px;
+            top: calc(50% - 15px);
+            width: 50px;
+            height: 30px;
+            font-size: 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .vol_decrease {
+            position: absolute;
+            right: 240px;
+            top: calc(50% - 15px);
+            width: 50px;
+            height: 30px;
+            font-size: 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .vol_value {
+            position: absolute;
+            right: 180px;
+            top: calc(50% - 15px);
+            width: 50px;
+            height: 30px;
+            font-size: 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .full_screen {
+            position: absolute;
+            right: 20px;
+            top: calc(50% - 15px);
+            width: 50px;
+            height: 30px;
+            font-size: 12px;
+            border: 1px solid black;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="video_player">
+        <video src="./audio/v1.mp4"></video>
+        <div class="menu">
+            <div class="play">播放</div>
+            <div class="time">00:00/00:10</div>
+            <div class="progress">
+                <div></div>
+                <i></i>
+            </div>
+            <div class="speed">倍速</div>
+            <div class="speed_list">
+                <ul>
+                    <li>正常</li>
+                    <li>x1.5</li>
+                    <li>x2.0</li>
+                    <li>x3.0</li>
+                </ul>
+            </div>
+            <div class="vol_increase">音量+</div>
+            <div class="vol_decrease">音量-</div>
+            <div class="vol_value">音量</div>
+            <div class="full_screen">全屏</div>
+        </div>
+    </div>
+
+    <script>
+        let videoPlayer = document.getElementsByClassName('video_player')[0];
+        let menu = document.getElementsByClassName('menu')[0];
+        let play = document.getElementsByClassName('play')[0];
+        let video = document.getElementsByTagName('video')[0];
+        let time = document.getElementsByClassName('time')[0];
+        let progress = document.querySelector('.progress');
+        let speed = document.getElementsByClassName('speed')[0];
+        let speedList = document.getElementsByClassName('speed_list')[0];
+        let speedLi = speedList.getElementsByTagName('ul')[0].querySelectorAll('li');
+        let volIecrease = document.getElementsByClassName('vol_increase')[0];
+        let volDecrease = document.getElementsByClassName('vol_decrease')[0];
+        let volValue = document.getElementsByClassName('vol_value')[0];
+        let fullScreen = document.getElementsByClassName('full_screen')[0];
+
+
+        videoPlayer.onmouseenter = function () {
+            menu.style.display = 'block';
+        }
+        videoPlayer.onmouseleave = function () {
+            menu.style.display = 'none';
+        }
+
+        play.onclick = function () {
+            if (video.paused) {                 // video.paused 判断当前是否是暂停状态
+                video.play();                   // 播放video
+                play.innerHTML = "暂停";
+            } else {
+                video.pause();                  // 暂停video
+                play.innerHTML = "播放";
+            }
+        }
+
+        progress.onmouseenter = function (e) {
+            progress.style.height = '10px'
+            progress.style.top = '-10px'
+            progress.getElementsByTagName('div')[0].style.height = '10px'
+            progress.getElementsByTagName('i')[0].style.height = '14px'
+        }
+        progress.onmouseleave = function (e) {
+            progress.style.height = '2px'
+            progress.style.top = '-2px'
+            progress.getElementsByTagName('div')[0].style.height = '2px'
+            progress.getElementsByTagName('i')[0].style.height = '6px'
+        }
+        progress.onclick = function (e) {
+            var targetTime = e.layerX / progress.clientWidth * video.duration;
+            video.currentTime = targetTime
+        }
+
+
+        setInterval(function () {
+            var total = video.duration;         // video.duration: 视频总的时间 （s）
+            var nowTime = video.currentTime;    // video.currentTime：视频当前时间 （s）
+            time.innerHTML = parseInt(nowTime / 60) + ":" + parseInt(nowTime % 60) + "/" + parseInt(total / 60) + ":" + parseInt(total % 60);
+            var width = nowTime / total * progress.clientWidth
+            progress.getElementsByTagName('div')[0].style.width = width + 'px'
+            progress.getElementsByTagName('i')[0].style.left = `calc(${width}px - 3px)`
+        }, 1000)
+
+
+        // 倍速
+        speed.onclick = function () {
+            speedList.style.display = "block";
+        }
+
+        speedList.onmouseleave = function () {
+            speedList.style.display = "none";
+        }
+
+        speedLi.forEach((item, index) => {
+            item.onclick = function () {
+                switch (index) {
+                    case 0:
+                        video.playbackRate = 1;         // video.playbackRate：速率
+                        break;
+                    case 1:
+                        video.playbackRate = 1.5;
+                        break;
+                    case 2:
+                        video.playbackRate = 2;
+                        break;
+                    case 3:
+                        video.playbackRate = 3;
+                        break;
+                }
+                speed.innerHTML = item.innerHTML;
+                speedList.style.display = "none";
+            }
+        })
+
+        // 调节音量。 video.volume值范围: [0, 1] ，以默认音量为1。
+        volIecrease.onclick = function () {
+            video.volume = video.volume + 0.1 > 1 ? 1 : video.volume + 0.1;
+            volValue.innerHTML = parseInt(video.volume * 10) / 10;
+        }
+        volDecrease.onclick = function () {
+            video.volume = video.volume - 0.1 < 0 ? 0 : video.volume - 0.1;
+            volValue.innerHTML = parseInt(video.volume * 10) / 10;
+        }
+
+        // 全屏
+        fullScreen.onclick = function () {
+            let dom = document.documentElement;
+            if (fullScreen.innerHTML == '退出') {
+                document.exitFullscreen();
+                videoPlayer.style.height = "420px";
+                videoPlayer.style.width = '600px';
+                video.style.height = "400px";
+                video.style.width = "600px";
+                fullScreen.innerHTML = '全屏';
+                menu.style.bottom = '0px';
+            } else {
+                dom.requestFullscreen();
+                videoPlayer.style.height = window.screen.height + "px";
+                videoPlayer.style.width = window.screen.width + "px";
+                video.style.height = window.screen.height + "px";
+                video.style.width = window.screen.width + "px";
+                fullScreen.innerHTML = '退出';
+                setTimeout(function () {
+                    menu.style.bottom = '-100px';
+                    menu.style.display = 'none';
+                }, 1000);
+            }
+        }
+
+        // 显示状态栏
+        video.onclick = function () {
+            menu.style.bottom = '0px';
+            menu.style.display = 'block';
+        }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .wrapper {
+            position: absolute;
+            left: calc(50% - 150px);
+            top: calc(50% - 150px);
+        }
+
+        .wrapper .box {
+            text-align: center;
+        }
+        .box a {
+            background-color: skyblue;
+            padding: 2px 10px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .wrapper .container {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin-top: 2px;
+        }
+
+        #content1 {
+            display: none;
+        }
+
+        #content1:target {
+            display: block;
+        }
+
+        #content2 {
+            display: none;
+        }
+
+        #content2:target {
+            display: block;
+        }
+
+        #content3 {
+            display: none;
+        }
+
+        #content3:target {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box">
+            <a href="#content1">111</a>
+            <a href="#content2">222</a>
+            <a href="#content3">333</a>
+        </div>
+        <div class="container">
+            <div id="content1">111</div>
+            <div id="content2">222</div>
+            <div id="content3">333</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

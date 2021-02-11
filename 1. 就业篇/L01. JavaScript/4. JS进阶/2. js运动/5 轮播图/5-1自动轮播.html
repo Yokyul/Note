@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5-1</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+
+        .wrapper {
+            position: relative;
+            margin: 100px auto 0px;
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .wrapper .sliderPage {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            height: 250px;
+            width: 2000px;
+        }
+
+        .wrapper .sliderPage li {
+            width: 400px;
+            height: 250px;
+            float: left;
+        }
+
+        .wrapper .sliderPage li img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .wrapper .btn {
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            width: 40px;
+            height: 40px;
+            color: #fff;
+            background-color: #000;
+            text-align: center;
+            line-height: 40px;
+            opacity: 0.1;
+            cursor: pointer;
+        }
+
+        .wrapper:hover .btn {
+            opacity: 0.7;
+        }
+
+        .wrapper .leftBtn {
+            left: 15px;
+        }
+
+        .wrapper .rightBtn {
+            right: 15px;
+        }
+
+        .wrapper .sliderIndex {
+            position: absolute;
+            width: 100%;
+            bottom: 15px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .wrapper .sliderIndex span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .wrapper .sliderIndex .active {
+            background-color: #f40;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 可视区div -->
+    <div class="wrapper">
+        <ul class='sliderPage'>
+            <li>
+                <img src="./cat1.jpg" />
+            </li>
+            <li>
+                <img src="./cat2.jpg" />
+            </li>
+            <li>
+                <img src="./cat3.jpg" />
+            </li>
+            <li>
+                <img src="./cat4.jpg" />
+            </li>
+            <li>
+                <img src="./cat1.jpg" />
+            </li>
+        </ul>
+
+        <!-- 左按钮 -->
+        <div class='btn leftBtn'>&lt;</div>
+
+        <!-- 右按钮 -->
+        <div class='btn rightBtn'>&gt;</div>
+
+        <!-- 索引小圆点 -->
+        <div class='sliderIndex'>
+            <span class='active'></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+    </div>
+
+    <script src='./move.js'></script>
+
+    <script>
+
+        // direction
+        //默认轮播方向/right按钮  'left->right' / undefined
+        //点击left按钮  'right->left' 
+
+        var timer = null;
+        var sliderPage = document.getElementsByClassName('sliderPage')[0];
+
+        // moveWidth指的是可视区宽度
+        var moveWidth = sliderPage.children[0].offsetWidth;
+
+        // num指的是 有几张图片
+        var num = sliderPage.children.length - 1;
+
+
+        // direction不写值 默认为 undefined'  ， 默认轮播方向: 'left->right'
+        function autoMove(direction) {
+            if (!direction || direction == 'left->right') {
+                startMove(sliderPage, { left: sliderPage.offsetLeft - moveWidth }, function () {
+
+                    // 轮播到最后一张时，ul瞬间右移，可视区切换到第一张，达成循环
+                    if (sliderPage.offsetLeft == - num * moveWidth) {
+                        sliderPage.style.left = '0px';
+                    }
+                });
+            } 
+        }
+
+        timer = setInterval(autoMove, 1500);
+
+
+    </script>
+</body>
+
+</html>

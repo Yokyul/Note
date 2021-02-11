@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+    <style>
+        div {
+            height: 3000px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script type="text/javascript">
+        /* 
+            1.鼠标事件：mousedown，mouseup，click
+
+            2.键盘事件：keypress
+
+            3.文本操作事件：input,change,blur,focus
+
+            4.窗体操作事件：scroll，load，resize
+        */
+        document.onkeypress = function (e) {
+            console.log(e);
+            document.write(`键盘按下了：${e.key}`);
+            document.write(`<br>`);
+            document.write(`它的keyCode是：${e.keyCode}`);
+            document.write(`<br>`);
+            document.write(`它的Unicode编码对应字符是：${String.fromCharCode(e.charCode)}`);
+        }
+
+        window.onscroll = function () {
+            console.log("scroll事件触发了");
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="divButtons"></div>
+    <script>
+        // 问题1. 允许重复的变量声明：导致数据被覆盖
+        var a = 1;
+        function print() {
+            console.log(a)
+        }
+        //...假设这里有1000行代码
+        var a = 2;
+        print();
+
+
+        // 问题2.1 变量提升：怪异的数据访问
+        if (Math.random() < 0.5) {
+            var b = "abc";
+            console.log(b);
+        }
+        else {
+            console.log(b);
+        }
+        console.log(b);
+
+
+        // 问题2.2 变量提升：闭包问题
+        var div = document.getElementById("divButtons")
+        for (var i = 1; i <= 10; i++) {
+            var btn = document.createElement("button");
+            btn.innerHTML = "按钮" + i;
+            div.appendChild(btn);
+            btn.onclick = function () {
+                console.log(i);     //输出11
+            }
+        }
+        // 循环结束后，i：11
+
+
+        // 问题3. 全局变量会挂载到全局对象上，从而导致全局对象 window 的属性被污染。比如你声明一个变量console，会重写window里原来的console方法
+        var abc = "123";
+        console.log(window.abc);
+        var console = "abc";
+        console.log(console);
+
+    </script>
+</body>
+
+</html>

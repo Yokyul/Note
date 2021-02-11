@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>断点调试</title>
+</head>
+
+<body>
+    <div id='ow'>
+        <p class='demodemo'>1</p>
+        <p class='demo'>2
+            <span class='demo'>3</span>
+        </p>
+    </div>
+    <ul id="wrapper">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+    <script>
+        // 断点调试  debugger  结合逻辑思维
+        var ow = document.getElementById('ow');
+        debugger;
+        ow.style.backgroundColor = "red";
+
+        // 通过console.console.log();
+        var oLiArray = document.getElementsByTagName('li');
+        for (var i = 0; i < oLiArray.length; i++) {
+
+            console.console.log(oLiArray[i]);
+
+            oLiArray[i].innerText = parseInt(oLiArray[i].innerText) + 1;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缩进栏</title>
+    <style>
+        .wrapper {
+            width: 400px;
+            height: 80px;
+            background: orange;
+            position: absolute;
+            left: -400px;
+            top: 200px;
+        }
+
+        .wrapper span {
+            width: 50px;
+            height: 80px;
+            background: red;
+            position: absolute;
+            right: -50px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <span></span>
+    </div>
+
+    <script>
+
+        // 缩进的边栏demo
+        // 使用缓冲运动
+
+        var oDiv = document.getElementsByClassName('wrapper')[0];
+        oDiv.onmouseenter = function () {
+            startMove(this, 0);
+        }
+        oDiv.onmouseleave = function () {
+            startMove(this, -400);
+        }
+
+        
+        var timer = null;
+        function startMove(dom, target) {
+            clearInterval(timer);
+            var iSpeed = null;
+            timer = setInterval(function () {
+                iSpeed = (target - oDiv.offsetLeft) / 7;
+                // .... 
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                if (oDiv.offsetLeft == target) {
+                    clearInterval(timer);
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+                }
+            }, 30);
+        }
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

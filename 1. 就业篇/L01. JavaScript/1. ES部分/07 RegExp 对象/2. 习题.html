@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>习题</title>
+</head>
+
+<body>
+    <script>
+
+        // 1.字符串去重
+        var str = 'aaabbbcccddd';
+        var reg = /(\w)\1*/g;
+        console.log(str.replace(reg, "$1"));
+
+
+        // 2.给 "1000000000000" 这个数字，用科学计数法每隔三位打个点。
+        var str = "1000000000000";
+        var reg = /(?=(\B)(\d{3})+$)/g;
+        console.log(str.replace(reg, "."));
+
+
+
+    </script>
+</body>
+
+</html>

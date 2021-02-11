@@ -1,0 +1,170 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+body{
+    font-size: 14px;
+    background-color: #eee;
+}
+
+
+/* 头部信息 */
+#header{
+    height: 70px;
+    line-height: 70px;
+    background-color: #354457;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    color: #b3bcc5;  
+    z-index: 10;
+}
+#header .logo {
+    padding-left: 20px;
+    font-size: 14px;
+}
+#header .logo img{
+    width: 30px;
+    height: 30px;
+    /* 图标与文本对齐线为 middle */
+    vertical-align: middle;
+}
+#header .user{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+#header .user li{
+    padding: 0 40px;
+}
+#header .user .logout {
+    display: none;
+}
+#header .user:hover{
+    background-color: #fff;
+    color: #354457;
+}
+#header .user:hover .logout {
+    display: block;
+}
+#header .user .logout:hover {
+    background-color: #ddd;
+}
+
+#left-menu{
+    width: 200px;
+    color: #b3bcc5;
+    background-color: #4d5e70;
+    height: calc(100% - 70px);
+    position: fixed;
+    top: 70px;
+    line-height: 40px;
+}
+#left-menu dt{
+    padding: 0 0 0 8px;
+    font-weight: bold;
+}
+#left-menu dd{
+    padding: 0 0 0 40px;
+    cursor: pointer;
+}
+#left-menu dd:hover{
+    background-color: rgba(255,255,255, 0.5);
+    color: #354457;
+}
+#left-menu .active {
+    background-color: #ddd;
+    color: #354457;
+}
+
+#right-content{
+    margin-top: 70px;
+    margin-left: 200px;
+    background-color: #eee;
+    position: relative;
+}
+
+#student-list{
+    width: 100%;
+    /* display: none; */
+}
+#student-list table{
+    width: 100%;
+    text-align: center;
+    line-height: 30px;
+}
+#student-list table thead{
+    background-color: #e3e8ee;
+    color: #646987;
+}
+#student-list table tbody{
+    background-color: #fff;
+}
+#student-list table .btn{
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    padding: 3px 10px;
+    /* outline: none; */
+    cursor: pointer;
+}
+#student-list table .btn.edit {
+    background-color: #5cb85c;
+}
+#student-list table .btn.remove{
+    background-color: #d9534f;
+}
+
+#student-list .modal {
+    position: fixed;    /* 相对于视口设置宽高 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 11;
+    display: none;
+}
+
+#student-list .modal-form {
+    width: 500px;
+    height: 400px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 20px;
+}
+
+
+
+#student-add{
+    overflow: hidden;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+}
+form{
+    margin: 50px auto;
+    font-size: 16px;
+    width: 400px;
+}
+form div{
+    margin: 10px 0;
+}
+form label:not(.sex){
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+}
+form .btn{
+    padding: 5px 25px;
+}

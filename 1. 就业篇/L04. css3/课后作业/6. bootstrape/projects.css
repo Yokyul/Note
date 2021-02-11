@@ -1,0 +1,96 @@
+
+/* 头部 */
+.projects-header {
+    width: 60%;
+    text-align: center;
+    font-weight: 200;
+    display: block;
+    margin: 60px auto 40px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #eee;
+}
+
+.projects-header h2 {
+    font-size: 30px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 0 10px;
+}
+
+.projects-header p {
+    margin: 0 0 10px;
+}
+
+
+/* 项目 */
+.row {
+    width: 100%;
+    /* border: 1px solid red; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    justify-content: center;
+
+}
+.row::after {
+    content: '';
+    clear: both;
+    display: block;
+}
+.row .box {
+    width: 250px;
+    height: 335px;
+    margin: 10px 15px;
+    padding: 10px;
+    border: 1px solid black;
+    box-sizing: border-box;
+
+    
+}
+
+
+.row .thumbnail .caption {
+    height: 200px;
+    overflow-y: hidden;
+    color: #555;
+    padding: 9px;
+    text-align: center;
+}
+.row .thumbnail img {
+    width: 100%; 
+}
+.caption a {
+    color: #337ab7;
+
+}
+.caption h3 {
+    margin: 0 0 10px;
+}
+.caption p {
+    font-size: 12px;
+    margin: 0 0 10px;
+}
+
+
+
+
+
+
+
+@media (min-width: 1200px) {
+    .col-lg-3 {
+        width: 25%;
+        float: left;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+    .projects-header h2 {
+        font-size: 42px;
+    }
+}
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function add(a, b, c, d) {
+            return a + b + c + d;
+        }
+
+        function FixedParamsCurry(fn) {
+            // [add, 1, 2];
+            var _arg = [].slice.call(arguments, 1);
+            return function () {
+                // arguments [2, 3];
+                // [1, 2，2, 3];
+                var newArg = _arg.concat([].slice.call(arguments, 0))
+                return fn.apply(this, newArg);
+            }
+        }
+
+        function Curry(fn, length) {
+            // length 4
+            var length = length || fn.length;
+            return function () {
+                if (arguments.length < length) {
+                    // [fn].concat([1]) [fn, 1];
+                    var combined = [fn].concat([].slice.call(arguments, 0));
+                    return Curry(FixedParamsCurry.apply(this, combined), length - arguments.length);
+                } else {
+                    return fn.apply(this, arguments);
+                }
+            }
+        }
+        
+        var newAdd = Curry(add);
+        console.log(newAdd(2)(3)(4)(5));
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>异常</title>
+</head>
+
+<body>
+    <input id="name" type="text">
+    <input id="anniu" type="button" value="登录" onclick="shu()">
+    <script>
+        function shu() {
+            try {
+                var e = document.getElementById("name").value;
+                if (e == "") {
+                    throw "请输入";
+                }
+            }
+            catch (err) {
+                alert(err);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        var personArr = [
+            { name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm', age: 21 },
+            { name: '刘港', src: './src/img/5.png', des: '我是谁', sex: 'f', age: 20 },
+            { name: 'yuyu', src: './src/img/4.png', des: '我很好看', sex: 'f', age: 23 },
+            { name: '刘金', src: './src/img/1.png', des: '123不好', sex: 'm', age: 24 },
+            { name: '刘飞我', src: './src/img/2.png', des: '不好', sex: 'm', age: 25 }
+        ];
+
+
+
+        // (1)every的使用
+        // 目的：判断数组中的元素是否都符合条件  是：true  否：false
+        // 函数每次执行的返回值都是true，最终every方法才会返回true
+        // 函数执行过程中一旦遇到false，后面的就不会执行了
+
+        var obj = {};
+        var yu = personArr.every(function (ele, index, self) {
+            console.log(this);
+            if (ele.age > 20) {
+                return true;
+            } else {
+                return false;
+            }
+        }, obj);
+
+        console.log(yu);
+
+
+        // (2)every的实现源码
+
+        Array.prototype.myEvery = function (func) {
+            var flag = true;
+            var len = this.length;
+            var _this = arguments[1] || window;
+            for (var i = 0; i < len; i++) {
+                if (func.apply(this, [this[i], 1, this]) == false) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        var yu = personArr.myEvery(function (ele, index, self) {
+            if (ele.age > 20) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        console.log(yu);
+
+
+
+        // (1)some的使用
+        // 数组中的元素只要有一个符合条件 ，就是true  否则false
+        // 函数每次执行的返回值只要有一个 true，最终some方法就会返回true
+        // 函数执行过程中一旦遇到false，后面的就不会执行了
+
+        var obj = {};
+        var yu = personArr.some(function (ele, index, self) {
+            if (ele.age < 20) {
+                return true;
+            } else {
+                return false;
+            }
+        }, obj);
+
+        console.log(yu);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        //1.Object.is
+        console.log(NaN === NaN);           // false
+        console.log(+0 === -0);             // true
+        console.log(Object.is(NaN, NaN));   // true
+        console.log(Object.is(+0, -0));     // false
+
+
+        /* 2.混合对象。
+        例：将 obj1 与 obj2 的值混合，且重复项以 obj2 为主。结果如下：
+        {
+            a: 789,
+            b: 456,
+            c: "abc",
+            d: "kkk"
+        }
+        */
+        const obj1 = {
+            a: 123,
+            b: 456,
+            c: "abc"
+        }
+        const obj2 = {
+            a: 789,
+            d: "kkk"
+        }
+
+        // ES6写法
+        const obj3 = Object.assign({}, obj1, obj2);
+        console.log(obj3);
+
+        // ES7写法
+        const obj4 = {
+            ...obj1,
+            ...obj2
+        }
+        console.log(obj4);
+
+
+        //3. 使用 getOwnPropertyNames() 枚举对象，会按照一定顺序输出。
+        const obj = {
+            d: 1,
+            b: 2,
+            a: 3,
+            0: 6,
+            5: 2,
+            4: 1
+        }
+        const props = Object.getOwnPropertyNames(obj);
+        console.log(props);     //[ '0', '4', '5', 'd', 'b', 'a' ]
+
+
+        //4.Object.setPrototypeOf()
+        const obj6 = {
+            a: 1
+        }
+        const obj7 = {
+            b: 2
+        }
+        Object.setPrototypeOf(obj6, obj7);  //等同于 obj6.__proto__ = obj7
+        console.log(obj6);
+    </script>
+</body>
+
+</html>

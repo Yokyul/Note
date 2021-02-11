@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+</head>
+
+<body>
+    <button id='btn'>close</button>
+
+    <script>
+
+        // 打开窗口
+        var newWindow = window.open('./2-1child.html', 'aa', 'width=200, height=200');
+        console.log(newWindow.parent);
+        console.log(newWindow.parent.a);
+
+        // 关闭窗口
+        var btn = document.getElementById('btn');
+        btn.onclick = function () {
+            window.close();
+        }
+
+
+    </script>
+</body>
+
+</html>

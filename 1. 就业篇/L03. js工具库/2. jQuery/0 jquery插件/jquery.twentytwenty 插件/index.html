@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/twentytwenty.css">
+</head>
+
+<body>
+    <div class="simpleColor-twentytwenty">
+        <img class="img-width" src="https://res.acdsee.cn/images/luxea/product/Simple-color-before.jpg" alt="">
+        <img class="img-width" src="https://res.acdsee.cn/images/luxea/product/Simple-color-after.jpg" alt="">
+    </div>
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jquery.event.move.js"></script>
+    <script src="./js/jquery.twentytwenty.js"></script>
+
+    <script>
+        /* 
+            这个插件取决于以下文件：
+            - jquery
+            - jquery.event.move
+        */
+        $(function () {
+            $(".simpleColor-twentytwenty").twentytwenty({
+                default_offset_pct: 0.7      //远离左滑块的部分
+            });
+        });
+
+    </script>
+</body>
+
+</html>

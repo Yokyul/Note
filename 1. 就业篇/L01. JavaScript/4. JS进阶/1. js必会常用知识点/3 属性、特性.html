@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" name="aaa" id="demo" yu="myself">
+
+    <script>
+
+
+        // (1)
+        // 特性：天生就有的，如 id type class value id等，        DOM对象与html标签有映射关系 (js对象 --> html标签) 
+        // 属性：包含特性。 非特性的属性如：yuyu 等自定义的，       DOM对象与html标签无映射关系 (js对象 --> html标签) 
+
+        var oInput = document.getElementById('demo');
+        console.log(oInput.id);
+        console.log(oInput.yu);
+
+
+
+        // (2)
+        // 使用  setAttribute("属性名"，"属性值")  给属性赋值(不管是特性，还是属性都可以)
+        // 使用  getAttribute("属性名")  取属性的值(不管是特性，还是属性都可以)
+        // 特性的话，最好用：标签.属性名 = '属性值'
+
+        oInput.value = 123;
+        oInput.setAttribute("gu","lover");
+        console.log(oInput.getAttribute("gu"));
+
+
+
+        // (3)
+        // jq源码  attr prop底层原理就是(2)
+
+
+    </script>
+</body>
+
+</html>

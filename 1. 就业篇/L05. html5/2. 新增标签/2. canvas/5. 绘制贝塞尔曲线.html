@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.画二次贝塞尔曲线：P0  P1  P2
+                 P1
+                /  \
+               /    \
+              /      \
+            P0        P2
+
+        2.P0：初始位置
+
+        3.点A 在P0P1上动，点B 在P1P2上动，点C 在AB上动
+          A B C 三点速度相同
+          画出的曲线就是：点C的运动轨迹。
+
+
+
+        4.画三次贝塞尔曲线：P0  P1  P2 P3
+                 P1 —— —— P2
+                /           \
+               /             \
+              /               \
+            P0                 P3
+
+        
+     -->
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        // 二次贝塞尔曲线
+        ctx.beginPath();
+        ctx.moveTo(100, 50);                            // P0(x, y)
+        ctx.quadraticCurveTo(200, 200, 300, 100);       // P1(x, y)  P2(x, y)
+        // ctx.fill();
+        ctx.stroke();
+
+        // 三次贝塞尔曲线
+        ctx.beginPath();
+        ctx.moveTo(100, 100);                                    // P0(x, y)
+        ctx.bezierCurveTo(200, 200, 200, 300, 400, 100);         // P1(x, y)  P2(x, y) 
+        // ctx.fill();
+        ctx.stroke();
+
+    </script>
+</body>
+
+</html>

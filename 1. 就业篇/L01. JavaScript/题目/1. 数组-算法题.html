@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+
+    <script>
+        //1.将字符串反转 ‘123abc’ -> ‘cba321’
+        var str = '123abc';
+        var resStr = str.split('').reverse().join(''); //321cba
+	
+
+        //2.在有序的数组里找出指定的值，返回该值在数组中的索引。（二分查找）
+        var arr = [1, 3, 5, 7, 9, 10, 11, 12, 14, 15];
+        // 方法一：遍历数组
+        function getIndex(arr, val) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == val) {
+                    return i;
+                }
+            }
+        }
+        // 方法二：ES6 findIndex方法
+        function getIndex(arr, val) {
+            return arr.findIndex(function (value) {
+                return value == val;
+            });
+        }
+        // 方法三：二分查找算法  (只能用于有序数组)  (可以通过sort方法排序)
+        function getIndex(arr, val) {
+            var start = 0;	//起点的索引
+            var end = arr.length - 1;	//终点的索引
+
+            while (start <= end) {
+                var middle = parseInt((start + end) / 2);	//中间值的索引
+
+                if (val == arr[middle]) {
+                    //如果这个条件成立说明找到的中间值==用户要找的那个值
+                    return middle;
+                } else if (val < arr[middle]) {
+                    end = middle - 1;
+                } else if (val > arr[middle]) {
+                    start = middle + 1;
+                }
+            }
+            return -1;	//如果用户传入的那个数据在数组里没有找到，就返回一个-1
+        }
+        console.log(getIndex(arr, 9));	//4
+
+
+        // 3.判断数组是否为对称数组，也叫判断字符串是否为回文字符串。
+        // 对称数组形式如：[a, b, c, b, a]、[a, b, c, c, b, a]
+        var arr1 = ['a', 'b', 'c', 'd', 'c', 'b', 'a'];
+        var arr2 = ['a', 'b', 'c', 'c', 'b', 'a'];
+        var arr3 = ['a', 'b', 'c', 'a', 'b', 'c'];
+        // 方法一：传统遍历
+        function symmetry(arr) {
+            var newArr = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                newArr.push(arr[i]);
+            }
+            for (var i = 0; i < newArr.length; i++) {
+                if (newArr[i] != arr[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // 方法二(算法)：比较  arr[i] 和 arr[arr.length-1-i] 的值是否相等
+        function symmetry(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] != arr[arr.length - 1 - i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // 方法三：简化思路，只遍历一半数组就好
+        function symmetry(arr) {
+            var start = 0;
+            var end = arr.length - 1;
+            while (start < end) {
+                if (arr[start] != arr[end]) {
+                    return false;
+                }
+                start++;
+                end--;
+            }
+            return true;
+        }
+        console.log(symmetry(arr1), symmetry(arr2), symmetry(arr3));	//true true false
+
+
+        //4.查询子串首次出现的位置，如：原串 abccbaxzabc 子串为axz 结果为5
+        var str = 'abccbaxzab';
+        var subStr = 'axz';
+
+        // 方法一：
+        console.log(str.indexOf(subStr));	//5
+
+        // 方法二(算法)：
+        function getIndex(str, sub) {
+            for (var i = 0; i <= str.length - sub.length; i++) {	//这个循环走的是原串
+                //0	1 2
+                for (var j = 0; j < sub.length; j++) {	//这个循环走的是子串
+                    if (sub[j] != str[i + j]) {
+                        //如果这个条件成立说明通过一一对应的关系找到的数据不相等
+                        break;
+                    }
+                    if (j == sub.length - 1) {
+                        //这个条件成立，说明现在子串的所有字符都在原串里找到了，返回第一个字符在原串里的索引
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+        console.log(getIndex(str, subStr));	//5
+        // 方法三：
+        function getIndex(str, sub) {
+            var start = 0;
+            var end = str.length - sub.length;
+
+            while (start <= end) {
+                if (str.slice(start, sub.length + start) == sub) {
+                    return start;
+                }
+                start++;
+            }
+            return -1;
+        }
+        console.log(getIndex(str, subStr));	//5
+
+        //5.计算数组中，最大连续增长子序列的长度，如：[1,2,3,4,1,2,3,4,5,1,2,3,4,5,6,7,8] 结果为8
+        var arr = [1, 2, 3, 4, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6, 7, 8];
+        function getMaxLength(arr) {
+            var addNum = 0; //每个序列的长度
+            var len = 0; //长度最大的那个序列的length
+            
+            for (var i = 0; i <= arr.length; i++) {  //取等是为了让8与undefined在比较一次，将后一个序列替换上去
+                if (arr[i] > arr[i - 1]) {
+                    addNum++;
+                } else {
+                    // 代码走到这里说明，这个序列已经不增长了，需要做两件事件
+                    // 	1、给len赋值
+                    // 	2、addNum的值要重新开始 
+                    len = addNum > len ? addNum : len;
+                    addNum = 1;			//第一次1和undefined比较结果为false，addNum没有自加，所以在else中补上
+                }
+            }
+            return len;
+        }
+        console.log(getMaxLength(arr));	//8
+
+
+    </script>
+
+</body>
+
+</html>

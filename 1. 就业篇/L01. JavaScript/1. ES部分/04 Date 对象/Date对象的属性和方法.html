@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date对象的属性方法</title>
+
+</head>
+
+<body>
+
+    <script>
+        /*
+            Date对象的方法：
+
+                getTime() 返回 1970 年 1 月 1 日（纪元时刻）至今的毫秒数。经常用于项目的计算时间。获取时间戳  (☆最有用) 
+
+                setDate() 设置 Date 对象中月的某一天 (1 ~ 31)。
+                setMonth() 设置 Date 对象中月份 (0 ~ 11)。
+                setFullYear() 设置 Date 对象中的年份（四位数字）。
+                setYear() 请使用 setFullYear() 方法代替。
+                setHours() 设置 Date 对象中的小时 (0 ~ 23)。
+                setMinutes() 设置 Date 对象中的分钟 (0 ~ 59)。
+                setSeconds() 设置 Date 对象中的秒钟 (0 ~ 59)。
+                setMilliseconds() 设置 Date 对象中的毫秒 (0 ~ 999)。
+                setTime() 以毫秒设置 Date 对象。机械之间交换时间
+                toSource() 返回该对象的源代码。
+                toString() 把 Date 对象转换为字符串。
+                toTimeString() 把 Date 对象的时间部分转换为字符串。
+                toDateString() 把 Date 对象的日期部分转换为字符串。
+        */
+
+
+        // 1.试试电脑性能
+        let firstTime = new Date().getTime();
+        for (let i = 0; i < 100000000; i++) { }
+        let lastTime = new Date().getTime();
+        console.log(lastTime - firstTime);
+
+
+
+        // 2.封装函数，打印当前是何年何月何日何时，几分几秒。
+        let date = new Date();
+        currentTime(date);
+        function currentTime(date) {
+            console.log(
+                date,                   // 输出当前时间：Sun Oct 25 2020 16:40:11 GMT+0800 (中国标准时间)
+                date.getFullYear(),     // 从 Date 对象以四位数字返回年份。
+                date.getMonth(),        // 从 Date 对象返回月份 (0 ~ 11)。              0代表：一月份
+                date.getDate(),         // 从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+                date.getDay(),          // 从 Date 对象返回一周中的某一天 (0 ~ 6)。      2代表：星期二, 但是是指第三天 (第一天是周日,也就是 0)。
+                date.getHours(),        // 从 Date 对象返回小时 (0 ~ 23)。
+                date.getMinutes(),      // 从 Date 对象返回分钟 (0 ~ 59)。
+                date.getSeconds(),      // 从 Date 对象返回秒数 (0 ~ 59)。
+                date.getMilliseconds(), // 从 Date 对象返回毫秒 (0 ~ 999)。
+            );
+            let time = `当前时间：${date.getFullYear()}年 ${date.getMonth() + 1}月 ${date.getDate()}日，周${date.getDay() == 0 ? '日' : date.getDay()}， ${date.getHours()}：${date.getMinutes()}：${date.getSeconds()}`
+            console.log(time);
+        }
+
+
+    </script>
+</body>
+
+</html>

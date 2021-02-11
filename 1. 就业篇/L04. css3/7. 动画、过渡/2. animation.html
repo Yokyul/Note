@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>2</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+        }
+        /* 设置关键帧 */
+        /* 注意兼容写法 */
+        @keyframes yuyu {
+            0% {
+                background: hotpink;
+                left: 0px;
+                top: 0px;
+            }
+            25% {
+                background: yellow;
+                left: 200px;
+                top: 0px;
+            }
+            50% {
+                background: blue;
+                left: 200px;
+                top: 200px;
+            }
+            75% {
+                background: green;
+                left: 0px;
+                top: 200px;
+            }
+            100% {
+                background: red;
+                left: 0px;
+                top: 0px;
+            }
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            position: absolute;
+
+            animation: yuyu 3s cubic-bezier(.5,1,1,1) .5s both;      /* 读取关键帧 */
+        }
+
+        div:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body>
+    <div>动画效果</div>
+</body>
+
+</html>

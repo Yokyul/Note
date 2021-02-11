@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            a: 1,
+            b: 2
+        }
+
+        // 1.得到一个对象的某个属性的属性描述符
+        const desc = Object.getOwnPropertyDescriptor(obj, "a")      
+        console.log(desc);
+
+
+        // 2.修改属性描述符
+        // 写法1
+        // Object.defineProperty(obj, "a", {
+        //     value: 3,
+        //     configurable: false,
+        //     enumerable: false,
+        //     writable: false
+        // })
+
+        // 写法2
+        Object.defineProperties(obj, {
+            a: {
+                value: 3,
+                configurable: false,
+                enumerable: false,
+                writable: false
+            }
+        })
+
+        // 2.1是否可以重新赋值
+        obj.a = 10;
+        console.log(obj);
+
+        // 2.2是否可以枚举
+        for (const prop in obj) {
+            console.log(prop);
+        }
+
+        const props = Object.keys(obj)
+        console.log(props)
+
+        const values = Object.values(obj);
+        console.log(values);
+
+
+
+
+
+    </script>
+</body>
+
+</html>

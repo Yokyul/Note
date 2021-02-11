@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+       1. translate(): 设置 画布的坐标系原点。默认左上角
+       2. rotate(Math.PI / 6): 根据 画布的坐标系原点(左上角) 旋转30°
+        以上两个是设置在全局的(即所有路径)
+
+       3. scale(2, 1): 设置 画布坐标系的缩放。
+
+       4. save(): 保存之前的坐标系状态，包括：平移、旋转、缩放。
+       5. restore(): 恢复成之前保存的坐标系状态。
+     -->
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        // 1.旋转
+        ctx.save();                         // 保存 之前的坐标系原点和旋转状态
+
+        ctx.beginPath();
+        ctx.translate(100, 100);            // 设置 画布的坐标系原点
+        ctx.rotate(Math.PI / 6);            // 根据 画布的坐标系原点(左上角) 旋转30°
+        ctx.moveTo(0, 0);
+        ctx.lineTo(100, 0);
+        ctx.stroke();
+
+
+        // 2.缩放
+        ctx.beginPath();
+        ctx.restore();
+        ctx.scale(2, 1);                        // 设置 画布坐标系的缩放。  矩形上每个点：x * 2, y * 1 
+
+        ctx.strokeRect(100, 100, 100, 100);
+
+    </script>
+</body>
+
+</html>

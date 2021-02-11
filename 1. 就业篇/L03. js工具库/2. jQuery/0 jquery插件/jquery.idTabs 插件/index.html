@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="usual1" class="usual">
+        <ul>
+            <li>
+                <a class="selected" href="#tab1">Tab 1</a>
+            </li>
+            <li>
+                <a href="#tab2">Tab 2</a>
+            </li>
+            <li>
+                <a href="#tab3">Tab 3</a>
+            </li>
+        </ul>
+        <div id="tab1">This is tab 1.</div>
+        <div id="tab2">More content in tab 2.</div>
+        <div id="tab3">Tab 3 is always last!</div>
+    </div>
+
+    <script src="./jquery.idTabs.js"></script>
+    <script>
+        /*
+            js代码：http://www.sunsean.com/idTabs/jquery.idTabs.min.js 
+
+            idTabs使用基本介绍如下：
+            通常的使用方法如下：
+        */
+        $("#usual1 ul").idTabs();
+
+        $(function () {
+            $(".idTabs").idTabs();
+            //自定义显示tab
+            $(".idTabs a").eq(1).trigger('click')
+        });
+
+    </script>
+
+
+</body>
+
+</html>

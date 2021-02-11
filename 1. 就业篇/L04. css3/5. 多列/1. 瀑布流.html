@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多列-瀑布流</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            column-count: 4;
+            column-rule-style: solid;
+        }
+
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 
+    从第一张到第八张图片，多列的排列方法是一个一个排的，
+    但是当有第九张图片时，并不是放在左下角，而是整体变为了3列。
+ -->
+
+    <div>
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <img src="y1.jpg" alt="">
+        <!-- <img src="y1.jpg" alt=""> -->
+    </div>
+</body>
+
+</html>

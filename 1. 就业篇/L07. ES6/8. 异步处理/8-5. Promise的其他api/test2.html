@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 1.resolve()方法
+        // const pro1 = new Promise((resolve, reject) => {
+        //     resolve(1);
+        // })
+        //等效于：
+        const pro1 = Promise.resolve(1);
+
+        // 1.1 resolve()方法的特殊情况
+        // const pro = Promise.resolve(pro1);
+        //等效于
+        const pro = pro1;
+
+
+        // 2.reject()方法
+        // const pro2 = new Promise((resolve, reject) => {
+        //     reject(1);
+        // })
+        //等效于：
+        const pro2 = Promise.reject(1);
+
+
+    </script>
+</body>
+
+</html>

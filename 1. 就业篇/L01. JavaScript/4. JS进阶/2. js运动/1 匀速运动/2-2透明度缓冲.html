@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>透明度</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id='demo'></div>
+
+
+    <script>
+
+        var oDiv = document.getElementById('demo');
+        oDiv.onclick = function () {
+            startMove(this, 50);
+        }
+
+        // 获取给定elem的prop的计算样式
+        function getStyle(elem, prop) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(elem, null)[prop];
+            } else {
+                return elem.currentStyle[prop];
+            }
+        }
+
+
+        var timer = null;
+
+        // 下面这个方法不行，
+        // function startMove(dom, target) {
+        //     clearInterval(dom.timer);
+        //     var iSpeed = null, iCur = null;
+        //     timer = setInterval(function () {
+        //         iCur = parseInt(getStyle(dom, 'opacity'));
+        //         iSpeed = (target - iCur) / 7;
+        //         // .... 
+        //         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        //         if (iCur == target) {
+        //             clearInterval(dom.timer);
+        //         } else {
+        //             dom.style.opacity = iCur + iSpeed ;
+        //         }
+        //     }, 30);
+        // }
+
+
+        // 将透明度*100可以解决问题，startMove函数中透明度也要*100
+        function startMove (dom, target) {
+            clearInterval(timer);
+            var iSpeed = null, iCur = null;
+            timer = setInterval(function () {
+                iCur = parseFloat( getStyle(dom, 'opacity') ) * 100;
+                iSpeed = (target - iCur) / 7;
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                if (iCur == target) {
+                    clearInterval(timer);
+                }else {
+                    // 0 - 1    iCur * 100 target * 100 iSpeed * 100  iCur + iSpeed 0 - 100 /  100
+                    dom.style.opacity = (iCur + iSpeed) / 100;
+                }
+            }, 30)
+        }
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

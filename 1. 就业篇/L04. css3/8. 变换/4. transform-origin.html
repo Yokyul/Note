@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform-origin</title>
+    <style>
+        body {
+            perspective: 800px;
+            transform-style: preserve-3d;
+            perspective-origin: 300px 100px;
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-image: url(me.jpg);
+            background-size: cover;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            transform: rotateY(0deg);
+            transform-origin: 100px 100px 100px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

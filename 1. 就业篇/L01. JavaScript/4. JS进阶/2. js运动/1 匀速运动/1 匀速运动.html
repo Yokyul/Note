@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匀速</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            position: absolute;
+            left: 500px;
+            top: 0px;
+        }
+
+        button {
+            margin-top: 150px;
+        }
+
+        span {
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            width: 1px;
+            height: 100px;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+    <button id='btn'>run</button>
+
+    <script>
+        // 绑定计时器，通过 js 让 div 匀速运动
+
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn = document.getElementById('btn');
+        oBtn.onclick = function(){
+            startMove(oDiv, 300);
+        }
+
+        var timer = null;
+        
+        // 封装匀速运动函数  dom:运动的标签，target:运动到的位置
+        function startMove (dom, target) {
+            clearInterval(timer);
+            var iSpeed = target - dom.offsetLeft > 0 ? 7 : -7;
+            timer = setInterval(function () {
+                if ( Math.abs(target - dom.offsetLeft) < Math.abs(iSpeed) ) {
+                    clearInterval(timer);
+                    dom.style.left = target + 'px';
+                }else {
+                    dom.style.left = dom.offsetLeft + iSpeed + 'px';
+                }
+            }, 30);
+        }
+
+    </script>
+</body>
+
+</html>

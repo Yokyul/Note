@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+
+
+        // 使用代理，重写类的构造函数的底层实现
+        function ConstructorProxy(Class, ...propNames) {
+            return new Proxy(Class, {
+                construct(target, argumentsList) {
+                    const obj = Reflect.construct(target, argumentsList)
+                    propNames.forEach((name, i) => {
+                        obj[name] = argumentsList[i];
+                    })
+                    return obj;
+                }
+            })
+        }
+
+        // 例1
+        class User {
+
+        }
+        const UserProxy = ConstructorProxy(User, "firstName", "lastName", "age")
+        const obj = new UserProxy("袁", "进", 18);
+        console.log(obj)
+
+        // 例2
+        class Monster {
+
+        }
+        const MonsterProxy = ConstructorProxy(Monster, "attack", "defence", "hp", "rate", "name")
+        const m = new MonsterProxy(10, 20, 100, 30, "怪物")
+        console.log(m);
+
+
+    </script>
+</body>
+
+</html>

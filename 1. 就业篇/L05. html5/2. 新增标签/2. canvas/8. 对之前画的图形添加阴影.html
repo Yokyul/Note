@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        ctx.beginPath();
+        ctx.shadowColor = 'red';            // 添加阴影颜色
+        ctx.shadowBlur = 20;                // 添加阴影大小, 单位：px
+        ctx.shadowOffsetX = 15;             // 阴影向左平移
+        ctx.shadowOffsetY = 15;             // 阴影向下平移
+        ctx.strokeRect(100, 100, 200, 100);
+
+    </script>
+</body>
+
+</html>

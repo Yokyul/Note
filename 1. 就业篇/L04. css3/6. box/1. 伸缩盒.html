@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伸缩盒</title>
+    <style>
+        .wrapper {
+            width: 700px;
+            height: 300px;
+            border: 1px solid #000;
+
+            display: flex;                  /* 设置伸缩盒 */
+            flex-direction: row;            /* 设置主轴方向 */
+            flex-wrap: nowrap;              /* 设置盒子是否能换行，不能就弹性压缩 */
+            justify-content: flex-start;    /* 基于主轴方向，设置内部盒子的对齐方向 */
+            align-items: baseline;          /* 基于交叉轴方向，设置内部盒子的对齐方向，主要用于单行 */
+            align-content: center;          /* 基于交叉轴方向，设置内部盒子的对齐方向，主要用于多行 */
+        }
+
+        .content {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            box-sizing: border-box;
+
+            order: 0;                       /* 设置伸缩盒的子元素出現的順序。越小越在前，默认0 */
+            align-self: auto;               /* 设置伸缩盒的子元素单独在交叉轴的对齐方式。默认auto。与 align-items比，听前者的。与 align-content比，听后者的。 */
+            
+            flex-grow: 0;                   /* 当主轴方向还有剩余空间时，让这一行的子元素按照设置的比例分配剩余空间。默认0 */
+            flex-shrink: 1;                 /* 当主轴方向子元素超出空间时，让这一行的子元素按照设置的比例压缩。默认1 */
+            flex-basis: 50px;               /* 取代width。默认auto就是width本来的值 */
+        }
+
+        .content:nth-of-type(1) {
+            margin-top: 10px;
+            order: -1;
+        }
+
+        .content:nth-of-type(2) {
+            height: 200px;
+            order: -2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">1</div>
+        <div class="content">2</div>
+        <div class="content">3</div>
+        <div class="content">4</div>
+        <div class="content">5</div>
+        <div class="content">6</div>
+    </div>
+</body>
+
+</html>

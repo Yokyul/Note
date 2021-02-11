@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        function method(a, b){
+            console.log("method", a, b);
+        }
+        Reflect.apply(method, null, [3, 4])         // 等效于 method(3, 4)
+
+
+        const obj1 = {
+            a: 1,
+            b: 2
+        }
+        Reflect.deleteProperty(obj1, "a");            // 等效于 delete obj.a
+        console.log(obj1);
+
+
+
+        function Test(a, b) {
+            this.a = a;
+            this.b = b;
+        }
+        const t = Reflect.construct(Test, [1, 3]);      // 等效于 const t = new Test(1, 3)
+        console.log(t)
+
+
+
+        const obj2 = {
+            a: 1,
+            b: 2
+        }
+        console.log(Reflect.has(obj2, "a"));            // 等效于 console.log("a" in obj2);
+
+        
+    </script>
+</body>
+
+</html>

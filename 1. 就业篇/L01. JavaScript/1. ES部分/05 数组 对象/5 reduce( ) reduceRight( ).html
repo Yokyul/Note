@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reduce</title>
+</head>
+
+<body>
+    <script>
+
+        var personArr = [
+            { name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm', age: 21 },
+            { name: '刘港', src: './src/img/5.png', des: '我是谁', sex: 'f', age: 20 },
+            { name: 'yuyu', src: './src/img/4.png', des: '我很好看', sex: 'f', age: 23 },
+            { name: '刘金', src: './src/img/1.png', des: '123不好', sex: 'm', age: 24 },
+            { name: '刘飞我', src: './src/img/2.png', des: '不好', sex: 'm', age: 25 }
+        ];
+
+
+
+
+        // (1)reduce的使用
+        // reduce 第一个参数：函数； 第二个参数：初始值； 不可以改this
+        // 函数：四个参数 ，后三个与之前一样 
+        // 函数第一次执行时 ，第一个参数由 obj 决定。 第二次执行时，第一个参数由上一次执行的返回值决定。
+
+        // reduce方法执行的时候，icurValue 是从第一个数组值  { '王港' } 开始的
+        // reduceRight方法执行的时候，icurValue 是从最后一个数组值  { '刘飞我' } 开始的
+
+        var obj = {
+            age: 0
+        };
+        var returnValue = personArr.reduce(function (prevValue, icurValue, index, self) {
+            prevValue.age += icurValue.age;
+            return prevValue;
+        }, obj)
+        console.log(returnValue);
+
+
+
+
+        // (2)reduce用处
+        // 将字符串中的 名称 与 值 分离，变成可提取状态
+        // 如可根据 PSTM 提取 1526700942
+
+        var cookiestr = "PSTM=1526700942;BIDUPSID=554B58935726788C9635;JBJH=6876756784";
+
+        function parseCookieStr(str) {
+            var obj = {};
+            var cookieArr = str.split(';');
+            console.log(cookieArr);
+
+            cookieArr.reduce(function (prevValue, icurValue, index, self) {
+                // console.log(prevValue, icurValue);
+                var arr = icurValue.split('=');
+                prevValue[arr[0]] = arr[1]
+                return prevValue;
+            }, obj);
+
+            return obj;
+        }
+
+        // 根据 PSTM 提取 1526700942
+        var cookieObj = parseCookieStr(cookiestr);
+        console.log(cookieObj);
+
+
+
+
+        // (3)reduce 实现源码
+
+        Array.prototype.myReduce = function (func, initialValue) {
+            var len = this.length,
+                _this = arguments[2] || window,
+                nextValue = initialValue;
+
+            for (var i = 0; i < len; i++) {
+                nextValue = func.apply(_this, [nextValue, this[i], i, this]);
+            }
+            return nextValue;
+        }
+
+        var obj = {
+            age: 0
+        };
+        var returnValue = personArr.myReduce(function (prevValue, icurValue, index, self) {
+            prevValue.age += icurValue.age;
+            return prevValue;
+        }, obj)
+        console.log(returnValue);
+
+
+
+
+    </script>
+</body>
+
+</html>

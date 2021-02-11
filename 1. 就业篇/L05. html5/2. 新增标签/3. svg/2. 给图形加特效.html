@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <svg width="600px" height="400px" style="border: 1px solid black;">
+
+        <defs>
+            <!-- 线性渐变 -->
+            <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" style="stop-color: yellow;"></stop>
+                <stop offset="100%" style="stop-color: red;"></stop>
+            </linearGradient>
+
+            <!-- 辐射渐变 -->
+            <radialGradient id="bg2" x1="0" y1="0" x2="0" y2="100%">
+                <stop offset="0%" style="stop-color: yellow;"></stop>
+                <stop offset="50%" style="stop-color: green;"></stop>
+                <stop offset="100%" style="stop-color: red;"></stop>
+            </radialGradient>
+
+            <!-- 高斯模糊(滤镜) -->
+            <filter id="bg3">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10"></feGaussianBlur>
+            </filter>
+        </defs>
+
+        <rect height="100" width="200" x="100" y="100" style="fill: url(#bg1);filter:url(#bg3)"></rect>
+
+
+
+    </svg>
+
+
+
+
+
+</body>
+
+</html>

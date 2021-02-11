@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手机摇一摇</title>
+</head>
+<body>
+    <div class="main"></div>
+    <script>
+        // 检查设备的运动方向和该方向下的加速度
+        window.addEventListener('devicemotion', function(e) {
+            console.log(e);
+            document.getElementsByClassName('main')[0].innerHTML = `x轴方向加速度: ${e.acceleration.x} <br> y轴方向加速度: ${e.acceleration.y} <br> z轴方向加速度: ${e.acceleration.z}`
+            if(Math.abs(e.acceleration.x) > 0){
+                alert(x轴方向在晃动);
+            }
+            if(Math.abs(e.acceleration.y) > 9){
+                alert(y轴方向在晃动);
+            }
+            if(Math.abs(e.acceleration.z) > 9){
+                alert(z轴方向在晃动);
+            }
+        })
+
+        /*
+            事件devicemotion的事件对象的acceleration属性有以下3个值：
+                - x: x轴方向加速度
+                - y: y轴方向加速度
+                - z: z轴方向加速度
+        */
+    </script>
+</body>
+</html>

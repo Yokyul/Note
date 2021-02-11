@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+    </ul>
+    <script type="text/javascript">
+        //1.
+        // <ul>
+        //     <li>a</li>
+        //     <li>a</li>
+        //     <li>a</li>
+        //     <li>a</li>
+        // </ul>
+        // 使用原生JS , addEventListener 给每个li元素绑定一个click事件，输出他们的顺序
+        var li = document.getElementsByTagName('li');
+        for (i = 0; i < li.length; i++) {
+            (function (i) {
+                li[i].addEventListener('click', function () {
+                    console.log(i);
+                }, false)
+            }(i))
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

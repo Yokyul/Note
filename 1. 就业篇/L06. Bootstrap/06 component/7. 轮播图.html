@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+	<style>
+		body {
+			padding-bottom: 1000px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+
+		<!-- 
+			轮播图的完整结构：				
+				1) carousel：最外层容器				
+				2) carousel-inner：主体内容
+				   <a>：左右切换按钮
+				   <ol>：下方指示器
+				   
+
+				3) carousel-item：轮播的项 (如：图片/链接/文本) (默认所有项不显示，加active才显示)
+					
+		 -->
+		<!-- 
+			1.基本的轮播图
+				slide：使图片切换效果为左右滑动
+				carousel-fade：使图片切换效果为淡入淡出。
+					注意：使用 carousel-fade必须要加上 slide
+				
+				data-ride="carousel"：与js交互，实现轮播效果
+
+		 -->
+		<div class="row">
+			<div class="col-8">
+				<div class="carousel slide carousel-fade" data-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/pic_01.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_02.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_03.jpg" class="img-fluid">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 
+			2.带控制功能的轮播图
+				添加左右按钮：通过<a>的锚点功能
+				在外层 carousel添加id="control"，形成锚点
+				<a>的href值要和最外层 carousel上的id值一致
+		 -->
+		<div class="row mt-5">
+			<div class="col-8">
+				<div class="carousel slide" data-ride="carousel" id="control">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/pic_01.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_02.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_03.jpg" class="img-fluid">
+						</div>
+					</div>
+
+					<!-- 添加左右箭头 -->
+					<a href="#control" class="carousel-control-prev" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="#control" class="carousel-control-next" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 
+			3.包含指示器功能的轮播图
+				<ol>的data-target值、<a>的href值 要和最外层 carousel上的id值一致
+					data-slide-to的值：指向跳转到图片的索引
+		 -->
+		<div class="row mt-5">
+			<div class="col-8">
+				<div class="carousel slide" data-ride="carousel" id="indicators">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/pic_01.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_02.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_03.jpg" class="img-fluid">
+						</div>
+					</div>
+
+					<!-- 添加左右箭头 -->
+					<a href="#indicators" class="carousel-control-prev" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="#indicators" class="carousel-control-next" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+
+					<!-- 添加指示器 -->
+					<ol class="carousel-indicators">
+						<li data-target="#indicators" data-slide-to="0" class="active"></li>
+						<li data-target="#indicators" data-slide-to="1"></li>
+						<li data-target="#indicators" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 
+			4.包含字幕的轮播图：添加在项中
+				carousel-caption: 添加文本的容器
+		 -->
+		<div class="row mt-5">
+			<div class="col-8">
+				<div class="carousel slide" data-ride="carousel" id="captions">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/pic_01.jpg" class="img-fluid">
+							<div class="carousel-caption text-danger">
+								<h5>这是第1张图</h5>
+								<p>这是第1张图的说明</p>
+							</div>
+
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_02.jpg" class="img-fluid">
+							<div class="carousel-caption text-danger">
+								<h5>这是第2张图</h5>
+								<p>这是第2张图的说明</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_03.jpg" class="img-fluid">
+							<div class="carousel-caption text-danger">
+								<h5>这是第3张图</h5>
+								<p>这是第3张图的说明</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- 添加左右箭头 -->
+					<a href="#captions" class="carousel-control-prev" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="#captions" class="carousel-control-next" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+
+					<!-- 添加指示器 -->
+					<ol class="carousel-indicators">
+						<li data-target="#captions" data-slide-to="0" class="active"></li>
+						<li data-target="#captions" data-slide-to="1"></li>
+						<li data-target="#captions" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 5.js交互：既可以通过data-的形式控制，也可以通过js -->
+		<!-- 
+			5.1 设置轮播图的选项(设置在外层carousel)
+					data-interval='2000'：设置轮播时间(s)，也可以给每个子项单独设置
+					data-keyboard='true'：设置是否可以通过键盘控制切换轮播图，要先选中左右按钮
+					data-pause='hover' ：鼠标悬停是否播放。不是的话，false
+					data-wrap='true'：是否循环轮播
+					data-ride="carousel"：是否自动轮播。不是的话，false
+		 -->
+		<div class="row mt-5">
+			<div class="col-8">
+				<div class="carousel slide" id="options" data-ride="carousel" data-interval='2000' data-keyboard='true'
+					data-pause='false' data-wrap='true'>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/pic_01.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_02.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_03.jpg" class="img-fluid">
+						</div>
+					</div>
+
+					<!-- 添加左右箭头 -->
+					<a href="#options" class="carousel-control-prev" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="#options" class="carousel-control-next" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+
+					<!-- 添加指示器 -->
+					<ol class="carousel-indicators">
+						<li data-target="#options" data-slide-to="0" class="active"></li>
+						<li data-target="#options" data-slide-to="1"></li>
+						<li data-target="#options" data-slide-to="2"></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+
+		<!-- 
+			5.2 js行为：所有方法和事件都是定义在最外层的轮播图容器上的
+				1个方法：
+					carousel()  有7种参数
+
+				2个事件：事件是最外层div身上的
+					slide.bs.carousel
+					slid.bs.carousel
+					
+				2个事件的事件对象都有以下4个属性：
+					e.direction
+					e.relatedTarget
+					e.from
+					e.to
+		 -->
+		<div class="row mt-5">
+			<div class="col-8">
+				<div class="carousel slide" id="methods">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="images/pic_01.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_02.jpg" class="img-fluid">
+						</div>
+						<div class="carousel-item">
+							<img src="images/pic_03.jpg" class="img-fluid">
+						</div>
+					</div>
+
+					<!-- 添加左右箭头 -->
+					<a href="javascript:;" class="carousel-control-prev prevBtn">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a href="javascript:;" class="carousel-control-next nextBtn">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+
+					<!-- 添加指示器 -->
+					<ol class="carousel-indicators indicatorsBtn">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+					</ol>
+				</div>
+
+				<button class="btn btn-primary play">开始</button>
+				<button class="btn btn-primary pause">暂停</button>
+			</div>
+		</div>
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+	<script>
+		// 以对象形式初始化以及开始播放
+		$('.play').click(function () {
+			$('#methods').carousel({
+				interval: 2000
+			});
+
+			$('#methods').carousel('cycle');
+		});
+
+		// 暂停播放
+		$('.pause').click(function () {
+			$('#methods').carousel('pause');
+		});
+
+		// 上一张功能
+		$('.prevBtn').click(function () {
+			$('#methods').carousel('prev');
+		});
+
+		// 下一张功能
+		$('.nextBtn').click(function () {
+			$('#methods').carousel('next');
+		});
+
+		// 指示器点击的功能
+		$('.indicatorsBtn li').each(function (index, element) {				// each：循环方法; index:循环到的li的索引; element:循环到的li
+			$(element).click(function () {
+				$('#methods').carousel(index)
+			});
+		});
+
+		// 两个事件
+		$('#methods').on('slide.bs.carousel', function (e) {				// 开始切换的事件
+			console.log(
+				e.direction,		// 当前轮播的方向
+				e.relatedTarget,	// 当前轮播的项（DOM元素）
+				e.from,				// 当前轮播的 项的索引
+				e.to,				// 要走到的 项的索引
+			);	
+			console.log('开始走');
+		});
+		$('#methods').on('slid.bs.carousel', function () {					// 结束切换的事件
+			console.log('走完了');
+		});
+	</script>
+</body>
+
+</html>

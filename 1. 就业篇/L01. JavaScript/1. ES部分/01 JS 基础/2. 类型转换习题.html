@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>类型转换</title>
+</head>
+
+<body>
+
+    <script>
+        console.log(typeof a);                      //返回 undefined
+        console.log( typeof (typeof a) );           //返回 string
+        console.log("---- 分割线 ------");
+
+        console.log(typeof "yuyu");                 //返回 string
+        console.log(typeof undefined);              //返回 undefined
+        console.log(typeof NaN);                    //返回 number 
+        console.log(typeof null);                   //返回 object
+        function f() {
+            // ...
+        }
+        console.log(typeof f);                      //返回 function
+        console.log("---- 分割线 ------");
+
+        var a = "123abc";
+        console.log(typeof a);                      //返回 string
+        console.log(typeof +a);                     //返回 number (值为NaN)
+        console.log(typeof !!a);                    //返回 boolean  
+        console.log(typeof (a + ""));               //返回 string
+        console.log("---- 分割线 ------");
+
+        console.log(1 == "1");                      //显示 true
+        console.log(NaN == NaN);                    //显示 false
+        console.log(NaN == undefined);              //显示 false
+        console.log("11" + 11);                     //显示 1111
+        console.log(1 === "1");                     //显示 false
+        console.log("---- 分割线 ------");
+
+        console.log(parseInt("123abc"));            //显示 123  【parseInt 是截断数字】
+        var num = 123.345789;
+        console.log(num.toFixed(3));                //123.346 【toFixed(3)：四舍五入的保留三位小数】
+
+
+    </script>
+</body>
+
+</html>

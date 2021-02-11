@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="jQuery.1.8.3.js" type="text/javascript"></script>
+    <script src="jquery.cookie.js" type="text/javascript"></script>
+    <script>
+        // 参考; https://blog.csdn.net/kevinwuwenboa/article/details/53786857
+
+        /*
+            $.cookie(名称,值,[option]) 
+            [option]参数说明：
+                - expires:　　有限日期，可以是一个整数或一个日期(单位：天)。　这个地方要注意，如果不设置这个东西，浏览器关闭之后此cookie就失效了
+                - path:　　　 cookie值保存的路径，默认与创建页路径一致。
+                - domain:     cookie域名属性，默认与创建页域名一样。　　这个地方要相当注意，跨域的概念，如果要主域名二级域名有效则要设置　　".xxx.com"
+                - secrue:　　 一个布尔值，表示传输cookie值时，是否需要一个安全协议。
+        */
+        $.cookie("show-catalog-list", 1, { expires: 7, path: "/", domain: window.location.host });
+
+
+    </script>
+</body>
+
+</html>

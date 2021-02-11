@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 1;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+
+        // 多物体运动 —— 各元素运动的值相同，都改变宽度
+
+        var oDivArray = document.getElementsByTagName('div');
+        for (var i = 0; i < oDivArray.length; i++) {
+            oDivArray[i].onmouseenter = function () {
+                startMove(this, 400);
+            }
+            oDivArray[i].onmouseleave = function () {
+                startMove(this, 100);
+            }
+        }
+
+
+        function getStyle(elem, prop) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(elem, null)[prop];
+            } else {
+                return elem.currentStyle[prop];
+            }
+        }
+
+        // 给timer前加上dom(即elem)，就能给不同标签设置自己独立的定时器
+        var timer = null;
+        function startMove(dom, target) {
+            clearInterval(dom.timer);
+            var iSpeed = null, iCur = null;
+            dom.timer = setInterval(function () {
+                iCur = parseInt(getStyle(dom, 'width'));
+                iSpeed = (target - iCur) / 7;
+                // .... 
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                if (iCur == target) {
+                    clearInterval(dom.timer);
+                } else {
+                    dom.style.width = iCur + iSpeed + "px";
+                }
+            }, 30);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

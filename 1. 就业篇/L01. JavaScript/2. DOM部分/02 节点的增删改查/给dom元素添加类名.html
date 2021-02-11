@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 用原生js 给DOM元素添加一个类名:
+        方法一：
+        使用DOM.setAttribute("class","类名")
+
+        方法二：
+        DOM.classList.add("类名")
+
+        注意：
+            方法一 给DOM元素添加类名会覆盖原有的类名
+            方法二 可以给DOM元素添加一个类名后 还可以在继续给DOM元素添加新的类名 并且不会覆盖已有的类名 -->
+
+    <div class="div0"></div>
+
+    <script>
+        var div = document.getElementsByTagName('div')[0];
+        div.classList.add("div1");
+        
+    </script>
+</body>
+
+</html>

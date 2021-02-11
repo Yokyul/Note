@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const pro1 = new Promise((resolve, reject) => {
+            resolve(1);
+        })
+
+        const pro2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(2);
+            }, 1000);
+        })
+
+        pro1.then(result => {
+            console.log(result)
+            return pro2;                // 直接返回一个Promise
+        }).then(result => {
+            console.log(result)         // 将pro2 的推向结果传给 result
+        }).then(result => {             // 因为上一个函数没有返回值，所以传进来的参数result为 undefined
+            console.log(result)
+        })
+
+        // 输出：1 2 undefined
+    </script>
+</body>
+
+</html>

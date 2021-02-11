@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math.random()应用</title>
+</head>
+<body>
+    <script>
+
+
+        // (1)
+        // Math.random() 
+        // 生成[0, 1)的随机数
+
+
+
+        // (2)
+        //  输出12-36的随机数    
+        //  分析：36-12=24 ，  24 * Math.random() -> [0, 24)  ，  再加 12 -> [12, 36)
+
+        // console.log( 12 + 24 * Math.random() );
+
+
+
+        // (3)
+        // 抽奖机制
+
+        var n = Math.random() * 100;
+        if (n <= 0.5) {
+            console.log('一等奖')
+        }else if (n <= 3) {
+            console.log('二等奖');
+        }else if (n < 10) {
+            console.log('三等奖');
+        }else {
+            console.log('thank you')
+        }
+
+        
+
+    </script>
+</body>
+</html>

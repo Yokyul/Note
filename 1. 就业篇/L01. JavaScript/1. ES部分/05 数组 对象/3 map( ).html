@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map</title>
+</head>
+
+<body>
+    <script>
+
+        var personArr = [
+            { name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm', age: 20 },
+            { name: '刘港', src: './src/img/5.png', des: '我是谁', sex: 'f', age: 22 },
+            { name: 'yuyu', src: './src/img/4.png', des: '我很好看', sex: 'f', age: 23 },
+            { name: '刘金', src: './src/img/1.png', des: '123不好', sex: 'm', age: 24 },
+            { name: '刘飞我', src: './src/img/2.png', des: '不好', sex: 'm', age: 25 }
+        ];
+
+        // (1)map的使用，与forEach、filter类似
+        // 映射作用  
+        // 通过函数的返回值 返回新数组  
+
+        var obj = {};
+        var newArr = personArr.map(function (ele, index, self) {
+            ele.age += 10;
+            console.log(this);
+            return ele;
+        }, obj)
+        console.log(newArr);
+        
+
+
+        // (2)map的实现源码
+        
+        Array.prototype.myMap = function (func) {
+            var arr = [];
+            var len = this.length;
+            var _this = arguments[1] || window;
+            for (var i = 0; i < len; i++) {
+                arr.push(func.apply(this, [this[i], 1, this]));
+            }
+            return arr;
+        }
+
+
+        var newArr = personArr.myMap(function (ele, index, self) {
+            ele.age += 10;
+            return ele;
+        })
+        console.log(newArr);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+	<style>
+		body {
+			padding-bottom: 1000px;
+		}
+
+		.testVal {
+			width: 100px;
+			height: 100px;
+			background: var(--blue);
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- 
+		重置：bootstrap先清除各个标签的样式，然后修改样式，也可以通过 class添加样式。bootstrap中尽量不用margin-bottom，只用margin-top
+			(1) :root 中的重置样式，可打开控制台查看。如：--blue: #007bff;box-sizing: border-box等
+				--blue是css中定义变量的方式; 
+				background: var(--blue)是使用的方式;
+			(2) body 中的重置样式。
+			(3) 标题和段落
+			(4) 列表
+			(5) 预先格式化的文字
+			(6) 表格
+			(7) 表单
+			... 
+			其他不常用，见文档
+
+	 -->
+
+	<table class="table table-bordered">
+		<tr>
+			<td>周一</td>
+			<td>周二</td>
+			<td>周三</td>
+		</tr>
+	</table>
+
+	<!-- ：root -->
+	<div class="testVal"></div>
+	<hr>
+
+
+	<!-- 3.标题和段落 -->
+	<h1>陈学辉</h1>
+	<h2>陈学辉</h2>
+	<h3>陈学辉</h3>
+	<p>陈学辉</p>
+	<hr>
+
+
+	<!-- 4.列表 -->
+	<ul>
+		<li>red</li>
+		<li>
+			<ul>
+				<li>green</li>
+				<li>green</li>
+			</ul>
+		</li>
+	</ul>
+
+	<dl>
+		<dt>穷</dt>
+		<dd>穷，汉语常用字，读作qióng或者gōng，最早见于甲骨文</dd>
+	</dl>
+	<hr>
+
+
+	<!-- 5.预先格式化的文字， 使 空格/tab空格/标签 能正常显示-->
+	<pre>&lt;html&gt;
+		&lt;head&gt;
+	</pre>
+	<hr>
+
+
+	<!-- 6.表格: 使 表格名 放在表格下面 -->
+	<table>
+		<caption>课程表</caption>
+		<tr>
+			<td>周一</td>
+			<td>周二</td>
+			<td>周三</td>
+		</tr>
+	</table>
+	<hr>
+
+
+	<!-- 7.表单 -->
+	<form>
+		<fieldset>								<!-- 将原本的样式，改为正常标题样式 -->
+			<legend>标题</legend>				
+		</fieldset>
+
+		<p>
+			<label for="">用户名：</label>		
+			<input type="text">
+		</p>
+		<p>
+			<button>敢点么</button>
+			<select name="" id="">
+				<option value="">北京</option>
+				<option value="">上海</option>
+				<option value="">广州</option>
+			</select>
+		</p>
+		<p>
+			<textarea name="" id="" cols="30" rows="10"></textarea>    <!-- 默认横竖都可以拉伸，改为只可以垂直方向拉伸 -->
+		</p>
+	</form>
+</body>
+
+</html>

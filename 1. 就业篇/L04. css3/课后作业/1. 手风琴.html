@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴</title>
+    <style>
+        * {
+            margin: 0;
+            text-decoration: none;
+        }
+
+        .wrapper {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            position: absolute;
+            left: calc(50% - 150px);
+            top: calc(50% - 150px);
+        }
+
+        a {
+            background-color: skyblue;
+            color: brown;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+
+        }
+        h2{
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: sandybrown;
+        }
+
+        #content1 {
+            display: none;
+        }
+
+        #content1:target {
+            display: block;
+        }
+
+        #content2 {
+            display: none;
+        }
+
+        #content2:target {
+            display: block;
+        }
+
+        #content3 {
+            display: none;
+        }
+
+        #content3:target {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h2>Accordion-list</h2>
+        <div>
+            <a href="#content1">content1</a>
+            <div id="content1">text1</div>
+            <a href="#content2">content2</a>
+            <div id="content2">text2</div>
+            <a href="#content3">content3</a>
+            <div id="content3">text3</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

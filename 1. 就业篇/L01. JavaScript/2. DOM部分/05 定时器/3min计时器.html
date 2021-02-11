@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时器</title>
+    <style type="text/css">
+        input{
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            text-align: right;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    min:<input type="text" value="0">
+    s :<input type="text" value="0">
+
+    <script>
+        // 设计一个计时器，到三分钟停止
+        var minNode = document.getElementsByTagName('input')[0];
+        var sNode = document.getElementsByTagName('input')[1];
+        var min = 0;
+        var s = 0;
+
+        var timer = setInterval(function () {
+            s++;
+            if (s == 60) {
+                s = 0;
+                min++;
+            }
+            minNode.value = min;
+            sNode.value = s;
+            if (min == 3) {
+                clearInterval(timer);
+            }
+        }, 1000)
+    </script>
+</body>
+
+</html>

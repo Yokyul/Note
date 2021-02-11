@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+		integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<script src="js/iconfont.js"></script>
+	<style>
+		@font-face {
+			font-family: 'iconfont';
+			src: url('font/iconfont.eot');
+			src: url('font/iconfont.eot?#iefix') format('embedded-opentype'),
+				url('font/iconfont.woff2') format('woff2'),
+				url('font/iconfont.woff') format('woff'),
+				url('font/iconfont.ttf') format('truetype'),
+				url('font/iconfont.svg#iconfont') format('svg');
+		}
+
+		.iconfont {
+			font-family: "iconfont" !important;
+			font-size: 16px;
+			font-style: normal;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		.icon {
+			width: 1em;
+			height: 1em;
+			vertical-align: -0.15em;
+			fill: currentColor;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<!-- 字体图标是3.x版本才有的，4.x版本已经移除 -->
+	<div class="container">
+
+		<!-- 
+			3.x版本引入字体图标：设置在span上   (要先去官方文档下载fonts文件夹)
+				glyphicon glyphicon-heart：具体要引入的图标的class，可以在官方文档查看
+		 -->
+		<div class="row">
+			<div class="col">
+				<span class="glyphicon glyphicon-heart" style="font-size: 5rem; color: #f00;"></span>
+				<span class="glyphicon glyphicon-film" style="font-size: 5rem;"></span>
+				<button class="btn btn-success" style="font-size: 3rem;">
+					<span class="glyphicon glyphicon-star"></span> yuyu
+				</button>
+			</div>
+		</div>
+
+
+
+
+		<!-- 
+			4.x版本的使用方法：
+				1) 去 https://www.iconfont.cn/ 下载图标文件夹font
+				2) 使用 @font-face规则
+				3) 在html中用一个span标签使用
+		 -->
+		<!-- 
+			 1.使用Unicode编码：兼容到IE6 (要引入font文件夹里的iconfont.eot等5个文件)
+			 	&#xe642;
+		  -->
+		<div class="row">
+			<div class="col">
+				<span class="iconfont" style="font-size: 5rem; color: red;">&#xe793;</span>
+				<span class="iconfont" style="font-size: 5rem; color: red;">&#xe611;</span>
+				<span class="iconfont" style="font-size: 5rem; color: red;">&#xe6a2;</span>
+			</div>
+		</div>
+
+		<!-- 
+			2.使用font class：兼容到IE8+  (要引入iconfont.css文件)
+
+		 -->
+		<div class="row">
+			<div class="col">
+				<span class="iconfont icon-dingwei" style="font-size: 5rem; color: green;"></span>
+				<span class="iconfont icon-location" style="font-size: 5rem; color: green;"></span>
+				<span class="iconfont icon-Group-" style="font-size: 5rem; color: green;"></span>
+			</div>
+		</div>
+
+		<!-- 3.使用symbol引用：  (要引入iconfont.js文件)-->
+		<div class="row">
+			<div class="col">
+				<svg class="icon" aria-hidden="true" style="font-size:5rem; color:blue">
+					<use xlink:href="#icon-dingwei"></use>
+				</svg>
+				<svg class="icon" aria-hidden="true" style="font-size:5rem; color:blue">
+					<use xlink:href="#icon-location"></use>
+				</svg>
+				<svg class="icon" aria-hidden="true" style="font-size:5rem; color:blue">
+					<use xlink:href="#icon-Group-"></use>
+				</svg>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

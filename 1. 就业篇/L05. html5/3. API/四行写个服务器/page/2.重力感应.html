@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>deviceorientation事件</title>
+</head>
+
+<body>
+    <div class="main"></div>
+    <script>
+        // 只有带有陀螺仪的设备才支持体感(重力感应)
+        // 注意：苹果设备的页面，只有在https协议的情况下才支持这些接口。但是，11.1.x及之前版本的苹果设备是不需要https协议的。
+        window.addEventListener('deviceorientation', function (e) {
+            console.log(e);
+            document.getElementsByClassName('main')[0].innerHTML = `alpha: ${e.alpha} <br> beta: ${e.beta} <br> gamma: ${e.gamma}`
+        })
+
+        /*
+            事件deviceorientation的事件对象有以下3个属性：
+                - alpha: 指北(可用于制作指南针)。整数，取值范围：[0,360)。指北时值为0，指南时值为180。
+                - beta: 手机屏幕面向上方平放，值为0。屏幕面向自己竖直放(短边接触桌面)，底边接触桌面，值为90。顶边接触桌面，值为-90。
+                - gamma: 手机屏幕面向上方平放，值为0。屏幕向左竖直放(长边接触桌面)，左边接触桌面，值为-90。右边接触桌面，值为90
+        */
+    </script>
+</body>
+
+</html>

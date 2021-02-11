@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.ctx.lineCap：线两端的样式
+          取值：
+            butt: 默认
+            square: 线两端各加一个小方块
+            round: 线两端各加一个圆角块
+
+        2.ctx.lineJoin：线交汇处的样式
+          取值：
+            miter: 锋锐 (默认)
+            round: 变圆角
+            bevel：砍掉
+
+        3.ctx.minterLimit：设置miter后太过尖锐的话，可以设置minterLimit，超过后就砍掉。
+     -->
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        /** @type {HTMLCanvasElement} */ 
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        ctx.beginPath();
+        ctx.lineWidth = 15;
+        ctx.moveTo(100, 100);
+        ctx.lineTo(200, 100);
+        ctx.lineTo(200, 150);
+        ctx.lineCap = "round";
+        ctx.stroke();
+
+
+        ctx.beginPath();
+        ctx.lineWidth = 15;
+        ctx.moveTo(100, 200);
+        ctx.lineTo(200, 200);
+        ctx.lineTo(100, 250);
+        ctx.lineJoin = "miter";
+        ctx.miterLimit = 1;            // 设置miter后太过尖锐的话，可以设置minterLimit，超过后就砍掉。
+        ctx.stroke();
+
+
+
+    </script>
+</body>
+
+</html>

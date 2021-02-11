@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7 封装getElementsByClassName方法</title>
+</head>
+
+<body>
+
+    <div class="wrapper" id='ow'>
+        <p class=' demodemo   active   box    '>
+            <span class='   active   '></span>
+            <span class='demo  box'></span>
+        </p>
+
+        <p class='  demo'>
+            <span class='   demo    active'></span>
+        </p>
+    </div>
+
+    <script>
+
+        // 封装getElementsByClassName方法，Document,Element都有这个方法
+        Element.prototype.getElementsByClassName = Document.prototype.getElementsByClassName = function (_className) {
+
+            // 获取document下所有的标签
+            var allDomArray = document.getElementsByTagName('*');
+
+            // 将符合要求的标签放入lastDomArray数组
+            var lastDomArray = [];
+
+            // 先把 class值的字符串 中所有的空格变成一个
+            function trimClassName(strClass) {
+                var reg = /\s+/g;
+                var newClassStr = strClass.replace(reg, ' ');
+                return newClassStr;
+            }
+
+            // str.trim()可以将字符串str的首尾空格去掉
+            for (var i = 0; i < allDomArray.length; i++) {
+                var lastStrClass = trimClassName(allDomArray[i].className).trim();
+                var classArray = lastStrClass.split(' ')
+                for (var j = 0; j < classArray.length; j++) {
+                    if (classArray[j] == _className) {
+                        lastDomArray.push(allDomArray[i]);
+                        break;
+                    }
+                }
+            }
+            return lastDomArray;
+        }
+
+        console.log( document.getElementsByClassName('demo') );
+
+
+    </script>
+</body>
+
+</html>

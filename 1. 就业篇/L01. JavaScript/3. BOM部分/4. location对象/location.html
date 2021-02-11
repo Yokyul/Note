@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var currentId = window.location.hash.substr(1);     //获得了当前链接的中 # 后的参数
+
+        var qs = window.location.search.substring(1);       //获得了当前链接的中 ? 后的参数
+        if (qs.length > 0) {
+            var Airways = qs.substring(qs.indexOf('=') + 1).toUpperCase();
+        }
+
+        // location.search的值就是 "?i=1 "
+        // substr(1)   就是从索引1开始截取
+        // 所以以这个页面为例的话location.search.substring(1)的值就是 "i=1 "
+    </script>
+</body>
+
+</html>

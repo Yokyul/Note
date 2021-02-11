@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage</title>
+</head>
+
+<body>
+    <script>
+        /* 
+            cookie：每次发送请求都有可能发送许多无用的信息到后端。因为它会将cookie存储的所有值都发送过去。
+            所以我们需要一个东西存储数据，但是只在前端使用，不要发到后台去。
+            localStorage因此诞生。它也是在同一个域下才能相互拿到值。
+        */
+
+        // 1.向localStorage存值。 localStorage 只能存字符串。
+        localStorage.name1 = 'yuyu';
+        localStorage.setItem('name2', 'gugu');
+
+        // 2.取localStorage中存好的值
+        console.log(localStorage.name1);
+        console.log(localStorage.getItem('name2'));
+
+        // 3.移除 localStorage中存好的值
+        localStorage.removeItem('name2');
+
+
+        //=========================================================================
+        // 存数组，取数组
+        localStorage.arr = JSON.stringify([1, 2, 3]);   //将数组转为字符串存入，取出就是一个数组字符串，然后再将其还原为数组。
+        console.log(JSON.parse(localStorage.arr));
+
+
+        // 存对象，取对象
+        localStorage.obj = JSON.stringify({ name: '俞杰', age: 22, girlfriend: '顾宇' });
+        console.log(JSON.parse(localStorage.obj));
+
+    </script>
+</body>
+
+</html>

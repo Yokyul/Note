@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碰撞</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: orange;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='demo'></div>
+
+    <script>
+
+        var oDiv = document.getElementById('demo');
+        var timer = null;
+
+        oDiv.onclick = function () {
+            startMove(oDiv);
+        }
+
+        function startMove(dom) {
+            clearInterval(timer);                   // 避免再次点击时，还保留之前的速度，导致速度越来越快
+            var iSpeedX = 6;
+            var iSpeedY = 8;
+
+            timer = setInterval(function () {
+                var newLeft = dom.offsetLeft + iSpeedX;
+                var newTop = dom.offsetTop + iSpeedY;
+
+
+                // 碰撞：碰到边界，将速度 * -1 来修改方向      43 - 61行
+
+                if (newTop >= document.documentElement.clientHeight - dom.clientHeight) {
+                    iSpeedY *= -1;
+                    newTop = document.documentElement.clientHeight - dom.clientHeight;
+                }
+
+                if (newTop <= 0) {
+                    iSpeedY *= -1;
+                    newTop = 0;
+                }
+
+                if (newLeft >= document.documentElement.clientWidth - dom.clientWidth) {
+                    iSpeedX *= -1;
+                    newLeft = document.documentElement.clientWidth - dom.clientWidth;
+                }
+
+                if (newLeft <= 0) {
+                    iSpeedX *= -1;
+                    newLeft = 0;
+                }
+
+
+
+                dom.style.left = newLeft + 'px';
+                dom.style.top = newTop + 'px';
+            }, 30)
+        }
+
+
+
+    </script>
+</body>
+
+</html>

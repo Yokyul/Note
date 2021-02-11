@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skew</title>
+    <style>
+        body {
+            perspective: 800px;
+            transform-style: preserve-3d;
+            perspective-origin: 300px 300px;
+        }
+
+        @keyframes yu {
+            0% {
+                transform: skew(45deg, 0deg);
+            }
+
+            50% {
+                transform: skew(0, 0);
+            }
+
+            100% {
+                transform: skew(-45deg, 0deg);
+            }
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-image: url(y1.jpg);
+            background-size: cover;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+
+            /* transform: rotate(45deg); */
+            transform-origin: center center;
+            animation: yu 2s cubic-bezier(0, 0, 1, 1) infinite alternate;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div></div>
+    
+</body>
+
+</html>

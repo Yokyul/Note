@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .line1 {
+            stroke: black;
+            stroke-width: 3px;
+        }
+
+        .line2 {
+            stroke: red;          /* 边框颜色 */
+            stroke-width: 3px;      /* 边框宽度 */
+        }
+
+        .line3 {
+            stroke: black;
+            stroke-width: 5px;
+            stroke-dasharray: 4px 10px 15px;    /* 按设置得大小分配线段和空白的长度。 一个值：同时设置线段和空白*/
+            stroke-dashoffset: 0px;             /* 将虚线向左移动 */
+        }
+
+        circle {
+            fill: transparent;      /* 填充颜色 */
+            stroke: red;
+        }
+
+        ellipse {
+            stroke: red;
+            stroke-opacity: .5;     /* 边框透明度 */
+            fill: skyblue;
+            fill-opacity: .5;       /* 填充透明度 */
+        }
+
+        polyline,polygon {
+            fill: transparent;
+            stroke: skyblue;
+            stroke-width: 2px;
+            stroke-width: 10px;
+            stroke-linecap: round;      /* 设置线两端的样式 */
+            stroke-linejoin: round;     /* 设置线交汇处的样式 */
+        }
+
+        text {
+            stroke: red;
+            stroke-width: 2px;
+        }
+
+        path {
+            fill: transparent;
+            stroke: black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.SVG：矢量图，放大不会失真; 适合大面积贴图; 通常动画较少或较简单; 使用标签和css去画
+            在svg中，所有闭合图形都是默认填充并画出的
+
+        2.canvas: 适合小面积画图; 适合动画; 使用js去画
+     -->
+
+
+    <svg width="700px" height="600px" style="border: 1px solid black;">
+
+        <!-- 1.绘制直线 -->
+        <line x1='10' y1='10' x2="100" y2="10" class="line1"></line>
+        <line x1='100' y1='10' x2="100" y2="50" class="line2"></line>
+
+        <!-- 2.绘制虚线 -->
+        <line x1='200' y1='10' x2="300" y2="10" class="line3"></line>
+
+        <!-- 
+            3.绘制矩形，
+              rx ry用来添加圆角
+         -->
+        <rect x="10" y="80" height="50" width="100" rx="10" ry="20"></rect>
+
+        <!-- 4.绘制圆、椭圆 -->
+        <circle r="50" cx="50" cy="200"></circle>
+        <ellipse rx="50" ry="20" cx="200" cy="200"></ellipse>
+
+        <!-- 
+            5.绘制折线,
+              默认会连接并填充
+         -->
+        <polyline points="10 300,100 300,200 350"></polyline>
+
+        <!-- 
+            6.绘制多边形，
+              与折线的区别是，它最后会自动连接到起点
+         -->
+        <polygon points="300 300,400 300,500 350"></polygon>
+
+        <!-- 7.绘制文本 -->
+        <text x="600" y="300">yuyu</text>
+
+        <!-- 
+            8.path绘制折线：
+                与折线一样，默认会首尾连接并填充
+                大写字母表示绝对位置，小写字母表示相对位置 
+
+                M：起始位置
+                L/i：移动到的位置/移动的距离
+                H/h：水平移动到的位置/水平移动的距离
+                V/v：垂直移动到的位置/垂直移动的距离
+                z/Z: 首尾闭合
+         -->
+        <path d="M 10 400 L 50 400 l 50 50 H 150 V 400"></path>
+
+        <!-- 
+            9.path绘制弧：
+                与折线一样，默认会首尾连接并填充
+                大写字母表示绝对位置，小写字母表示相对位置 
+
+                M：起点
+                A的参数：
+                    水平半径  
+                    垂直半径  
+                    旋转角度  
+                    选择大圆弧/小圆弧：大1， 小0 
+                    方向：顺时针1, 逆时针0
+         -->
+        <path d="M 10 500 A 50 20 0 1 1 50 550"></path>
+
+    </svg>
+</body>
+
+</html>

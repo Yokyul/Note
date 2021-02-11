@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片预加载、懒加载</title>
+    <style>
+        div {
+            height: 300px;
+            width: 400px;
+            border: 2px solid black;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script>
+
+        // (1)
+        // 图片预加载 有充裕的能力时可以这么做
+        // 能避免加载图片一点点出现
+
+        // var oImage = document.createElement('img');
+        var oImage = new Image();
+
+        oImage.src = 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2187922730,604631233&fm=27&gp=0.jpg';
+
+        oImage.onload = function () {
+            var oDiv = document.getElementById('demo');
+            oDiv.appendChild(this);
+        }
+
+
+
+
+        // (2)
+        // 图片懒加载
+        // BOM中的1
+
+        // 监控滑轮事件
+        // 不断判断当前div的位置
+        // 采取某一种加载模式
+        // 图片显示到页面
+
+
+
+
+        // (3)
+        // 图片预加载+懒加载
+        // 两者结合就是：将懒加载的第三步加载模式 选择预加载
+
+
+
+
+    </script>
+</body>
+
+</html>

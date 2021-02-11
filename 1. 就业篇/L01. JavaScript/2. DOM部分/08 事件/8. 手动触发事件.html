@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手动触发事件</title>
+    <style>
+        .btn {
+            width: 150px;
+            height: 30px;
+            margin-top: 50px;
+            background-color: rgb(255, 145, 0);
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    这是一个复选框：<input type="checkbox" id="chk"><br>
+    <button class="btn">js 触发点击事件</button>
+
+    <script>
+        let inp = document.querySelector('#chk');
+        let btn = document.getElementsByClassName('btn')[0];
+        inp.addEventListener('change', function () {
+            console.log(this.checked);
+            console.log('复选框被选中了');
+        });
+        btn.onclick = function () {
+            console.log('按钮被点击了');
+        }
+
+        // 手动触发事件，jquery 的实现方法是 trigger('eventType')，原生有以下两种方法。
+        /* 
+            第一种, createEvent 和 initEvent 在MDN上显示被废弃了,并且会被移除,尽量不要使用
+                var ev = document.createEvent('Events');
+                ev.initEvent('change', true, true);
+                inp.dispatchEvent(ev);
+        */
+
+        // 第二种
+        inp.checked = true;     // 将页面多选框选中, 但监听事件并没有被触发。
+        let ev = new Event('change', {
+            bubbles: false,     // 默认值false, 事件是否冒泡
+            cancelable: false,  // 默认值false, 事件能否被取消
+            composed: false     // 默认值false, 事件是否会在影子DOM根节点之外触发侦听器。
+        });
+        inp.dispatchEvent(ev);
+
+        let ev2 = new Event('click');
+        btn.dispatchEvent(ev2);
+
+        // 注意：不要通过修改多选框的 checked 属性来标记多选框的选中状态, 那个属性只代表多选框的默认选中状态。如果checked="checked" 表明多选框默认选中, 否则默认不选中。其他标签的 checked, selected 属性也一样都代表默认选中。
+
+    </script>
+</body>
+
+</html>

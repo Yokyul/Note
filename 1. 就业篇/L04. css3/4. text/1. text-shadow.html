@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮雕、镂刻效果</title>
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+
+        /* 浮雕效果 */
+        .div1 {
+            margin-left: 200px;
+            margin-top: 50px;
+            width: 700px;
+            height: 100px;
+            color: #ddd;
+            font-size: 70px;
+
+            text-shadow: 1px 1px 0 #000,
+                -1px -1px 0 #fff;
+        }
+
+        /* 镂刻效果 */
+        .div2 {
+            margin-left: 200px;
+            margin-top: 50px;
+            width: 700px;
+            height: 100px;
+            color: #ddd;
+            font-size: 70px;
+
+            text-shadow: -1px -1px 0 #000,
+                1px 1px 0 #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">Text-Shadow</div>
+    <div class="div2">Text-Shadow</div>
+</body>
+
+</html>

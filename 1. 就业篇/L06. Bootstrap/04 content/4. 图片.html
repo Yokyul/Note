@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+	<style>
+		body {
+			padding-bottom: 1000px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+
+
+		<!-- 1.设置响应式图片：img-fluid -->
+		<div class="row">
+			<img src="images/img_01.jpg" class="img-fluid" alt="">
+		</div>
+
+
+		<!-- 
+			2.设置缩略图：img-thumbnail  (是有响应式效果的) (带边框，且边框为圆角)
+			  设置圆角图片：rounded			(没有响应式效果) (给图片设置圆角)
+		 -->
+		<div class="row mt-5">
+			<div class="col-md-4">
+				<img src="images/img_01.jpg" class="img-thumbnail" alt="">
+			</div>
+
+			<div class="col-md-4">
+				<img src="images/img_01.jpg" class="rounded img-fluid" alt="">
+			</div>
+		</div>
+
+
+		<!-- 3.设置图片对齐方式 -->
+		<!-- 
+			3.1 让多张图片对齐：在图片自身设置浮动
+		 -->
+		<div class="row mt-5">
+			<div class="col">
+				<img src="images/img_01.jpg" style="height: 200px;" class="float-left" alt="">
+				<img src="images/img_01.jpg" style="height: 200px;" class="float-right" alt="">
+			</div>
+		</div>
+		<!-- 
+			3.2 让多张图片对齐：在所有图片的父级设置对齐方式 (文本的对齐方式)
+		 -->
+		<div class="row mt-1">
+			<div class="col text-right">
+				<img src="images/img_01.jpg" style="height: 200px;" alt="">
+				<img src="images/img_01.jpg" style="height: 200px;" alt="">
+			</div>
+		</div>
+		<!-- 
+			3.3 让自己居中：先要变成block，然后再使用margin:0 auto;
+		 -->
+		<div class="row mt-1">
+			<div class="col">
+				<img src="images/img_01.jpg" style="height: 200px;" class="d-block mx-auto" alt="">
+			</div>
+		</div>
+
+
+		<!-- 
+			4.<picture>与media配合，可以实现不同大小屏幕，展示不同大小的图片
+		 -->
+		<div class="row mt-5">
+			<picture>
+				<source media="(min-width:1200px)" srcset="images/1140.jpg">
+				<source media="(min-width:992px)" srcset="images/960.jpg">
+				<source media="(min-width:768px)" srcset="images/720.jpg">
+				<source media="(min-width:576px)" srcset="images/540.jpg">
+				<img src="images/img_01.jpg" alt="">	<!-- 当尺寸小于576的时候会显示这个图片 -->
+			</picture>
+			
+			<!-- 
+				5.补充一种图片格式：
+				.webp	图片的格式，体积比JPG小上百倍，仍然可以高清显示
+				支持情况：   >=ios9.3 || >android4.4 || 火狐 || Chrome
+			 -->
+		</div>
+	</div>
+</body>
+
+</html>

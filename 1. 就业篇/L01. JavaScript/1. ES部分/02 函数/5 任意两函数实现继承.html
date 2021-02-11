@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数间的继承</title>
+</head>
+
+<body>
+    <script>
+        let father = new Father();
+        let son = new Son();
+        console.log(father);
+        console.log(son);
+
+        function Father() {
+            // ...
+        }
+        Father.prototype.lastName = "Deng";
+
+        function Son() {
+            inherit(Son, Father);
+        }
+
+        function inherit(Target, Origin) {
+            function F() {
+                // ...
+            };
+            F.prototype = Origin.prototype;
+            Target.prototype = new F();
+            Target.prototype.constuctor = Target;
+            Target.prototype.uber = Origin.prototype;
+        }
+
+    </script>
+</body>
+
+</html>

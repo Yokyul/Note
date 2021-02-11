@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+
+        // 1.系统定义好的可迭代对象，如数组、类数组...
+        const arr = [5, 7, 2, 3, 6];
+        const iterator = arr[Symbol.iterator]();    // 调用系统内部的数组迭代器创建函数
+
+
+        // 2.遍历一个可迭代对象
+        // 2.1传统方法
+        // let result = iterator.next();
+        // while (!result.done) {
+        //     const item = result.value;
+        //     console.log(item);
+        //     result = iterator.next();
+        // }
+
+        // 2.2 ES6的方法
+        for (const item of arr) {
+            console.log(item)
+        }
+
+
+    </script>
+</body>
+
+</html>

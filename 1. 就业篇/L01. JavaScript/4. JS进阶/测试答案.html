@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // 2
+        // 方法一：
+        // var url = new URL('https://www.baidu.com/s?ie=utf-8&f=8');
+
+        // function urlToObj() {
+        //     var result = {
+        //         protocol: url.protocol,
+        //         host: url.hostname,          //此处获取hostname,如果获取host，则包含端口号
+        //         path: url.pathname,
+        //         search: {}
+        //     }
+        //     var str = url.search.substr(1);  //substr() 方法, 可在字符串中抽取从 start 下标开始的指定数目的字符。
+        //     
+        //     params = str.split("&");
+        //     params.reduce(function (pre, cur) {
+        //         var items = cur.split('=')
+        //         pre[items[0]] = items[1]
+        //         return pre
+        //     }, result.search)
+        //     console.log(result)
+        // }
+        // urlToObj();
+
+        // 方法二
+        var url = new URL('https://www.baidu.com/s?ie=utf-8&f=8')
+
+        function urlToObj() {
+            var result = {
+                protocol: url.protocol,
+                host: url.hostname,
+                path: url.pathname,
+                search: {}
+            }
+            
+            for (param of url.searchParams) {
+                result.search[param[0]] = param[1]
+            }
+            
+            console.log(result);
+        }
+        urlToObj()
+
+
+
+        // 3.
+        // function trimClassName(dom) {
+        //     var reg = /\s+/g;
+        //     // 把所有的空格变成一个先
+        //     var newClassStr = dom.className.replace(reg, ' ');
+        //     return newClassStr;
+        // };
+
+        // function getByClass(_className) {
+        //     var allDomArray = [].slice.call(document.getElementsByTagName('*'), 0);
+        //     var newDomArr = [];
+        //     allDomArray.forEach(function (ele, index) {
+        //         var newClassStr = trimClassName(ele).trim();
+        //         var classNameArray = newClassStr.split(' ');
+        //         classNameArray.forEach(function (className, index) {
+        //             if (className == _className) {
+        //                 newDomArray.push(ele);
+        //             }
+        //         })
+        //     });
+        //     return newDomArray;
+        // };
+
+        // function getDom(selector) {
+        //     this.length = 0;
+        //     if (selector.indexOf('.') != -1) {
+        //         var dom = getByClass(selector.slice(1));
+        //     } else if (selector.indexOf('#') != -1) {
+        //         var dom = document.getElementById(selector.slice(1));
+        //     } else {
+        //         var dom = document.getElementsByTagName(selector);
+        //     }
+        //     return dom;
+        // };
+
+
+
+
+    </script>
+</body>
+
+</html>

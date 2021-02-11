@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <script>
+        /* 
+            1.将两个或更多对象的内容合并到第一个对象。
+            - 形式1：
+                $.extend( target [, object1 ] [, objectN ] )
+                    - 参数1：target，一个对象。
+                        - 如果还有其他的对象参数，那么它将接收新的属性。
+                        - 如果它是唯一的参数将扩展jQuery的命名空间。
+                    - 参数2：一个对象，它包含额外的属性合并到第一个参数。
+                    - 参数3：包含额外的属性合并到第一个参数。
+            
+            - 形式2：
+                $.extend( [deep ], target, object1 [, objectN ] )
+                    - 参数1：deep，布尔值。如果是true，合并成为递归（又叫做深拷贝）。
+                    - 同上
+
+        */
+        // 数组深克隆
+        let arr1 = [1, 2, 3, 4, 5]
+        let copyArr = $.extend(true, [], arr1);
+        copyArr.splice(0, 1);
+
+        console, console.log(arr1);
+        console, console.log(copyArr);
+
+
+
+
+
+        /* 
+            2.在数组中查找指定值并返回它的索引（如果没有找到，则返回-1）。
+            $.inArray( value, array [, fromIndex ] )
+                - 参数1：value，要查找的值。
+                - 参数2：array，一个数组，通过它来查找。
+                - 参数3：fromIndex，数组索引值，表示从哪里在开始查找。默认值是0，这将查找整个数组。
+        */
+        let arr2 = [4, "Pete", 8, "John"];
+        console.log($.inArray("John", arr2));
+
+
+
+
+        /* 
+            3.一个通用的迭代函数，它可以用来无缝迭代对象和数组。
+                数组和类似数组的对象通过一个长度属性（如一个函数的参数对象）来迭代数字索引，从 0 到 length - 1。
+                其他对象通过其属性名进行迭代。
+
+                $.each( collection, callback(indexInArray, valueOfElement) )
+                    - 参数1：collection，遍历的对象或数组。
+                    - 参数2：该函数会在每次迭代时被调用。
+
+            注意：
+                - 可以在$.each()返回false来终止迭代。
+                - 返回非false相当于一个循环中的continue语句，这意味着，它会立即跳出当前的迭代，转到下一个迭代。
+        */
+        // 在迭代数组的情况下，回调函数每次传递一个数组索引和相应的数组值作为参数。
+        $.each([52, 97], function (index, value) {
+            console.log(index + ': ' + value);      // 0: 52   1: 97
+        });
+
+        // 如果对象是作为集合使用，回调函数每次传递一个键值对
+        var obj = {
+            "flammable": "inflammable",
+            "duh": "no duh"
+        };
+        $.each(obj, function (key, value) {
+            console.log(key + ": " + value);
+        });
+
+
+
+        /*
+            jQuery.merge( first, second ): 合并两个数组内容到第一个数组。
+                - 返回: Array
+                
+        */
+        $.merge([0, 1, 2], [2, 3, 4])
+
+    </script>
+</body>
+
+</html>

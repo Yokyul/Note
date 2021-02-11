@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = "I am from runoob，welcome to runoob site.";
+
+        /*
+            1. 属性
+                - constructor: 返回对 String 对象属性创建的函数。
+                - length：
+                - prototype: 通过它向对象添加属性和方法
+
+        */
+        console.log(str.constructor);
+        console.log(str.length);                //40
+        console.log("----- 分割线 -----");
+
+
+        /*
+            2. 方法
+                - charAt(): 返回在指定位置的字符
+                - charCodeAt(): 字符串 转 Unicode值
+                - fromCharCode() Unicode值 转 字符串
+                - slice(from[, to]): 
+                    - 提取字符串介于两个指定下标之间的字符，并以新的字符串返回被提取的部分。
+                    - to 可为负数，-1 指字符串的最后一个字符的位置。
+                - substring(from[, to]): 提取字符串中介于两个指定下标之间的字符。to 非负
+                - lastIndexOf(str): 返回一个指定的字符串值最后出现的位置。
+                - substr(from[, length]): 在字符串中抽取从 from 下标开始的指定数目的字符。
+                - split()：把字符串分割为字符串数组。
+                - toLowerCase(): 把字符串转换为小写。
+                - toUpperCase()：把字符串转换为大写。
+
+                注意: 参数为 from to 的。
+                    - 包括 from 处的字符，但不包括 to 处的字符。
+                    - 
+
+        */
+        console.log(str.charAt(2));                 //a 
+        console.log(str.charCodeAt(2));             //97
+        console.log(str.slice(35, -1));             //site
+        console.log(str.substring(35));             //site.
+        console.log(str.lastIndexOf("runoob"));
+        console.log(str.substr(2, 3));
+        console.log("----- 分割线 -----");
+
+        console.log(str.toLowerCase());
+        console.log(str.toUpperCase());
+    </script>
+</body>
+
+</html>

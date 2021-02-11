@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>worker</title>
+</head>
+
+<body>
+    <script>
+        /*
+            过去，我们都说js是单线程的。只有一些异步操作罢了。
+            现在，worker是多线程的。
+            
+            在新进程的js文件中，注意以下几点：
+                - 不能操作DOM，没有window对象，不能读取本地文件。
+                - 只可以发ajax，进行一些数值计算。
+                - 可以引入其他js文件，但引入的文件也要遵循以上两点。
+
+            worker的用法：
+                当前文件为主进程，调用的文件的为辅进程。
+                进程之间只能使用 onmessage 接收消息，使用 postMessage() 发送消息。
+                主进程停止辅进程：terminate()
+                辅进程自己停止：this.close()
+
+            worker中能否再开一个worker？
+                理论上可以，实际没有一个浏览器支持。
+        */
+
+
+        // 使用worker开启新进程进行计算，就不会非要计算完再继续执行语句了。
+        let beginTime = new Date().getTime();
+        console.log("============");
+        console.log("============");
+        let count = 1000000;
+
+        let worker = new Worker('./worker.js');         // 参数为js文件
+        worker.postMessage({                            // 传递的参数配置
+            count,
+        });
+        worker.onmessage = function (e) {
+            // console.log(e);
+            console.log(e.data);
+        }
+
+        console.log("============");
+        console.log("============");
+        let endTime = new Date().getTime();
+        console.log(endTime - beginTime);
+        // worker.terminate();                 // 停止执行辅进程
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+
+<body>
+    <script>
+        // sessionStorage 用法与 localSession 一样。
+        sessionStorage.name = '俞杰';
+        sessionStorage.setItem('age', 22);
+    
+        /* 
+            1.localSession 和 sessionStorage 的区别：
+                - 需要长期存储在浏览器，无论窗口是打开还是关闭都会存储的变量，写入 localSession。
+                - 这次会话临时需要存储的变量，写入 sessionStorage。
+                    当窗口关闭，sessionStorage 自动清空。
+
+
+            2.localSession 和 cookie 的区别：
+                - localSession 在发送请求时，不会把数据发出去。而 cookie 会把所有数据带出去。
+                - cookie 存储内容较少 (因为是字符串形式，4k左右)，而 localSession 可以存较多的内容 (5m左右)。
+        */
+
+    </script>
+</body>
+
+</html>

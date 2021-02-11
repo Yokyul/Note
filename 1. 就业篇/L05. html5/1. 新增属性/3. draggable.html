@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽功能</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .init {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+
+        .target {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 300px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        1.chrome、safari支持, 火狐极少支持。
+        2.true：可以拖拽出阴影。 false：不可以
+        3.大多数标签默认为false, <a> <img> 默认为true
+
+        4.拖拽的组成：被拖拽的物体，目标区域(目标元素)。
+        5.被拖拽物体的生命周期：
+            拖拽开始：按下并移动一点点。  事件：dragstart
+            拖拽进行中：移动的一瞬间。    事件：drag
+            拖拽结束：松开的一瞬间。      事件：dragend
+        6.进入目标区域的过程：
+            鼠标刚进入：                事件：dragenter
+            鼠标一直在区域内：           事件：dragover
+            鼠标刚离开：                事件：dragleave
+            元素放在目标区域：           事件：drop
+
+
+        注意：
+            1. 所有的标签元素，当拖拽周期结束时，会有一个默认事件：回到最开始的地方。
+               想阻止这个默认事件，需要在dragover事件中加上e.preventDefault()。
+            2. 为什么要写在dragover呢？
+               因为：事件由行为触发，但一个行为可能触发多个事件。如：点击后抬起，会触发mouseup和click。
+               而放下这个行为会触发dragover和drop两个事件。默认的是dragover后触发默认事件回到原处。
+
+        补充：
+        有3个事件, 执行顺序为：A -> B -> C
+        想阻止C，必须在B上阻止
+     -->
+    <div class="init" draggable="true"></div>
+    <div class="target"></div>
+
+    <script>
+        var oDivInit = document.getElementsByTagName('div')[0];
+        var beginx = 0;
+        var beginy = 0;
+        oDivInit.ondragstart = function (e) {
+           beginx = e.clientX;
+           beginy = e.clientY;
+           e.dataTransfer.effectAllowed = 'move';
+        }
+        oDivInit.ondragend = function (e) {
+            var x = e.clientX - beginx;
+            var y = e.clientY - beginy;
+            oDivInit.style.left = oDivInit.offsetLeft + x + "px";
+            oDivInit.style.top = oDivInit.offsetTop + y + "px"
+        }
+
+        var oDivTarget = document.getElementsByClassName('target')[0];
+        oDivTarget.ondragenter = function(e) {
+            console.log('enter')
+        }
+        oDivTarget.ondragover = function(e) {
+            console.log('over');
+            e.preventDefault();
+        }
+        oDivTarget.ondragleave = function(e) {
+            console.log('leave')
+        }
+        oDivTarget.ondrop = function(e) {
+            console.log('drop');
+            // e.dataTransfer.dropEffect = 'link';
+        }
+    </script>
+</body>
+
+</html>

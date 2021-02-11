@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+       1. 纯色填充
+       2. 线性渐变色填充：以坐标系原点开始填充。可以有多个关键点。
+       3. 辐射渐变色填充：
+        (1)起始圆和结束圆圆心重合
+        (2)起始圆和结束圆圆心不重合:
+            1)起始圆在结束圆内部：最外层是结束圆颜色
+            2)结束圆在起始圆内部：最外层是起始圆颜色
+            3)两者相离，且起始圆小
+            4)两者相离，且结束圆小
+            5)两者相离，且大小一样
+
+       4. 图片填充
+          ctx.fillStyle = ctx.createPattern(img, 'no-repeat')： 创建纹理进行填充，以坐标系原点开始填充
+            一般配合ctx.translate()使用，从而使图片可以显示。
+            
+     -->
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        // 1.纯色填充
+        ctx.beginPath();
+        ctx.fillStyle = 'red';          // 修改颜色
+        ctx.fillRect(0, 50, 200, 100);
+
+
+        // 2.线性渐变色填充
+        ctx.beginPath();
+        var bg = ctx.createLinearGradient(300, 50, 500, 50);    // 横向渐变：左顶点到右顶点; 斜向渐变：左顶点到右底点
+        bg.addColorStop(0, 'white');
+        bg.addColorStop(.5, 'red');
+        bg.addColorStop(1, 'yellow');
+        ctx.fillStyle = bg;
+        ctx.fillRect(300, 50, 200, 100);
+
+
+        // 3.辐射渐变色填充
+        ctx.beginPath();
+        var bg = ctx.createRadialGradient(400, 200, 10, 400, 200, 100);    // 起始圆：(x1, y1) r1  结束圆：(x2, y2) r2
+        bg.addColorStop(0, 'white');
+        bg.addColorStop(.5, 'red');
+        bg.addColorStop(1, 'yellow');
+        ctx.fillStyle = bg;
+        ctx.fillRect(300, 200, 200, 100);
+
+
+        // 4.图片填充
+        var img = new Image();
+        img.src = "./star.jpg";     // 图片是异步加载的
+        img.onload = function () {
+
+            ctx.beginPath();
+            ctx.translate(0, 200);
+            var bg = ctx.createPattern(img, 'no-repeat');     // 创建纹理进行填充，以坐标系原点开始填充
+            ctx.fillStyle = bg;
+
+            ctx.fillRect(0, 0, 200, 100);
+        }
+
+
+    </script>
+</body>
+
+</html>

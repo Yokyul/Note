@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小方块移动</title>
+</head>
+
+<body>
+    <div></div>
+    <script type="text/javascript">
+
+        // 1.小方块移动
+        var div = document.createElement('div');
+        document.body.appendChild(div);
+        div.style.width = "100px";
+        div.style.height = "100px";
+        div.style.backgroundColor = "red";
+        div.style.position = "absolute";
+        div.style.left = "0";
+        div.style.top = "0";
+
+        setInterval(function () {
+            div.style.left = parseInt(div.style.left) + 2 + "px";
+            div.style.top = parseInt(div.style.top) + 2 + "px";
+        }, 50);
+
+        var speed = 1;
+        setInterval(function(){
+            speed += speed / 7;
+            div.style.left = parseInt(div.style.left) + speed + "px";
+            div.style.top = parseInt(div.style.top) + speed + "px";
+        },10)
+
+        var speed = 1;
+        var timer = setInterval(function () {
+            speed += speed / 20;
+            div.style.left = parseInt(div.style.left) + speed + "px";
+            div.style.top = parseInt(div.style.top) + speed + "px";
+            if (parseInt(div.style.top) > 200 && parseInt(div.style.left) > 200) {
+                clearInterval(timer);
+            }
+         },10) ;
+
+        
+        // 2.按住上下左右移动
+        // var div = document.createElement('div');
+        // document.body.appendChild(div);
+        // div.style.width = "100px";
+        // div.style.height = "100px";
+        // div.style.backgroundColor = "red";
+        // div.style.position = "absolute";
+        // div.style.left = "0";
+        // div.style.top = "0";
+
+        // document.onkeydown = function (e) {
+        //     switch (e.which) {
+        //         case 38:
+        //             div.style.top = parseInt(div.style.top) - 5 + "px";
+        //             break;
+        //         case 40:
+        //             div.style.top = parseInt(div.style.top) + 5 + "px";
+        //             break;
+        //         case 37:
+        //             div.style.left = parseInt(div.style.left) - 5 + "px";
+        //             break;
+        //         case 39:
+        //             div.style.left = parseInt(div.style.left) + 5 + "px";
+        //     }
+        // }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

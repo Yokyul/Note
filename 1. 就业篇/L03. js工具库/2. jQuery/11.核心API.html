@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+    <script>
+        /*
+            1.$()
+                - 用法1：$( selector [, context ] )
+                    匹配一组元素。
+
+                - 用法2：$( html [, ownerDocument ] )
+                    根据提供的原始 HTML 标记字符串，动态创建由 jQuery 对象包装的 DOM 元素。
+
+                - 用法3：$( callback )
+                    - 参数：callback。当 DOM 完成加载的时候，执行的函数。
+                    类似于$(document).ready()，只不过用这个函数时，需要把页面中所有需要在 DOM ready时执行的 $()操作符都包装到其中来。
+
+                    注意：以下三个语法全部是等价的：当 DOM 完成加载的时候，执行handler函数
+                        - $(document).ready(handler)
+                        - $().ready(handler) (不推荐)
+                        - $(handler)
+        */
+
+        $( "div.foo" );
+
+        $("<div id='test'>hello</div>").appendTo("body");
+        $("<a href='http://jquery.com'>jquery官网</a>").appendTo("body");
+
+        $(function () {
+            // Document is ready
+        });
+
+    </script>
+</body>
+
+</html>

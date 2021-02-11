@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            a: 1,
+            b: 2
+        }
+
+        const proxy = new Proxy(obj, {
+            set(target, propertyKey, value) {
+                // console.log(target, propertyKey, value);
+                // target[propertyKey] = value;
+                Reflect.set(target, propertyKey, value);
+            },
+            get(target, propertyKey) {
+                if (Reflect.has(target, propertyKey)) {
+                    return Reflect.get(target, propertyKey);
+                } else {
+                    return -1;
+                }
+            },
+            has(target, propertyKey) {
+                return false;
+            }
+        });
+        console.log(proxy);         // 输出：Proxy {a: 1, b: 2}
+        proxy.a = 10;               // 通过代理对象改写目标对象的属性值
+        console.log(proxy.a);
+
+        console.log(proxy.d);       // 调用get()，不存在的返回-1
+        console.log("a" in proxy);  // 调用has()
+    </script>
+</body>
+
+</html>

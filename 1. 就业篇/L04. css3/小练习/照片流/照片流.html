@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>照片流</title>
+    <link rel="stylesheet" type="text/css" href="照片流.css">
+</head>
+<body>
+    
+    
+    <div class="wrapper">
+        <img src="source/y1.jpg" alt="">
+        <img src="source/y2.jpg" alt="">
+        <img src="source/y3.jpg" alt="">
+        <img src="source/y4.jpg" alt="">
+        <img src="source/y5.jpg" alt="">
+        <img src="source/y6.jpg" alt="">
+        <img src="source/y7.jpg" alt="">
+        <img src="source/y8.jpg" alt="">
+    </div>
+
+    <script type="text/javascript">
+
+        document.body.onmousemove = function (e){
+            this.style.perspectiveOrigin = "" + e.pageX + "px " + e.pageY + "px";
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input新增</title>
+</head>
+
+<body>
+
+    <!-- 1.placeholder ，所有浏览器都支持 -->
+    用户名：<input type="text" placeholder="请输入用户名">
+    密码：<input type="password" placeholder="请输入密码">
+    <br><br>
+
+    <input type="file">
+    <br><br>
+    <hr>
+    <br>
+
+    <!-- 2. type类型 -->
+    <form>
+        <!-- 
+            Calender类, 时间类。
+            不怎么用。因为：1.样式不好看；2.只有Chrome支持
+         -->
+        <input type="date">      
+        <input type="time">
+        <input type="week">
+        <input type="datetime-local"><br>
+
+        <input type="number" placeholder="只能输数字"><br>       <!-- 框内只能输入数字。只有Chrome支持 -->
+        <input type="email" placeholder="只能输入邮箱格式"><br>        <!-- 框内只能输入邮箱格式，不然点击提交会出错。只有Chrome、火狐支持 -->
+        <input type="color"><br>        <!-- 颜色选择器。只有Chrome支持 -->
+        <input type="range" max="100" min="1" name="range"><br>     <!-- 范围选择器。只有Chrome、Safari支持 -->
+        <input type="search" name="search"><br>     <!-- 框内输入过的内容，下次点击框会有提示。只有Chrome支持，Safari支持一点，需要文字打全才有提示，不是一点击就有 -->
+        <input type="url" placeholder="只能输入带协议的网址"><br>          <!-- 框内只能输入带协议的网址，不然点击提交会出错。只有Chrome、火狐支持 -->
+
+        <input type="submit">
+    </form>
+
+</body>
+
+</html>

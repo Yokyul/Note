@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>取消事件绑定</title>
+</head>
+
+<body>
+    <div style="width:100px; height: 100px; background-color: red;"></div>
+
+    <script type="text/javascript">
+        var div = document.getElementsByTagName('div')[0];
+        // 方法1
+        // div.onclick = function () {
+        //     console.log('a');
+        //     console.log('b');
+        // }
+        // div.onclick = null;
+
+
+        // 方法2
+        var test = function () {
+            console.log('a');
+        }
+        div.addEventListener('click', test, false);
+        div.removeEventListener('click',test, false);
+
+        // 方法3
+        // var test = function(){
+        //     console.log('yu');
+        // }
+        // div.attachEvent('onclick',test);
+        // div.detachEvent('onclick',test);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM习题1</title>
+</head>
+
+<body>
+    <div>
+        <p></p>
+        <strong></strong>
+        <a></a>
+    </div>
+
+
+    <script type="text/javascript">
+
+        // 1.给三个标签，让他们行间有一个属性this-name。
+        // var all = document.getElementsByTagName('*');
+        // for (var i = 0; i < all.length; i++) {
+        //     all[i].setAttribute('this-name', all[i].nodeName);
+        // }
+
+
+        // 2.请编写一段JavaScript脚本生成下面这段DOM结构。要求：使用标准的DOM方法或属性。
+        // <div class="example">
+        //     <p class="slogan">我最帅!</p>
+        // </div>
+        // 提示： .className 可以读写class
+
+        // var div = document.createElement('div');
+        // var p = document.createElement('p');
+        // div.setAttribute('class','example');
+        // p.setAttribute('class','slogan');
+        // p.innerHTML = '我最帅！'
+        // document.body.appendChild(div);
+        // div.appendChild(p);
+
+
+        // 3.封装函数insertAfter()；功能类似insertBefore();insertAfter是系统没有提供的。
+        // 提示:可忽略老版本浏览器，直接在Element.prototype上编程.
+        // var div = document.getElementsByTagName('div')[0];
+        // var p = document.getElementsByTagName('p')[0];
+        // var a = document.getElementsByTagName('a')[0];
+        // var strong = document.getElementsByTagName('strong')[0];
+        // var i = document.createElement('i');
+
+        // Element.prototype.insertAfter = function(targetNode,afterNode) {
+        //     var beforeNode = afterNode.nextElementSibling;
+        //     if(beforeNode == null){
+        //         div.appendChild(targetNode);
+        //     }else{
+        //         div.insertBefore(targetNode,beforeNode);
+        //     }
+        // }
+
+        // 4.将目标节点内部的节点顺序，逆序。（标签逆序）
+        // eg: <div>
+        //         <a></a>
+        //         <em></em>
+        //     </div>
+        //     <div>
+        //         <em></em>
+        //         <a></a>
+        //     </div>
+        // 利用appendChild和剪切，第一次先操作倒数第二个，第二次操作倒数第三个，写个for循环
+
+
+    </script>
+
+</body>
+
+</html>

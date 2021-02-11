@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script src="./ajax.js"></script>
+    <script>
+
+        /*
+            获取李华所在班级的老师的信息:
+                1.从students.json 中获取李华的班级id
+                2.从classes.json 中获取李华班级的老师id
+                3.通过老师id 在teachers.json 中找到老师信息。
+        */
+        ajax({
+            url: "./data/students.json?name=李华",
+            success(data) {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].name === "李华") {
+                        const cid = data[i].classId;
+                        ajax({
+                            url: "./data/classes.json?id=" + cid,
+                            success(data) {
+                                for (let i = 0; i < data.length; i++) {
+                                    if (data[i].id === cid) {
+                                        const tid = data[i].teacherId;
+                                        ajax({
+                                            url: "./data/teachers.json?id=" + tid,
+                                            success(data) {
+                                                for (let i = 0; i < data.length; i++) {
+                                                    if (data[i].id === tid) {
+                                                        console.log(data[i]);
+                                                    }
+                                                }
+                                            }
+                                        })
+                                        return;
+                                    }
+                                }
+                            }
+                        })
+                        return;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: orange;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='demo'></div>
+
+    <script>
+
+        // 多方向运动：设置两个初速度 iSpeedX iSpeedY
+
+        var oDiv = document.getElementById('demo');
+        var timer = null;
+        
+        oDiv.onclick = function () {
+            startMove(oDiv);
+        }
+
+        function startMove(dom) {
+            clearInterval(timer);
+            var iSpeedX = 6;
+            var iSpeedY = 8;
+
+            timer = setInterval(function () {
+                var newLeft = dom.offsetLeft + iSpeedX;
+                var newTop = dom.offsetTop + iSpeedY;         
+
+                dom.style.left = newLeft + 'px';
+                dom.style.top = newTop + 'px';
+            }, 30)
+        }
+
+
+
+    </script>
+</body>
+
+</html>

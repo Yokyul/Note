@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+
+<body>
+    <div style="width: 100px; height: 100px; background-color: red;" onclick="gu()"></div>
+    
+    <script type="text/javascript">
+        var div = document.getElementsByTagName('div')[0];
+
+        // 方法1
+        // div.onclick = function(){
+        //     console.log('a');
+        //     console.log('b');
+        // }
+        function gu() {
+            console.log('c');
+        }
+
+        /* 方法2: .addEventListener(event, function, useCapture)
+            参数3：可选。布尔值，指定事件是否在捕获或冒泡阶段执行。
+                true - 在捕获阶段执行
+                false- 默认。在冒泡阶段执行
+        */
+        // div.addEventListener('click', function () {
+        //     console.log('a');
+        // }, false);
+
+        // div.addEventListener('click', function () {
+        //     console.log('b');
+        // }, false);
+
+        // 方法3: IE
+        // div.attachEvent('onclick',function(){
+        //     console.log('yu');
+        // })
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="js/moment-with-locales.js"></script>
+</head>
+
+<body>
+	<script>
+
+
+
+		// (3) 操作
+		// 1.1 add()		增加日期
+		console.log(moment().add(7, 'days'));						//以今天的日期往后加7天
+		console.log(moment().add(5, 'M'));							//以今天的日期往后加5个月。这里第二个参数使用的是快捷键
+		console.log(moment().add(365, 'days').add(1, 'months'));	//链式操作
+		console.log(moment().add({ days: 365, months: 1 }));
+		console.log(moment([2010, 0, 31]).add(1, 'months'));		//如果原始日期中的日期大于最终月份的天数，则跳到最后一天
+		console.log(moment().add(1.5, 'months'));					//如果传小数的话，会被四舍五入
+		// 1.2 subtract() 	减少日期 (类似add)
+		console.log(moment().subtract(1.5, 'months').valueOf() === moment().subtract(2, 'months').valueOf());	//true
+
+		// 2.1 startOf() 	把日期设置成参数的开始值
+		console.log(moment().startOf('year'));						//设置成今年第一天
+		console.log(moment().startOf('month'));						//设置成当月第一天
+		console.log(moment().startOf('hour'));						//设置成当前小时的最开始那一秒
+		console.log(moment().minutes(0).seconds(0).milliseconds(0));
+		// 2.2 endOf() 	    把日期设置成参数的结束值 (类似add)
+		console.log(moment().endOf('year'));						//设置成今年的最后一天的最后一刻
+
+		// 3. local()		在日期上设置个标记，以使用本地时间
+		var a = moment.utc([2011, 0, 1, 8]);
+		console.log(a.hours());						//8
+		a.local();
+		console.log(a.hours());						//16
+
+		// 4. utcOffset() 	获取本地时间与UTC时间的偏移量（差值），   以分钟数为单位
+		console.log(moment().utcOffset());			//480
+		console.log(moment().utcOffset(10));		//本地时间比UTC时间多10个小时
+
+
+
+
+
+		// (4) 显示
+		//1
+		// 1.1 format()		格式化时间，它的参数非常丰富
+		console.log(moment().format());
+		console.log(moment().format('DDDo, W, MMMM Do YYYY, h:mm:ss a - ZZ'));
+		// 1.2 本地化的格式：定义了一些常用格式。	(依托当前语言环境)
+		moment.locale('zh-cn');
+		console.log(moment().format('LLLL'));
+
+		//2
+		// 2.1 fromNow()	相对于现在的时间	(依托当前语言环境)
+		console.log(
+			moment([2008]).fromNow(),				//12 年前	2008年相对于今天是12年前的时间
+			moment([2008]).fromNow(true),			//12 年
+		);
+		// 2.2 from() 		一个时间相对于另一个时间的时间	(依托当前语言环境)
+		var a = moment([2007, 0, 15]);
+		var b = moment([2007, 0, 29]);
+		console.log(
+			a.from(b),								//a相对于b是14天前的时间
+			a.from(b, true),
+		);
+
+		//3
+		// 3.1 toNow() 		到现在的时间  (依托当前语言环境)
+		console.log(
+			moment([2008]).toNow(),					//12 年内
+			moment([2008]).toNow(true),				//12 年
+		);
+		// 3.2 to() 		一个时间到另一个时间的间隔  (依托当前语言环境)
+		var a = moment([2007, 0, 15]);
+		var b = moment([2007, 0, 29]);
+		console.log(
+			a.to(b),								//14 天内	a到b的时间在14天内
+			a.to(b, true),							//14 天
+		);
+
+
+
+
+		// 4. calendar()	返回一个相对于参数（默认为当前时间）的日历时间。  (依托当前语言环境)
+		// 最终的结果它会根据两个时间的接近程度来决定。一共定义了6个档（读一下文档）最大的范围限制在一个星期，超过一个星期就会显示为“其它”
+		console.log(moment().calendar());
+		console.log(moment().calendar(moment([2020, 5, 13])));	//下星期三11:54 
+		console.log(moment().calendar(moment([2020, 5, 16])));	//明天11:56
+		console.log(moment().calendar(moment([2020, 6, 20])));	//2020/04/21
+
+		// 5. diff()		返回两个时间的差值
+		var a = moment([2007, 0, 29]);
+		var b = moment([2007, 0, 28]);
+		console.log(a.diff(b));					//86400000     默认取两个时间差的毫秒数
+		console.log(a.diff(b, 'days'));			//1
+
+		//6
+		// 6.1 valueOf()		返回自Unix纪元以来的毫秒数 (时间戳)
+		console.log(
+			moment().valueOf(),
+			new Date().valueOf(),
+		);
+		// 6.2 unix()			返回自Unix纪元以来的秒数 (时间戳)
+		console.log(moment().unix());
+
+		// 7. daysInMonth()		获取某月的天数
+		console.log(moment().daysInMonth());	
+		console.log(moment('2020-02').daysInMonth());	//29
+
+		// 8. 将日期对象时间转化为各种形式
+		console.log(moment().toDate());
+		console.log(moment().toArray());
+		console.log(moment().toObject());				//把日期的各个组成部分拆分成了属性，返回整个对象
+
+
+	</script>
+</body>
+<html>

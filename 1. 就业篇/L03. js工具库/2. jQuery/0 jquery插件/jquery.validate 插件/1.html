@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form id="register">
+        <dl>
+            <dt>
+                <div class='header'>
+                    <h3>注册</h3>
+                </div>
+            </dt>
+            <dt></dt>
+            <dt>
+                <div class='letter'>
+                    <label for="regist_username">用户名: </label>
+                    <input type="text" name="regist_username" id="regist_username" tabindex='5' />
+                </div>
+            </dt>
+            <dt>
+                <div class='letter'>
+                    昵&nbsp;&nbsp;&nbsp;称: <input type="text" name="nickname" id="nickname" tabindex='6' />
+                </div>
+            </dt>
+            <dt>
+                <div class='letter'>
+                    <label for="regist_password"> 密&nbsp;&nbsp;&nbsp;码:&nbsp;</label>
+                    <input type="password" name="regist_password" id="regist_password" tabindex='7' />
+                </div>
+            </dt>
+            <dt>
+                <div class='password'>
+                    <label for="final_password">&nbsp;&nbsp;&nbsp;确认密码:&nbsp;</label>
+                    <input type="password" name="final_password" id="final_password" tabindex='8' />
+                </div>
+            </dt>
+            <dt>
+                <div>
+                    <input type="submit" name="" id="regist_button" value='&nbsp注&nbsp册&nbsp' tabindex='9' />
+                    <input type="button" name="" id="back" value='&nbsp返&nbsp回&nbsp' tabindex='10' />
+                </div>
+            </dt>
+        </dl>
+    </form>
+
+    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
+    <script>
+        // https://blog.csdn.net/weixin_42765270/article/details/84591593
+
+        /*
+            一、 validate的使用步骤
+            
+                1.引入jquery.min.js
+                2.引入 jquery.validate.js
+                3.页面加载后对表单进行验证 $("#表单id名").validate({}）
+                4.在validate中的rules中编写验证规则（格式如下）:
+                    - 字段的name属性:“校验器”（tisps:一个输入框只有一个校验器的时候使用）
+                    字段的name属性:{校验器:值,校验器:值}(tips:输入框需要有多个校验器的时候使用)
+                在validate中的messages中编写提示信息(tips格式与rules相对应)
+                在validate中的submitHandler中编写验证通过执行的内容
+        */
+
+        $("#register").validate({
+            rules: {
+                regist_username: {
+                    required: true
+                    /* remote:{
+                         type: "post",url: url,
+                         data:{
+                             userName:function () {
+                                 return $("regist_username").val();
+                             }
+                         }
+                     }用ajax判断数据库中用户名是否存在*/
+                },
+                regist_password: {
+                    required: true,
+                    minlength: 6
+                },
+                final_password: {
+                    equalTo: "#regist_password"
+                }
+            },
+            messages: {
+                regist_username: { required: "用户名不能为空" },
+                regist_password: { required: "密码不能为空", minlength: "密码最小的长度为6" },
+                final_password: { equalTo: "两次密码不一致" }
+            },
+            submitHandler: function () {
+                //验证通过后进行注册
+                register();
+            }
+        })
+
+    </script>
+</body>
+
+</html>

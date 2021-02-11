@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>js中使用confirm方法</title>
+</head>
+
+<body>
+    <button type="button" id="btn3">呵呵呵呵呵</button>
+
+    <script>
+        /* 
+            1.定义：confirm()
+                用于显示一个带有指定消息 和 确认、取消按钮的对话框。如果访问者点击"确定"，此方法返回true，否则返回false。
+
+            2.语法：
+                confirm(message)
+        */
+        document.getElementById('btn3').onclick = function () {
+            if (confirm('这个是第三个按钮')) {
+                console.log('呵呵呵');
+            }
+        }
+    </script>
+</body>
+
+</html>

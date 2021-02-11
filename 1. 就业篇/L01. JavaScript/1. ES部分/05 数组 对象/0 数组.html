@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let personArr = [
+            { name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm' },
+            { name: '刘港', src: './src/img/5.png', des: '我是谁', sex: 'f' },
+            { name: 'yuyu', src: './src/img/4.png', des: '我很好看', sex: 'f' },
+            { name: '刘金', src: './src/img/1.png', des: '123不好', sex: 'm' },
+            { name: '刘飞我', src: './src/img/2.png', des: '不好', sex: 'm' }
+        ];
+        /*
+            1. 属性
+                - constructor: 	返回创建数组对象的原型函数。
+                - length：设置或返回数组元素的个数。
+                - prototype: 允许你向数组对象添加属性或方法。
+        */
+        console.log(personArr.length);                //40
+        console.log("----- 分割线 -----");
+
+        /*
+            2. 方法：
+                1) 会改变原数组：
+                    - .push(): 向数组的末尾添加一个或更多元素，并返回新的长度。
+                    - .pop(): 删除数组的最后一个元素并返回删除的元素。
+                    - .unshift(): 向数组的开头添加一个或更多元素，并返回新的长度。
+                    - .shift(): 删除数组第一个元素并返回删除的元素。
+                    - .reverse(): 反转数组的元素顺序。
+                    - .splice(从第几位开始，截取多少长度，传参在切口处添加新的数据): 从数组中添加或删除元素。
+                    - .sort(): 对数组的元素进行排序。
+
+                2) 不改变原数组：
+                    - .concat():
+                    - .slice(): 选取数组的一部分，并返回一个新数组。
+                    - .join():
+                    - .forEach(): 对于空数组，不会执行回调函数。
+                    - .filter(): 不会对空数组进行检测。生成新数组
+                    - .map():
+                    - .some():
+                    - .every():
+                    - .reduce():
+                    - .reduceRight():
+                    
+                    - Array.isArray(obj)：判断一个对象是否为数组。
+                    - .includes(): 判断一个数组是否包含一个指定的值。
+
+        */
+
+        console.log(personArr.push("yuyu"));
+        console.log(personArr.pop());
+        console.log(personArr.unshift("gugu"));
+        console.log(personArr.shift());
+        console.log("----- 分割线 -----");
+
+
+        personArr.forEach((ele, index, self) => {
+            if (ele.name == "yuyu") {
+                console.log("这是数组第三项");
+            }
+        });
+
+        let arr = personArr.filter((ele, index, self) => {
+            return ele.sex == 'm';
+        });
+        console.log(arr);
+        console.log("----- 分割线 -----");
+
+        console.log(Array.isArray(personArr));
+        console.log(personArr.includes("qq"));
+
+    </script>
+</body>
+
+</html>

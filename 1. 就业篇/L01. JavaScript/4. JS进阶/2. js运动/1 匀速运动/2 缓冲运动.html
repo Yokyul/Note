@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>缓冲</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        button {
+            margin-top: 150px;
+        }
+
+        span {
+            position: absolute;
+            left: 300px;
+            top: 0px;
+            width: 1px;
+            height: 100px;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+    <button id='btn'>run</button>
+
+    <script>
+
+        //  物体的速度距离目标点越近，就越小；到达目标点，为0
+        var oDiv = document.getElementsByTagName('div')[0];
+        var oBtn = document.getElementById('btn');
+        oBtn.onclick = function () {
+            startMove(oDiv, 200);
+        }
+
+        var timer = null;
+
+        // 封装函数，从左到右、从右到左运动都可以
+        function startMove(dom, target) {
+            clearInterval(timer);
+            var iSpeed = null;
+
+            timer = setInterval(function () {
+                iSpeed = (target - oDiv.offsetLeft) / 7;
+                // .... 
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                if (oDiv.offsetLeft == target) {
+                    clearInterval(timer);
+                } else {
+                    oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+                }
+            }, 30);
+        }
+
+
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

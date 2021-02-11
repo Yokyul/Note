@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打字效果</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 光标闪烁 */
+        @keyframes cursor {
+            0% {
+                border-left-color: rgba(0, 0, 0, 0);
+            }
+
+            50% {
+                border-left-color: rgba(0, 0, 0, 1);
+            }
+
+            100% {
+                border-left-color: rgba(0, 0, 0, 0);
+            }
+        }
+
+        /* 光标移动 */
+        @keyframes covermove {
+            0% {
+                left: 0;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        div {
+            position: relative;
+            display: inline-block;
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+
+            /* 这种字体字母宽度一样 */
+            font-family: monospace;
+        }
+
+        /* 添加覆盖层 */
+        div::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: 90px;
+            width: 100%;
+            background-color: #fff;
+            border-left: 2px solid black;
+            box-sizing: border-box;
+            animation: cursor 1s steps(1, end) infinite, covermove 12s steps(12, end);
+        }
+    </style>
+</head>
+
+<body>
+    <div>asdfghj klyu</div>
+</body>
+
+</html>

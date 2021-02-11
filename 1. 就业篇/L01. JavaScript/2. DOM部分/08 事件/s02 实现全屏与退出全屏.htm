@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin="anonymous"
+        integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ=="
+        src="https://lib.baomitu.com/jquery/3.5.1/jquery.js"></script>
+</head>
+
+<body>
+    <script>
+        $(function () {
+            //全屏
+            $("#fullScreen").on("click", function () {
+                fullScreen();
+            })
+            //退出全屏
+            $("#exitFullScreen").on("click", function () {
+                exitFullscreen();
+            })
+        })
+
+        //全屏
+        function fullScreen() {
+            var element = document.documentElement;
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.msRequestFullscreen) {
+                element.msRequestFullscreen();
+            } else if (element.mozRequestFullScreen) {
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) {
+                element.webkitRequestFullscreen();
+            }
+        }
+
+        //退出全屏 
+        function exitFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+
+        //监听window是否全屏，并进行相应的操作,支持esc键退出
+        window.onresize = function () {
+            var isFull = !!(document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);//!document.webkitIsFullScreen都为true。因此用!!
+            
+            if (isFull == false) {
+                $("#exitFullScreen").css("display", "none");
+                $("#fullScreen").css("display", "");
+            } else {
+                $("#exitFullScreen").css("display", "");
+                $("#fullScreen").css("display", "none");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

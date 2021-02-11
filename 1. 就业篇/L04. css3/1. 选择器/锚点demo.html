@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root,
+        body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #red,
+        #green,
+        #yellow {
+            width: 100%;
+            height: 100%;
+        }
+
+        #red {
+            background-color: red;
+        }
+
+        #green {
+            background-color: green;
+        }
+
+        #yellow {
+            background-color: yellow;
+        }
+
+
+        div[id]:not(:target) {
+            display: none;
+        }
+
+        .button-wrapper {
+            position: fixed;
+            top: 400px;
+            width: 600px;
+        }
+
+        .button-wrapper a {
+            background-color: #0cc;
+            padding: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="button-wrapper">
+        <a href="#red" class="bgred">red</a>
+        <a href="#green" class="bggreen">green</a>
+        <a href="#yellow" class="bgyellow">yellow</a>
+    </div>
+    <div id="red"></div>
+    <div id="green"></div>
+    <div id="yellow"></div>
+
+</body>
+
+</html>

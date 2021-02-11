@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+	<style>
+		.row div {
+			height: 100px;
+			background: skyblue;
+			border: 1px solid #000;
+			color: #fff;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- 
+		1.所有内容都写在容器中，bootstrap提供两个容器：
+			(1) <div class="container-fluid"></div> 
+			(2) <div class="container"></div>
+			两者有区别：第一个宽度为100%; 第二个为固定宽度，但会随着设备不同而改变, 见Grid option中的max container width。
+
+		2.固定的写法格式：
+			<div class="container">
+				<div class="row">			表示行
+					<div></div>*12			表示12列
+				</div>
+			</div>
+
+			以上格式就像<table>一样; 并且所有的内容都写在列中; 
+		
+		3.通过给每个列添加不同类名，来展示不同样式。
+
+
+	 -->
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xl-1">第1列</div>			<!-- col-xl-数字; 其中：xl表示响应层的简写; 数字表示占的列数 -->
+			<div class="col-xl-1">第2列</div>
+			<div class="col-xl-1">第3列</div>
+			<div class="col-xl-1">第4列</div>
+			<div class="col-xl-1">第5列</div>
+			<div class="col-xl-1">第6列</div>
+			<div class="col-xl-1">第7列</div>
+			<div class="col-xl-1">第8列</div>
+			<div class="col-xl-1">第9列</div>
+			<div class="col-xl-1">第10列</div>
+			<div class="col-xl-1">第11列</div>
+			<div class="col-xl-1">第12列</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-2">占2列</div>
+			<div class="col-xl-7">占7列</div>
+			<div class="col-xl-1">占1列</div>
+			<div class="col-xl-2">占2列</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-6">占6列</div>			<!-- 列数超过12，就不能在1列展示，要换行 -->
+			<div class="col-xl-8">占8列</div>
+		</div>
+		<div class="row">
+			<div class="col-xl-15">占15列</div>			<!-- col-xl-15, 没有这个预定义样式,最大12 -->
+		</div>
+	</div>
+</body>
+
+</html>

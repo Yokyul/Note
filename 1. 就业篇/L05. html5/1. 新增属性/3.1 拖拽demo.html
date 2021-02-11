@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖拽插入</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            width: 150px;
+            position: absolute;
+            padding-bottom: 20px;
+            border: 1px solid black;
+        }
+
+        .box2 {
+            width: 150px;
+            position: absolute;
+            left: 200px;
+            padding-bottom: 20px;
+            border: 1px solid black;
+        }
+
+        li {
+            position: relative;
+            width: 100px;
+            height: 50px;
+            background-color: #abcdef;
+            list-style: none;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="box2"></div>
+
+    <script>
+        var domList;
+        var liList = document.getElementsByTagName('li');
+        for (i = 0; i < liList.length; i++) {
+            liList[i].setAttribute('draggable','true');
+            liList[i].ondragstart = function(e) {
+                // console.log(e.target);
+                domList = e.target
+            }
+        }
+
+        var box2 = document.getElementsByClassName('box2')[0];
+        box2.ondragover = function(e){
+            e.preventDefault();
+        }
+        box2.ondrop = function(e){
+            // console.log(domList);
+            box2.appendChild(domList);          // 剪切插入
+        }
+
+        var box1 = document.getElementsByClassName('box1')[0];
+        box1.ondragover = function(e){
+            e.preventDefault();
+        }
+        box1.ondrop = function(e){
+            // console.log(domList);
+            box1.appendChild(domList);          // 剪切插入
+        }
+    </script>
+</body>
+
+</html>

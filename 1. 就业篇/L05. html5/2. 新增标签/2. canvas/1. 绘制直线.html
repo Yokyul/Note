@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 
+        1. canvas 是一个画板， 使用js来画东西。
+        2. 用css给canvas设置大小，设置得不是画布大小。要在canvas的行间样式上设置width/height才行
+        3. 想要给各个线条设置不同的粗细，只能写多笔。
+        4. closePath()只能让同一笔的线条闭合。
+     -->
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        /** @type {HTMLCanvasElement} */ 
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');                  // 获取内容区，即拿起画笔
+
+        ctx.beginPath();
+        ctx.moveTo(100,100);            // 规划起点坐标
+        ctx.lineTo(200,100);            // 规划下一个点
+        ctx.lineTo(200,200);  
+        ctx.closePath();                // 闭合到起点, 只能用在一笔之内
+        ctx.fill();                     // 填充区域
+        ctx.lineWidth = 5               // 设置直线粗细
+        ctx.strokeStyle = "#f00"        // 设置直线颜色
+        ctx.stroke();                   // 渲染到页面
+
+        ctx.beginPath();                // 重新开始一个路径
+        ctx.moveTo(100,250);            // 规划起点坐标
+        ctx.lineTo(200,300);
+        ctx.lineWidth = 1
+        ctx.stroke(); 
+
+
+
+    </script>
+</body>
+
+</html>

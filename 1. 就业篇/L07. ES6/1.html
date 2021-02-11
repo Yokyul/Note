@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const getSum = (...args1) => (...args2) => args1.concat(args2).reduce((a, b) => a + b, 0);
+        // const result = getSum(1, 2, 3)(4, 5, 6);
+
+
+        // function method({ a = 1, b = 2, c = 3 }) {
+        //     console.log(a, b, c);
+        // }
+        // method();
+
+
+        // 1. 有一个字符串数组urls，里面存放了很多的请求地址，现在需要同时向这些地址发送ajax请求，并把每次请求的JSON结果按照响应的先后顺序依次保存到一个新数组results里面，当所有请求完成后，把新数组results输出。
+        // results数组中每一项的对象格式如下：
+        // {
+        //     requestTime: 日期对象,    // 开始请求的时间
+        //     data: 对象,               // 服务器响应的结果
+        //     responseTime: 日期对象    // 响应的时间
+        // }
+
+        /*
+            邓哥心中有二十个女神，他决定用更加高效的办法
+            他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
+            并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
+            用代码模拟上面的场景
+        */
+        function biaobai(god) {
+            return new Promise((resolve, reject) => {
+                console.log(`邓哥向女神【${god}】发出了表白短信`);
+                setTimeout(() => {
+                    if (Math.random() < 0.05) {
+                        console.log(god, "同意")
+                        resolve(true);
+                    } else {
+                        console.log(god, "拒绝")
+                        resolve(false);
+                    }
+                }, Math.floor(Math.random() * (3000 - 1000) + 1000));
+            })
+        }
+        
+        const proms = [];
+        let hasAgree = false;   // 是否有女神同意
+
+        for (let i = 1; i <= 20; i++) {
+            const pro = biaobai(`女神${i}`).then(resp => {
+                if (resp) {
+                    if (hasAgree) {
+                        console.log("发错了短信，邓哥很机智的拒绝了")
+                    } else {
+                        hasAgree = true;
+                        console.log("邓哥很开心，终于成功了！");
+                    }
+                }
+                return resp;
+            })
+            proms.push(pro);
+        }
+
+        Promise.all(proms).then(results => {
+            console.log("日志记录", results);
+        })
+
+
+
+
+
+
+
+
+        // 2. 编写一个函数createDomProxy，该函数返回一个DOM对象的代理。
+        //  该代理可以将DOM对象以on开头的属性（即事件）变为Promise对象，可以让后续的开发者这样使用这个函数createDomProxy：
+        // async function test() {
+        //     const div = document.getElementById("test");    // 得到某个div dom
+        //     const divProxy = createDomProxy(div);           // 创建它的代理
+        //     while (true) {                                  // 使用一个死循环，是为了不断的监听它被点击
+        //         const e = await divProxy.onclick            // 等待它被点击，e是事件参数
+        //         console.log("div被点击了", e)                // 被点击后运行的代码
+        //     }
+        // }
+
+        // test();
+
+        // function createDomProxy(obj) {
+        //     const proxy = new  Proxy(obj,{
+        //         const promise = new Promise()
+        //     })
+        //     return proxy;
+        // } 
+
+
+    </script>
+</body>
+
+</html>

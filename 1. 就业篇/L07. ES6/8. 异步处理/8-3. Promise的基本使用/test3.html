@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        
+        const pro = new Promise((resolve, reject) => {
+            console.log("未决阶段1")
+            resolve(123);
+        })
+        // 1.单个作业队列，且当前的Promise已经是resolved状态，函数立即执行
+        pro.then(data => {
+            console.log(data);
+        })
+
+        const pro1 = new Promise((resolve, reject) => {
+            console.log("未决阶段2")
+            setTimeout(() => {
+                resolve(678);
+            }, 2000);
+        })
+        // 2.多个作业队列，且当前的Promise是padding状态，函数等2s立即执行
+        pro1.then(data => {
+            // pro的状态是pending
+            console.log(data);
+        })
+        pro1.then(data => {
+            // pro的状态是pending
+            console.log(data);
+        })
+        pro1.then(data => {
+            // pro的状态是pending
+            console.log(data);
+        })
+    </script>
+</body>
+
+</html>

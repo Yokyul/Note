@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钟表效果</title>
+    <style>
+        @keyframes secondrun {
+            0% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(540deg);
+            }
+        }
+
+        @keyframes minuterun {
+            0% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(540deg);
+            }
+        }
+
+        div.clock {
+            position: relative;
+            width: 512px;
+            height: 512px;
+            background-image: url(clock.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        div.second {
+            position: absolute;
+            left: 247px;
+            top: 180px;
+            width: 16px;
+            height: 278px;
+            background-image: url(second.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            transform-origin: center 76px;      /* 设置旋转中心 */
+            transform: rotate(180deg);          /* 旋转180° */
+            z-index: 3;
+            animation: secondrun 60s steps(60, end) infinite;
+        }
+
+        div.minute {
+            position: absolute;
+            left: 238px;
+            top: 240px;
+            width: 32px;
+            height: 218px;
+            background-image: url(minute.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            transform-origin: center 16px;
+            transform: rotate(180deg);
+            z-index: 2;
+            animation: minuterun 3600s steps(60, end);
+        }
+
+        div.hour {
+            position: absolute;
+            left: 238px;
+            top: 240px;
+            width: 32px;
+            height: 148px;
+            background-image: url(hour.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            transform-origin: center 16px;
+            z-index: 1;
+        }
+
+        /*
+            钟表大小配置：
+
+            时：16-16  px
+            分：16-16  px
+            秒：8-76   px
+
+            秒：16-278
+            分：32-218
+            时：32-148
+            表盘：512-512
+        
+            horse
+            200-100
+            2400-100
+        */
+    </style>
+</head>
+
+<body>
+    <div class='clock'>
+        <div class="second"></div>
+        <div class="minute"></div>
+        <div class="hour"></div>
+    </div>
+
+</body>
+
+</html>

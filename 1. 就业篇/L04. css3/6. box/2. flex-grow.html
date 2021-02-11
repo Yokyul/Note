@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex-grow</title>
+    <style>
+         .wrapper {
+            width: 600px;
+            height: 300px;
+            border: 1px solid #000;
+
+            display: flex;                                                              
+        }
+
+        .content {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            box-sizing: border-box;
+
+            flex-grow: 1;                   /* 当主轴方向还有剩余空间时，让这一行的子元素按照设置的比例分配剩余空间 */
+        }
+
+        .content:nth-of-type(1) {
+            flex-grow: 2; 
+        }
+
+        .content:nth-of-type(2) {
+            flex-grow: 3;
+        }
+    </style>
+</head>
+<body>
+     <div class="wrapper">
+        <div class="content">1</div>
+        <div class="content">2</div>
+        <div class="content">3</div>
+    </div>
+</body>
+</html>

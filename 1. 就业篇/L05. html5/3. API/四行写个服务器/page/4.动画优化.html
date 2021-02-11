@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画优化</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main1 {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+
+        .main2 {
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+            top: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main1">setInterval</div>
+    <div class="main2">requestAnimationFrame</div>
+
+    <script>
+        function move1() {
+            var div = document.getElementsByClassName('main1')[0];
+            if (div.offsetLeft >= 500) {
+                return;
+            }
+            div.style.left = div.offsetLeft + 20 + 'px';
+        }
+        setInterval(move1, 1000 / 60);
+
+        /*
+            按理来说，小方块移动速度应该是均匀的，但实际上我们肉眼看到的并不是。
+            这是因为：屏幕的刷新频率是60hz(每秒刷新60次)。而我们设置小方块的移动是每秒100次，这必然导致会丢失动画帧。
+
+            setInterval()是可以自定义帧数的，而我们最多只需要60帧，多了也浪费。所以出现了requestAnimationFrame()，但是requestAnimationFrame(f1)只会执行一次函数f1。
+
+            cancelAnimationFrame()用来取消 requestAnimationFrame()，基本上相当于clearTimeout()。说基本是因为：清除效果一样，但是清除的队列不一样。
+        */
+
+        // 优化写法，此时动画绝对是匀速的。因为它是每秒60帧。
+        var timer = null;
+        function move2() {
+            var div = document.getElementsByClassName('main2')[0];
+            if (div.offsetLeft >= 500) {
+                cancelAnimationFrame(timer);
+                return;
+            }
+            div.style.left = div.offsetLeft + 20 + 'px';
+            timer = requestAnimationFrame(move2);
+        }
+        move2();
+
+
+        /* 
+            补充：setInterval(move1, 1000 / 60) 和 requestAnimationFrame(move1) 有区别吗？
+                有。
+                setInterval()底层逻辑是必须上一帧执行完成才会执行下一帧。如果1帧动画执行时间 > 1/60s，那么可能1s执行不完60帧。 但是requestAnimationFrame()是会准时执行每一帧的。1s肯定执行完。
+        */
+
+        // 补充：requestAnimationFrame 和 cancelAnimationFrame 兼容极差，非要使用写法如下：
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (id) {
+                return setTimeout(id, 1000 / 60);
+            }
+        })
+        window.cancelAnimationFrame = (function () {
+            return window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || function (id) {
+                return clearTimeout(id);
+            }
+        })
+
+    </script>
+</body>
+
+</html>

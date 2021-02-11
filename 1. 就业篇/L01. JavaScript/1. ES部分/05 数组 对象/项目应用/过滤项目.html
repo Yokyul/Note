@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/index.css"></link>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="search">
+            <input type="text"></input>
+            <span class='btn' sex='m'>Male</span>
+            <span class='btn' sex='f'>Female</span>
+            <span class='btn active' sex='a'>All</span>
+            <!-- Male:<input type='radio' class='btn mBtn' name='sex'></button>
+            Female:<input type='radio' class='btn fBtn' name='sex'></button>
+            All:<input type="radio" checked='checked' class='btn aBtn' name='sex'></input>  -->
+        </div>
+        <div class='friendList'>
+            <ul>
+            </ul>
+        </div>
+    </div>
+
+    <script src='./src/js/filter/filterBySex.js'></script>
+    <script src='./src/js/filter/filterByText.js'></script>
+    <script src='./src/js/filter/lastFilter.js'></script>
+    <script src='./src/js/createStore.js'></script>
+
+    <script>
+        
+
+        // 1. 后端传数据过来
+
+        var personArr = [
+            {name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm'}, 
+            {name: '刘莹', src: './src/img/5.png',des: '我是谁', sex: 'f'} ,
+            {name: '王秀莹', src: './src/img/4.png', des: '我很好看', sex: 'f'} , 
+            {name: '刘金雷', src: './src/img/1.png', des: '你没有见过陌生的脸', sex: 'm'}, 
+            {name: '刘飞翔', src: './src/img/2.png', des: '瓜皮刘', sex: 'm'}
+        ];
+        
+
+
+        // 2.
+        var oUl = document.getElementsByTagName('ul')[0];
+        var oInp = document.getElementsByTagName('input')[0];
+
+        
+
+
+
+        // 3. 根据 后端传的数据(即 数组内的对象) ，利用 innerHTML属性 在页面渲染信息
+        function renderList (arr) {
+
+            // 在页面生成标签
+            var htmlStr = '';   
+            arr.forEach(function (ele, index, self) {
+                htmlStr += '<li><img src="' + ele.src  + '"/><p class="name">' + ele.name + '</p><p class="des">' + ele.des + '</p></li>';
+            });
+            oUl.innerHTML = htmlStr;
+        }
+        
+        renderList( personArr );
+
+
+
+        // 创建当前的 数据仓库
+        var store = createStore({
+            text: '',
+            sex: 'a'
+        });
+        
+        // combine filterByText filterBySex
+        function update () {
+            renderList(  lastFilter(personArr) );
+        }
+
+        // 订阅
+        store.subscribe(update);
+
+
+        // 防抖
+        function debounce (handler, delay) {
+            var timer = null;
+            return function (e) {
+                var _self = this, _arg = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    handler.apply(_self, _arg);
+                }, delay);
+            }
+        }
+
+
+
+
+        // 4.
+        oInp.oninput = debounce(deal, 500);
+
+        function deal () {
+            store.dispatch({type: 'text', text: this.value});
+        }
+
+
+
+        
+        // 5.切换标签 All male female
+
+        var oRadioArr = Array.prototype.slice.call(document.getElementsByClassName('btn'), 0);
+
+        // 默认最后一个 All 被选中
+        var lastRadio = oRadioArr[oRadioArr.length - 1];
+
+        // 遍历每一个标签，并绑定事件
+        oRadioArr.forEach(function (ele, index) {
+            ele.onclick = function () {
+                changeActive(this);
+                store.dispatch({type: 'sex', text: this.getAttribute('sex') })
+                // renderList(  lastFilter(personArr) );
+            }
+        });
+
+        // 改变被选中的标签
+        function changeActive (ele) {
+            ele.className = 'btn active';
+            lastRadio.className = 'btn';
+            lastRadio = ele;
+        }
+
+
+
+
+    </script>
+
+</body>
+</html>

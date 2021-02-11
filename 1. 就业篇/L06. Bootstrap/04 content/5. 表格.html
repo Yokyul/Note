@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+
+
+			<!-- 
+				表格：table
+
+				1.表格工具类：给行/列/整个表格/表头 单独上色：9种
+					table-active/primary...：设置在table/tr/td/th上
+					thead-active/primary...：设置在thead上
+
+				2.带有条纹的行：设置在<table>
+					table-striped：给 <tbody>的所有行添加条纹效果 (隔行换色)
+
+				3.边框：设置在<table>
+					table-bordered：给表格内的所有单元添加边框
+					table-borderless：给表格内的所有单元移除边框
+
+				4.高亮：设置在<table>
+					table-hover：使 <tbody>里的内容在鼠标停留时高亮显示
+
+				5.更小的表格：设置在<table>
+					table-sm：使表格所有单元的间距缩小一半
+
+				6.标题：设置在<table>内的一个标签
+					<caption> ：bootstrap重置后，放在表格下面
+
+				7.当表格数据很多的时候，让它出现水平滚动条：在整个<table>外加一层div，给div设置样式
+					7.1 始终出现滚动条：table-responsive
+					7.2 响应式出现滚动条：table-responsive-md/...			
+
+			 -->
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<caption>课程表</caption>
+					<thead class="thead-dark">
+						<tr>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+							<th>heading</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="table-active">语文</td>
+							<td>数学</td>
+							<td>英语</td>
+							<td>生物</td>
+							<td>化学</td>
+						</tr>
+						<tr class="table-primary">
+							<td>语文</td>
+							<td>数学</td>
+							<td>英语</td>
+							<td>生物</td>
+							<td>化学</td>
+						</tr>
+						<tr>
+							<td>语文</td>
+							<td>数学</td>
+							<td>英语</td>
+							<td>生物</td>
+							<td>化学</td>
+						</tr>
+						<tr>
+							<td>语文</td>
+							<td>数学</td>
+							<td>英语</td>
+							<td>生物</td>
+							<td>化学</td>
+						</tr>
+						<tr>
+							<td>语文</td>
+							<td>数学</td>
+							<td>英语</td>
+							<td>生物</td>
+							<td>化学</td>
+						</tr>
+						<tr>
+							<td>语文</td>
+							<td>数学</td>
+							<td>英语</td>
+							<td>生物</td>
+							<td>化学</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

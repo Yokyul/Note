@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数习题</title>
+</head>
+
+<body>
+    <script>
+        // 1、任意个数求和 (使用不定参)
+        // function sum() {
+        //     var result = 0;
+        //     for (var i = 0; i < arguments.length; i++) {
+        //         result += arguments[i];
+        //     }
+        //     console.log(result);
+        // }
+
+        // sum(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        // 2、输入一串低于10位的数字，输入这串数字的中文大写。
+        // 例如：input :10000     output:壹万
+        // 例如：input :1001010   output:壹佰万壹仟零壹拾
+        // 千分位如果是0必须读零
+
+
+
+
+        // 1.写一个函数，功能是告知你所选定的小动物的叫声。
+        // function scream(animal) {
+        //     switch (animal) {
+        //         case "dog":
+        //             document.write('wang!');
+        //             return;
+        //         case "cat":
+        //             document.write('miao!');
+        //             return;
+        //         case "fish":
+        //             document.write('o~o~o~')
+        //             return;
+        //     }
+        // }
+        // scream("dog");
+
+
+        // 2.写一个函数，实现加法计数器。
+
+
+        // 3.定义一组函数，输入数字，逆转并输出汉字形式。
+        // function reverse() {
+        //     var num = window.prompt('input');
+        //     var str = "";
+        //     for (var i = num.length - 1; i >= 0; i--) {
+        //         str += transfer(num[i]);
+        //     }
+        //     document.write(str);
+        // }
+        // function transfer(target) {
+        //     switch (target) {
+        //         case "1":
+        //             return "一";
+        //         case "2":
+        //             return "二";
+        //         case "3":
+        //             return "三";
+        //     }
+        // }
+        // reverse();
+
+
+        // 4.写一个函数，实现 n 的阶乘。
+        // 法1：
+        // var n = parseInt(window.prompt('input'));
+        // var mul = 1;
+        // for(i = n; i > 0 ; i--){
+        //     mul *= i;
+        // }
+        // document.write(mul);
+        // 法2
+        // function mul(n) {
+        //     if (n == 1 || 0) {
+        //         return 1;
+        //     } else {
+        //         return n * mul(n - 1);
+        //     }
+        // }
+        // document.write(mul(4));
+
+
+        // 5.写一个函数，实现斐波那契数列。
+        // function fb(n) {
+        //     if (n == 1 || n == 2) {
+        //         return 1;
+        //     }
+        //     return fb(n - 1) + fb(n - 2);
+        // }
+        // document.write(fb(6));
+
+
+    </script>
+</body>
+
+</html>

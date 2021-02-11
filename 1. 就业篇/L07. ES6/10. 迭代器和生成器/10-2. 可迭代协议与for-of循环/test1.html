@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // 1.自己写的可迭代对象
+        var obj = {
+            a: 1,
+            b: 2,
+            [Symbol.iterator]() {
+                const keys = Object.keys(this);     // 得到所有属性名
+                let i = 0;
+                return {
+                    next: () => {
+                        const propName = keys[i];
+                        const propValue = this[propName];
+                        const result = {
+                            value: {
+                                propName,
+                                propValue
+                            },
+                            done: i >= keys.length
+                        }
+                        i++;
+                        return result;
+                    }
+                }
+            }
+        }
+
+        for (const item of obj) {
+            console.log(item);          // 以{ propName:"a", propValue:1 }的形式输出
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-- get请求 -->
+    <button id="get">get请求</button>
+    <button id="ajaxGet">ajax get请求</button>
+    <br>
+    <br>
+
+    <!-- post请求 -->
+    <div id="login">
+        <div>
+            <label for="username">用户名</label>
+            <input type="text" name="account">
+        </div>
+        <div>
+            <label for="password">密码</label>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <button id="loginBtn1">登录(post请求)</button>
+            <button id="loginBtn2">登录(ajax post请求)</button>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- JSON请求 -->
+    <button id="json">JSON请求</button>
+
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <script>
+
+        // 1、get请求
+		/* 
+            1.1 使用$.get()：
+		        - 参数1：请求接口的url
+                - 参数2：接口必须有的参数 (对象形式)
+                - 参数3：请求成功后的回调函数 (参数data：接口返回的数据，字符串形式)
+                - 参数4：接口返回数据变成的格式
+        */
+        $('#get').click(function () {
+            $.get('http://api.duyiedu.com/api/student/findAll', { appkey: 'yuyu_1590927966045' }, function (data) {
+                console.log(data);
+            }, 'json');
+        });
+
+		/* 
+            1.2 使用$.ajax()方法。
+		        - 有多个参数, 写在{}里。
+                - url：请求地址
+                - type：请求类型
+                - data：请求参数
+                - dataType：服务器返回数据的格式
+                - timeout：请求超时时间
+                - success：请求成功后的回调函数
+                - error：请求失败时调用的函数
+                - beforeSend：请求发送前的回调函数，用来设置自定义 HTTP 头信息等。
+                - complete：请求完成后回调函数 (请求success 和 error之后均调用)。
+        */
+        $('#ajaxGet').click(function () {
+            $.ajax({
+                url: 'http://api.duyiedu.com/api/student/findAll',
+                type: 'get',
+				/* data:{
+					appkey:'yuyu_1590927966045',		// data：对象写法
+				}, */
+                data: 'appkey=yuyu_1590927966045',		// data：字符串写法
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+
+
+
+
+        // 2、post请求
+		/* 
+            2.2 使用$.post()
+                - 参数: 类似于$.get()
+        */
+        $('#loginBtn1').click(function () {
+            var username = $('#login input[name=account]').val();
+            var password = $('#login input[name=password]').val();
+            $.post(
+                'http://api.duyiedu.com/api/student/stuLogin',
+                { appkey: 'yuyu_1590927966045', account: username, password: password },
+                function (data) {
+                    console.log(data);
+                },
+                'json'
+            );
+        });
+
+        // 2.2 使用$.ajax()方法。
+        $('#loginBtn2').click(function () {
+            $.ajax({
+                url: 'http://api.duyiedu.com/api/student/stuLogin',
+                type: 'post',
+                data: {
+                    appkey: 'yuyu_1590927966045',
+                    account: $('#login input[name=account]').val(),
+                    password: $('#login input[name=password]').val()
+                },
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (status) {
+                    console.log('错误原因：' + status);
+                }
+            });
+        });
+
+
+
+
+        // 3、JSON请求  使用 $.getJSON()方法
+        // 类似于 第四个参数为：'json' 的get、post请求 
+        $('#json').click(function () {
+            $.getJSON(
+                'http://api.duyiedu.com/api/student/findAll',
+                { appkey: 'yuyu_1590927966045' },
+                data => {
+                    console.log(data);
+                }
+            );
+        });
+
+    </script>
+
+
+</body>
+<html>

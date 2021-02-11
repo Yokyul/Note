@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            opacity: 1;
+            margin-bottom: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        
+        // 多物体运动 —— 各元素运动的值不同
+
+        var oDivArray = document.getElementsByTagName('div');
+        oDivArray[0].onclick = function () {
+            startMove(this, 'width', 400);
+        }
+        oDivArray[1].onclick = function () {
+            startMove(this, 'height', 400);
+        }
+        oDivArray[2].onclick = function () {
+            startMove(this, 'borderWidth', 20);
+        }
+        oDivArray[3].onclick = function () {
+            startMove(this, 'opacity', 50);
+        }
+
+        function getStyle(elem, prop) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(elem, null)[prop];
+            } else {
+                return elem.currentStyle[prop];
+            }
+        }
+
+        var timer = null;
+        function startMove(elem, prop, target) {
+            clearInterval(elem.timer);
+            var iSpeed = null, iCur = null;
+
+            elem.timer = setInterval(function () {
+                if (prop == 'opacity') {
+                    iCur = parseFloat(getStyle(elem, prop)) * 100;
+                } else {
+                    iCur = parseInt(getStyle(elem, prop));
+                }
+
+                iSpeed = (target - iCur) / 7;
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                if (iCur == target) {
+                    clearInterval(elem.timer);
+                }
+                if (prop == 'opacity') {
+                    elem.style.opacity = (iCur + iSpeed) / 100;
+                } else {
+                    elem.style[prop] = iCur + iSpeed + 'px';
+                }
+            }, 30)
+
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

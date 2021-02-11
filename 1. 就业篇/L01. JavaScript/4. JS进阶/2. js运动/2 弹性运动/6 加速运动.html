@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加速、减速</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+
+    <script>
+        // 原理：v = v初 + at;
+
+        var oDiv = document.getElementsByTagName('div')[0];
+        var timer = null;
+        oDiv.onclick = function () {
+            startMove(this);
+        }
+
+        // 加速度不变的加速运动，运动方向是向右
+        // 加速度不变的减速运动，速度减到0之后，做加速度不变的加速运动，方向是向左
+        function startMove(dom) {
+            clearInterval(timer);
+            var a = -2;
+            var iSpeed = 20;
+            timer = setInterval(function () {
+                iSpeed = iSpeed + a;
+                oDiv.style.left = oDiv.offsetLeft + iSpeed + 'px';
+            }, 30);
+        };
+    </script>
+
+    
+</body>
+
+</html>

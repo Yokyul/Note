@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 600px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="can" width="600px" height="400px"></canvas>
+
+    <script>
+        /** @type {HTMLCanvasElement} */ 
+        var canvas = document.getElementById('can');
+        var ctx = canvas.getContext('2d');
+
+        ctx.beginPath();
+        ctx.font = "30px Georgia";                  // 字体大小 字体名称
+        ctx.strokeStyle = "#0f0"
+        ctx.fillStyle = "red";
+        ctx.strokeText("yuyu", 100, 100);           // 文字描边, yuyu从(100, 100)处开始渲染
+        ctx.fillText("yuyu", 200, 100);             // 文字填充
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0px;
+            opacity: 1;
+        }
+
+        #topDiv {
+            top: 200px;
+        }
+
+        #bottomDiv {
+            top: 400px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id='topDiv'></div>
+    <div id="bottomDiv"></div>
+
+    <script>
+
+        // 想要将一个元素的多个属性改变，如：width：100 -> 400；height 100 -> 400;等等，
+        // 可以通过对象传入函数，如：{width: 400, height: 400, left: 200, top: 300, opacity: 50}
+
+        var oTopDiv = document.getElementById('topDiv');
+        var oBottomDiv = document.getElementById('bottomDiv');
+
+        oTopDiv.onclick = function () {
+            startMove(this, { width: 400, height: 400, left: 200, top: 300, opacity: 50 }, function () {
+                startMove(oBottomDiv, { width: 400, height: 400, left: 200, top: 300, opacity: 50 }, function () {
+                    alert('over');
+                })
+            })
+        }
+
+        function getStyle(elem, attr) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(elem, null)[attr];
+            } else {
+                return elem.currentStyle[attr];
+            }
+        }
+
+        function startMove(dom, attrObj, callback) {
+            clearInterval(dom.timer);
+            var iSpeed = null, iCur = null;
+
+            dom.timer = setInterval(function () {
+                // 当所有 传入的属性值 都变换成 attrObj对象 中的值之后再清理定时器，利用bstop变量。
+                var bStop = true;
+
+                for (var attr in attrObj) {
+                    if (attr == 'opacity') {
+                        iCur = parseFloat(getStyle(dom, attr)) * 100;
+                    } else {
+                        iCur = parseInt(getStyle(dom, attr));
+                    }
+
+                    iSpeed = (attrObj[attr] - iCur) / 7;
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+                    if (attr == 'opacity') {
+                        dom.style.opacity = (iCur + iSpeed) / 100;
+                    } else {
+                        dom.style[attr] = iCur + iSpeed + 'px';
+                    }
+
+                    if (iCur != attrObj[attr]) {
+                        bStop = false;
+                    }
+                }
+                if (bStop) {
+                    clearInterval(dom.timer);
+                    typeof callback == 'function' && callback();
+                }
+            }, 30);
+
+        }
+
+
+        // 回调机制：
+        // 当处理完A函数之后系统感知到，再去执行B函数。
+        // 称B为回调函数
+
+        // 形如 var A = function(参数1，参数2，callback){ }；
+        // 以下startMove是A函数，function(){ }是B函数
+        // 感知写法，在A函数体中加上：typeof callback == 'function' && callback();
+        
+
+        // startMove(this, { width: 400, height: 400, left: 200, top: 300, opacity: 50 }, function () {
+        //     startMove(oBottomDiv, { width: 400, height: 400, left: 200, top: 300, opacity: 50 }, function () {
+        //         alert('over');
+        //     })
+        // })
+
+    </script>
+
+</body>
+
+</html>

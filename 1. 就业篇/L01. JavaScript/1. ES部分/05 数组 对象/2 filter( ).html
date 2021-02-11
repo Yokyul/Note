@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        var personArr = [
+            { name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm' },
+            { name: '刘港', src: './src/img/5.png', des: '我是谁', sex: 'f' },
+            { name: 'yuyu', src: './src/img/4.png', des: '我很好看', sex: 'f' },
+            { name: '刘金', src: './src/img/1.png', des: '123不好', sex: 'm' },
+            { name: '刘飞我', src: './src/img/2.png', des: '不好', sex: 'm' }
+        ];
+
+
+        
+        // (1)filter的使用，与forEach类似
+        // 对数组有过滤的作用，  基于遍历的前提 ， 
+        // filter 的参数：函数  ，函数参数： ele index self
+        // filter每执行一次，返回的值为 true 就将这个ele加入新的数组[]
+
+        var newArr = personArr.filter(function (ele, index, self) {
+            return ele.sex == 'm';
+        });
+        console.log(newArr);
+
+
+
+        // (2)filter的实现源码
+        // 目的: 数组实例可以调用该方法，要达到循环遍历的作用
+        // 参数: 需要一个函数 最后实现我们一系列的功能。  函数在执行的时候也会接受参数  ele index self
+
+        Array.prototype.myFilter = function (func) {
+            var arr = [];
+            var len = this.length;
+            var _this = arguments[1] || window;
+            for (var i = 0; i < len; i++) {
+                func.apply(this, [this[i], 1, this]) && arr.push(this[i]);
+            }
+            return arr;
+        }
+
+        var obj = { name: 'yuyu' };
+        var newArr = personArr.myFilter(function (ele, index, self) {
+            return ele.sex == 'f';
+        }, obj);
+        console.log(newArr);
+
+
+    </script>
+
+</body>
+
+</html>

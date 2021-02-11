@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>
+        <label for="demo">username:</label>
+        <input type="text" id='demo'>
+    </p>
+
+    <script>
+        var oLabel = document.getElementsByTagName('label')[0];
+        oLabel.onclick = function () {
+            console.log(this);
+        }
+        
+        var oInput = document.getElementById('demo');
+        oInput.onclick = function () {
+            console.log(this);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

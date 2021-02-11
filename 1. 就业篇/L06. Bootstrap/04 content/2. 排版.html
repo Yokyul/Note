@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title></title>
+	<style>
+		body{
+			padding-bottom: 1000px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- 1.标题 -->
+	<!-- 1.1 普通标题 -->
+	<h1>陈学辉</h1>
+	<h2>陈学辉</h2>
+	<h3>陈学辉</h3>
+	<h4>陈学辉</h4>
+	<h5>陈学辉</h5>
+	<h6>陈学辉</h6>
+	<hr>
+
+	<!-- 1.2 使用类名达到标题的效果 -->
+	<p class="h1">陈学辉</p>
+	<p class="h2">陈学辉</p>
+	<p class="h3">陈学辉</p>
+	<p class="h4">陈学辉</p>
+	<p class="h5">陈学辉</p>
+	<p class="h6">陈学辉</p>
+	<hr>
+
+	<!-- 1.3 定制标题样式 -->
+	<h3>
+		这是一个标题
+		<small class="text-muted">这是一个副标题</small>
+	</h3>
+	<hr>
+
+	<!-- 1.4 超大标题 -->
+	<h1>陈学辉</h1>
+	<h1 class="display-1">陈学辉</h1>
+	<h1 class="display-2">陈学辉</h1>
+	<h1 class="display-3">陈学辉</h1>
+	<h1 class="display-4">陈学辉</h1>
+	<hr>
+
+
+
+	<!-- 2.内容 -->
+	<!-- 2.1 将内容变成 引言格式 -->
+	<p class="lead">我们的宗旨是为人民服务</p>
+	<p>我们的宗旨是为人民服务</p>
+	
+
+	<!-- 2.2 内联文本 -->
+	<p>你可以使用mark标签来标记<mark>重点</mark>词汇</p>
+	<p><del>这是一段被删除的文本</del>，<ins>这是一段新插入进去的文本</ins></p>
+	<p><small>这段文本的字体会小一些</small></p>
+	<p><strong>这里是加粗的文本</strong></p>
+	<p><em>这里是倾斜的文本</em></p>
+	<p><span class="mark">用.mark代替mark标签</span>，<span class="small">用.small代替samll标签</span></p>
+
+	<!-- 
+		2.3 缩写:<abbr>
+			title="全称"
+			class="initialism"：使字体变小
+	 -->
+	<p><abbr title="attrbitue">attr</abbr></p>
+	<p><abbr title="HypperText Markup Langauge" class="initialism">HTML</abbr></p>
+
+	<!-- 
+		2.4 引用与署名:<blockquote>  <footer>
+			class="blockquote": 在引用里添加
+			class="blockquote-footer": 在署名里添加
+			<cite>：是文字倾斜
+	 -->
+	<blockquote class="blockquote">
+		<p>时间就像海绵里的水，只要愿挤，总还是有的</p>
+		<footer class="blockquote-footer">来自<cite>鲁迅</cite></footer>
+	</blockquote>
+
+	<!-- 2.5 文本对齐 -->
+	<p class="text-left">不知道为什么，每次过安检的时候都过不去，好郁闷！为什么？因为他们说话，我的心里装了一个你！</p>
+	<p class="text-center">不知道为什么，每次过安检的时候都过不去，好郁闷！为什么？因为他们说话，我的心里装了一个你！</p>
+	<p class="text-right">不知道为什么，每次过安检的时候都过不去，好郁闷！为什么？因为他们说话，我的心里装了一个你！</p>
+	<hr>
+
+
+
+	<!-- 3.列表 -->
+	<!-- 
+		3.1 无特效列表：去掉所有样式
+			对嵌套里的li无效，需单独再设置。
+	 -->
+	<ul class="list-unstyled">
+		<li>red</li>
+		<li>
+			<ul class="list-unstyled">
+				<li>blue</li>
+			</ul>
+		</li>
+	</ul>
+
+	<!-- 
+		3.2 使列表显示在一行：父级ul加class="list-inline"，每个li自身加class="list-inline-item"
+		注意：3.x的版本是不需要在li身上添加class的，只在父级加就可以
+	 -->
+	<ul class="list-inline">
+		<li class="list-inline-item">天猫</li>
+		<li class="list-inline-item">聚划算</li>
+		<li class="list-inline-item">超市</li>
+    </ul>
+    <hr>
+	
+	<!-- 
+		3.3 text-truncate可以让超出的内容省略
+		注意：3.x的版本里使用的是text-overflow
+	 -->
+	<div class="container-fluid">
+		<dl class="row">
+			<dt class="col-sm-3">矮</dt>
+			<dd class="col-sm-9">矮，汉语常用字，读作ǎi，最早见于秦代小篆，其本义是身材短</dd>
+			<dt class="col-sm-3 text-truncate">穷，穷的不要不要的了。穷，穷的不要不要的了。穷，穷的不要不要的了</dt>
+			<dd class="col-sm-9">穷，汉语常用字，读作qióng或者gōng，最早见于甲骨文的</dd>
+		</dl>
+	</div>
+</body>
+
+</html>

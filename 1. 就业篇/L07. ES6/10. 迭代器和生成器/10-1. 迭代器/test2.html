@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = [6, 7, 8, 9];
+
+        // 1.迭代器创建函数 (使用生成器可以简写，见10-3 test2)
+        function createIterator(arr) {
+            let i = 0;
+            return { 
+                next() {
+                    var result = {
+                        value: arr[i],
+                        done: i >= arr.length
+                    }
+                    i++;
+                    return result;
+                }
+            }
+        }
+
+        const iter1 = createIterator(arr1);
+        console.log(iter1.next())
+        const iter2 = createIterator(arr2);
+
+    </script>
+</body>
+
+</html>

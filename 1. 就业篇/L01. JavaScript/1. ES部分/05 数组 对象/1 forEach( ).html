@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+
+<body>
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        var personArr = [
+            { name: '王港', src: './src/img/3.png', des: '颈椎不好', sex: 'm' },
+            { name: '刘港', src: './src/img/5.png', des: '我是谁', sex: 'f' },
+            { name: 'yuyu', src: './src/img/4.png', des: '我很好看', sex: 'f' },
+            { name: '刘金', src: './src/img/1.png', des: '123不好', sex: 'm' },
+            { name: '刘飞我', src: './src/img/2.png', des: '不好', sex: 'm' }
+        ];
+        var oUl = document.getElementsByTagName('ul')[0];
+        var oLiArray = oUl.getElementsByTagName('li');
+
+
+        // (1)forEach的使用
+        // 通过这个遍历数组更高效。
+        
+        function deal(ele, index, self) {
+            oLiArray[index].innerText = ele.name;
+        }
+        personArr.forEach(deal);
+
+
+        // (2)forEach的实现原理
+        // 目的: 数组实例可以调用该方法，要达到循环遍历的作用
+        // 参数: 需要一个函数 最后实现我们一系列的功能。  函数在执行的时候也会接受参数  ele index self
+        Array.prototype.myForEach = function (func, ) {
+            var len = this.length;
+            for (var i = 0; i < len; i++) {
+                func(this[i], i, this);
+            }
+        }
+
+        function deal(ele, index, self) {
+            oLiArray[index].innerText = ele.name;
+        }
+        personArr.myForEach(deal);
+
+
+        // (3)forEach 可以传第二个参数，它指定第一个参数fun 中的this值
+        // 实现原理完整版
+        Array.prototype.myForEach = function (func, ) {
+            var len = this.length;
+
+            var _this = arguments[1] !=undefined ? arguments[1] : window;
+            for (var i = 0; i < len; i++) {
+                func.apply(_this, [this[i], i, this]);
+            }
+        }
+
+        function deal(ele, index, self) {
+            oLiArray[index].innerText = ele.name;
+            console.log(ele, index, self, this)
+        }
+
+        var obj = {name : 'yu'};
+        personArr.myForEach(deal, obj);
+        
+
+    </script>
+
+</body>
+
+</html>

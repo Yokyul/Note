@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>rotate</title>
+    <style type="text/css">
+        body {
+            perspective: 800px;
+            transform-style: preserve-3d;
+            perspective-origin: 300px 300px;
+        }
+
+        @keyframes yu {
+            0% {
+                transform: rotateX(-45deg);
+            }
+
+            100% {
+                transform: rotateX(45deg);
+            }
+        }
+
+        div {
+            width: 100px;
+            height: 100px;
+            background-image: url(y1.jpg);
+            background-size: cover;
+            position: absolute;
+        }
+
+        #div1 {
+            left: 100px;
+            top: 100px;
+
+            /* transform: rotate(45deg); */
+            transform-origin: 0 0;
+            animation: yu 2s cubic-bezier(.5, 0, 0, .5) infinite alternate;
+        }
+
+        #div2 {
+            left: 100px;
+            top: 300px;
+            transform: rotateX(0deg) rotateY(0deg);
+            /* transform: rotate3d(1, 1, 0, 60deg); */
+        }
+    </style>
+</head>
+
+<body>
+  
+    <div id="div1"></div>
+    <div id="div2"></div>
+
+</body>
+
+</html>

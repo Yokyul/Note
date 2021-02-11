@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理位置</title>
+</head>
+<body>
+    <script>
+        /*
+            获取地理信息。有些操作系统，不支持这个功能。
+            如何定位？
+            1.GPS定位 (台式机几乎都没有GPS，笔记本绝大多数没有，智能手机几乎都有)
+            2.网络定位 (可以粗略的估计地理位置)
+        */
+
+        // getCurrentPosition()有两个参数：获取成功的回调函数，获取失败的回调函数。但实际上获取周期很长，要等一会。
+        window.navigator.geolocation.getCurrentPosition((position) => {
+            console.log("=======")
+            console.log(position)
+        }, () => {
+            console.log("xxxxxx")
+        })
+
+        // 只有在https协议 和 file协议下，才可以获取position信息。http协议下不行
+        // 经度max：180，维度max：90
+
+    </script>
+</body>
+</html>

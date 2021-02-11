@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        div {
+            position: absolute;
+            left: 200px;
+            top: 1500px;
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='demo' style='opacity: 0.3;'></div>
+
+    <script>
+        // 1、window对象的属性
+        // offsetTop    window.pageYoffset    window.innerHeight
+        window.onscroll = function () {
+            check('demo');
+        }
+
+        function check(_id) {
+            var oDiv = document.getElementById(_id);
+            if (oDiv.offsetTop <= window.pageYOffset + window.innerHeight) {
+                oDiv.timer = setInterval(function () {
+                    if (oDiv.style.opacity == '1') {
+                        clearInterval(oDiv.timer);
+                    } else {
+                        oDiv.style.opacity = parseFloat(oDiv.style.opacity) + 0.01;
+                    }
+                }, 60);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

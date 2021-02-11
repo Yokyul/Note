@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" media="screen and (max-width: 375px)" href="index.css"> -->
+    <!-- <style>
+        @import 'index.css' screen and (max-width: 375px);
+    </style> -->
+    <style>
+        html {
+            font-size: 14px;
+        }
+        * {
+            margin: 0;
+        }
+        div {
+            font-size: 14px;
+        }
+        .wrapper {
+            /* width: 1500px; */
+            font-size: 20px;
+        }
+        .demo {
+            font-size: 15px;
+            /* 
+           
+            em   相对于本身的font-size大小  font-size属性是可以继承的
+             */
+             /* vw/ vh  ---> 相对于视口而言的   会把视口分成100份
+                vmax  --> 区视口宽高中最大的一边分成100份
+                vmin ---> 区视口宽高中最小的一边分成100份
+             
+              */
+            width: 50vmin;
+            height: 50vh;
+            border: 1px solid #000;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+        /* css样式引入
+            媒体查询不占用权重
+        */
+        @media screen and (max-width: 375px){
+            html, body {
+                width: 100%;
+                height: 100%;
+                background-color: red;
+            }
+        }
+
+   
+    </style>
+</head>
+<body>
+    <!-- 像素点的密集程度 变大了 -->
+    <div class="wrapper">
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+        <div class="demo"></div>
+    </div>
+</body>
+</html>

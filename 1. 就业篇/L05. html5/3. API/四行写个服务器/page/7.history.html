@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history</title>
+</head>
+
+<body>
+    <input type="text">
+    <button onclick="search()">检索</button>
+    <div class="value"></div>
+    <script>
+        /*
+            1.当多个网页跳转时，我们可以通过 回退、前进按钮 来回到 上一个状态或者下一个状态。
+                - history.back()
+                - history.forward()
+
+            2.但是如果是单页面应用，我们如何知道页面的上一个渲染状态呢？
+                可以使用history。
+
+            以下面的过滤搜索为例，想要获取上一个搜索的值，或者下一个搜索的值。
+        */
+        let date = [
+            { name: 'yuyu' },
+            { name: 'gugu' },
+            { name: 'kk' },
+            { name: 'gg' },
+            { name: 'll' }
+        ]
+        function search() {
+            let value = document.getElementsByTagName('input')[0].value;
+            let result = date.filter(function (obj) {
+                if (obj.name.indexOf(value) > -1) {
+                    return obj;
+                }
+            })
+            render(result);
+            history.pushState({ inpVal: value }, null, '#' + value);
+        }
+
+        function render(renderDate) {
+            let content = '';
+            renderDate.forEach(item => {
+                content += `<div>${item.name}</div>`
+            })
+            let display = document.getElementsByClassName('value')[0];
+            display.innerHTML = content;
+        }
+
+        // url变，就触发 popstate 事件
+        window.addEventListener('popstate', function (e) {
+            let value = document.getElementsByTagName('input')[0].value;
+            value = e.state.inpVal ? e.state.inpVal : '';
+            let result = date.filter(function (obj) {
+                if (obj.name.indexOf(value) > -1) {
+                    return obj;
+                }
+            })
+            render(result);
+        })
+
+        // 锚点变，就触发 hashchange 事件
+        window.addEventListener('hashchange', function (e) {
+            console.log(e);
+        })
+
+        // 以上两个都在回退页面时触发，但一般先触发 popstate
+    </script>
+</body>
+
+</html>

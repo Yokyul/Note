@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重力加速度、能量损失</title>
+    <style>
+        div {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: orange;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='demo'></div>
+
+    <script>
+
+        var oDiv = document.getElementById('demo');
+        var timer = null;
+
+        oDiv.onclick = function () {
+            startMove(oDiv);
+        }
+
+        function startMove(dom) {
+            clearInterval(timer);
+            var iSpeedX = 6;
+            var iSpeedY = 8;
+
+            // 重力加速度：每执行一次定时器，初速度 + g，
+            // 能量损失：每次碰到边界，速度 iSpeedX，iSpeedY 都*0.8
+            
+            var g = 3;
+
+            timer = setInterval(function () {
+                iSpeedY += g;
+                var newLeft = dom.offsetLeft + iSpeedX;
+                var newTop = dom.offsetTop + iSpeedY;    
+
+                if(newTop >= document.documentElement.clientHeight - dom.clientHeight){
+                    iSpeedY *= -1;
+                    iSpeedX *= 0.8;
+                    iSpeedY *= 0.8;
+                    newTop = document.documentElement.clientHeight - dom.clientHeight;
+                }
+
+                if(newTop <= 0){
+                    iSpeedY *= -1;
+                    iSpeedX *= 0.8;
+                    iSpeedY *= 0.8;
+                    newTop = 0;
+                }
+
+                if(newLeft >= document.documentElement.clientWidth - dom.clientWidth){
+                    iSpeedX *= -1;
+                    iSpeedX *= 0.8;
+                    iSpeedY *= 0.8;
+                    newLeft = document.documentElement.clientWidth - dom.clientWidth;
+                }
+                
+                if(newLeft <= 0){
+                    iSpeedX *= -1;
+                    iSpeedX *= 0.8;
+                    iSpeedY *= 0.8;
+                    newLeft = 0;
+                }
+
+                dom.style.left = newLeft + 'px';
+                dom.style.top = newTop + 'px';
+            }, 30)
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <div>
+        <button id="btn">点击</button>
+    </div>
+
+    <script>
+
+
+        // 1.创建GO
+        // 2.创建函数getElementById的AO，执行完销毁，最后生成一个dom元素。
+        // 3.给dom元素的onclick属性添加值：函数A，此时会通知宿主环境(此时是浏览器端)的事件监听线程，并将函数A添加到宿主环境。
+        // 4.js引擎继续执行，直到销毁GO
+        // 5.当js执行栈为空，且触发了点击事件后，将宿主环境中的A添加到事件队列。
+        // 6.执行栈为空的话，会自动将事件队列中的第一个函数(即A)加入到执行栈中执行
+
+        document.getElementById("btn").onclick = function A() {
+            console.log("按钮被点击了");
+        }
+
+
+
+    </script>
+</body>
+
+</html>
