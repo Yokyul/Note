@@ -1,8 +1,20 @@
-
-
 // 当页面划到最底端时，客户端向服务器发送请求后，数据还未返回。用户就又划动页面，又重新发送请求获取数据 
 // 为了解决这样的问题， 可以加锁判断当前有没有请求在触发
 var flag = false;
+getData();
+
+window.onscroll = function (e) {
+    var clientHeight = document.documentElement.clientHeight;
+    var scrollTop = document.documentElement.scrollTop;
+    var minHeight = getMinLi().minHeight;
+    if(minHeight < clientHeight + scrollTop){
+        getData();
+    }
+}
+
+/**
+ * 向服务器发送请求，然后获取数据。
+ */
 function getData() {
     // 判断当前是否有请求在进行，有的话不进行下次数据请求
     if(flag){
@@ -11,23 +23,25 @@ function getData() {
     // 如果没有，发送数据请求并上锁
     flag = true;
     ajax({
-        url: './data.json',
+        url: './resource/data.json',
         type: 'get',
         data: '',
         success: function (data) {
             data = JSON.parse(data);
-            // console.log(data);
             renderDom(data);
             flag = false;
         },
         // 当数据返回后，解开锁
         async: true
-    })
+    });
 }
 
-// 将数据渲染到页面上，两种方式。
-// 一种方式是顺序插入，但会导致页面在显示图片时，某一列很长，某一列又很短。
-// 优化方式是最短列插入。
+/**
+ * 将数据渲染到页面上，有两种方式：
+ * 方式1：:顺序插入，但会导致页面在显示图片时，某一列很长，某一列又很短。
+ * 方式2：最短列插入。
+ * @param {Array} data 
+ */
 function renderDom(data) {
     var oLi = document.getElementsByClassName('col');
     var imgDomWidth = oLi[0].offsetWidth - 20 - 20;
@@ -57,7 +71,9 @@ function renderDom(data) {
     })
 }
 
-// 查找最短列
+/**
+ * 查找最短列
+ */
 function getMinLi() {
     var oLi = document.getElementsByClassName('col');
     var minIndex = 0;
@@ -71,17 +87,5 @@ function getMinLi() {
     return {
         minIndex: minIndex,
         minHeight: minHeight
-    }
-}
-
-getData();
-
-
-window.onscroll = function (e){
-    var clientHeight = document.documentElement.clientHeight;
-    var scrollTop = document.documentElement.scrollTop;
-    var minHeight = getMinLi().minHeight;
-    if(minHeight < clientHeight + scrollTop){
-        getData();
     }
 }

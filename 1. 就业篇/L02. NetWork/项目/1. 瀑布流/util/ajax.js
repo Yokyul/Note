@@ -1,4 +1,3 @@
-
 /**
  * ajax: async javascript and xml(json)
  *      主要用于数据交互（网络请求）
@@ -20,7 +19,7 @@ function ajax(options) {
     // xhr 用于存储当前网络请求中的所有信息
     var xhr = null;
     // 判断当前浏览器是否含有XMLHTTPRequest对象（IE7+， Chrome, firefox及其他浏览器有的） 有的话 创建该对象  没有则判断是否含有ActiveXOject对象（IE6/5中特有的）
-    if(window.XMLHttpRequest) {
+    if (window.XMLHttpRequest) {
         xhr = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
         xhr = new ActiveXObject('Microsoft.XMLHTTP');
@@ -40,10 +39,7 @@ function ajax(options) {
         // return alert('数据格式只能为字符串或者对象');
         dataStr = '';
     }
-    // 默认当前请求是异步请求
-    if (typeof options.async !== 'boolean') {
-        options.async = true;
-    }
+
     options.type = options.type.toUpperCase();
     // onreadystatechange事件是用来监听xhr 对象身上的readyState属性的
     // 
@@ -66,6 +62,6 @@ function ajax(options) {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
         xhr.send(dataStr);
     }
-   
-    
+
+
 }

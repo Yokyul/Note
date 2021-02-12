@@ -14,7 +14,7 @@ inpBtn.onclick = function (e) {
                 text: val
             },
             async: true,
-            success: function(res) {
+            success: function (res) {
                 console.log(res);
                 var data = JSON.parse(res);
                 renderDom('robot', data.text)
@@ -22,7 +22,7 @@ inpBtn.onclick = function (e) {
         })
     }
 }
-inpText.onkeyup = function(e) {
+inpText.onkeyup = function (e) {
     console.log(e.keyCode)
     if (e.keyCode == 13) {
         inpBtn.click()
@@ -36,12 +36,13 @@ inpText.onkeyup = function(e) {
  */
 function renderDom(who, text) {
     var oDiv = document.createElement('div');
-    oDiv.className= who;
-    // 模板字符串中可以插入变量 ,用 ${} 的方式
-    oDiv.innerHTML = `<img class="avator" src="${who == 'mine' ? './image/3.png' : './image/dog1.jpg'}"></img>
+    oDiv.className = who;
+    oDiv.innerHTML = `
+                    <img class="avator" src="${who == 'mine' ? './image/me.png' : './image/you.jpg'}"></img>
                     <div class="text">
                         ${text}
-                    </div>`;
+                    </div>
+                `;
     content.appendChild(oDiv);
     content.scrollTop = content.scrollHeight;
 }

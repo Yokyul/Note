@@ -1,3 +1,4 @@
+bindEvent();
 
 function bindEvent() {
     $('#submit').click(function () {
@@ -15,6 +16,12 @@ function bindEvent() {
         }
     })
 }
+
+/**
+ * 
+ * @param {*} avitor 
+ * @param {*} text 
+ */
 function renderDom(avitor, text) {
     if (avitor == 'mine') {
         $(' <div class="mine">\
@@ -30,6 +37,7 @@ function renderDom(avitor, text) {
     var scrollTop = $('#content')[0].scrollHeight - $('#content')[0].clientHeight;
     $('#content').scrollTop(scrollTop);
 }
+
 function getData(text) {
     $.ajax({
         url: 'https://developer.duyiedu.com/edu/turing/chat',
@@ -48,4 +56,3 @@ function getData(text) {
         }
     });
 }
-bindEvent();
