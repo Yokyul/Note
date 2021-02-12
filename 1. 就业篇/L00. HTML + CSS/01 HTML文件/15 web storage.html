@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>web存储</title>
-
-<!--  外部引用  -->
-    <script src="15%20sessionStorage对象存储.js"></script>
-    <script src="15%20localstorage对象存储数据.js"></script>
 </head>
 
 <body>
     <p id="yu"></p>
-    <input type="text" id="input">
-    <input type="button" value="保存数据" onclick="saveStorage('input')">
+    <input type="text" id="local">
+    <input type="button" value="保存数据" onclick="saveStorage('local')">
     <input type="button" value="读取数据" onclick="loadStorage('yu')">
 
     <p id="gu"></p>
-    <input type="text" id="in">
-    <input type="button" value="保存数据" onclick="saveStorage('in')">
+    <input type="text" id="session">
+    <input type="button" value="保存数据" onclick="saveStorage('session')">
     <input type="button" value="读取数据" onclick="loadStorage('gu')">
+
+    <script>
+        //用localstorage方法存储
+        function saveStorage(id) {
+            var target = document.getElementById(id);
+            var str = target.value;
+            localStorage.setItem("message", str); //保存数据
+        }
+        function loadStorage(id) {
+            var target = document.getElementById(id);
+            var gu = localStorage.getItem("message");//读取数据
+            target.innerHTML = gu;
+        }
+
+        //用sessionstorage方法存储
+        function saveStorage(id) {
+            var target = document.getElementById(id);
+            var str = target.value;
+            sessionStorage.setItem("message", str); //保存数据
+        }
+        function loadStorage(id) {
+            var target = document.getElementById(id);
+            var yu = sessionStorage.getItem("message");//读取数据
+            target.innerHTML = yu;
+        }
+    </script>
 </body>
+
 </html>

@@ -12,8 +12,7 @@
             background-color: red;
             margin-left: 100px;
             margin-top: 100px;
-            /* 解决塌陷问题 */
-            overflow: hidden;
+            overflow: hidden;  /* 解决塌陷问题 */
         }
 
         .box {
@@ -26,8 +25,7 @@
 
         .div1{
             background-color: chartreuse;
-            /* div1和div2上下总距离 */
-            margin-bottom: 100px;
+            margin-bottom: 100px; /* div1和div2上下总距离 */
         }
         .div2{
             background-color: chartreuse;
@@ -36,7 +34,7 @@
 </head>
 
 <body>
-    <!-- 嵌套元素的margin塌陷 -->
+    <!-- 父子元素的margin塌陷 -->
     <div class="wrapper">
         <div class="box"></div>
     </div>
