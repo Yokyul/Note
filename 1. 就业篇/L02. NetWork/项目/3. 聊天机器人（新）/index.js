@@ -8,7 +8,8 @@ inpBtn.onclick = function (e) {
         renderDom('mine', val);
         inpText.value = '';
         ajax({
-            url: 'http://localhost:3000/chat',    // 使用图灵机器人
+            url: 'https://developer.duyiedu.com/edu/turing/chat',
+            // url: 'http://localhost:3000/chat',    // 使用图灵机器人
             type: 'get',
             data: {
                 text: val

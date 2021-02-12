@@ -1,5 +1,8 @@
 bindEvent();
 
+/**
+ * 绑定事件
+ */
 function bindEvent() {
     $('#submit').click(function () {
         var val = $('#inp-box').val();
@@ -9,18 +12,18 @@ function bindEvent() {
             getData(val);
         }
     });
+
     $('#inp-box').on('keyup', function (e) {
-        // console.log(e.keyCode)
         if (e.keyCode == 13) {
             $('#submit').trigger('click');
         }
-    })
+    });
 }
 
 /**
- * 
- * @param {*} avitor 
- * @param {*} text 
+ * 渲染对话框
+ * @param {string} avitor 
+ * @param {string} text 
  */
 function renderDom(avitor, text) {
     if (avitor == 'mine') {
@@ -38,10 +41,13 @@ function renderDom(avitor, text) {
     $('#content').scrollTop(scrollTop);
 }
 
+/**
+ * 向后台请求数据
+ * @param {string} text 
+ */
 function getData(text) {
     $.ajax({
         url: 'https://developer.duyiedu.com/edu/turing/chat',
-        // url: 'http://127.0.0.1:3000/chat',
         type: 'GET',
         data: {
             text: text

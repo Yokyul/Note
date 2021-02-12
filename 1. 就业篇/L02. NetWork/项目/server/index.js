@@ -2,6 +2,7 @@ var http = require('http');
 var url = require('url');
 var fs = require('fs');
 var req = require('request');
+
 http.createServer(function (request, response) {
     console.log('服务已起动');
     var pathName = url.parse(request.url).pathname;
