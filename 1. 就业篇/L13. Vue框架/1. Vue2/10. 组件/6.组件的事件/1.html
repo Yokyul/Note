@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./vue.js"></script>
 </head>
 
 <body>
-
     <!-- 在组件使用 v-on -->
     <div id="app">
         <div :style="{fontSize: postFontSize + 'em'}">
@@ -19,8 +17,8 @@
         </div>
     </div>
 
+    <script src="../../js/vue.js"></script>
     <script>
-
         // 点击了子组件的button -> 告诉父组件去增加字号 -> 可以更改控制字体大小的数据
         // 子组件内触发事件   在父组件内监听子组件的事件
         // 自定义事件：enlarge-text ，通过$emit(事件名)触发事件
@@ -29,16 +27,15 @@
                 post: Object
             },
             template: `
-            <div>
-                <h3>{{ post.title }}</h3>
-                <div>{{ post.content }}</div>
-                <!-- 子组件触发父组件的事件 -->
-                <button @click="$emit('enlarge-text', 0.2)">放大字号</button>
-                <button @click="$emit('enlarge-text', -0.2)">缩小字号</button>
-                <hr>
-            </div>
-            `
-        })
+                <div>
+                    <h3>{{ post.title }}</h3>
+                    <div>{{ post.content }}</div>
+                    <!-- 子组件触发父组件的事件 -->
+                    <button @click="$emit('enlarge-text', 0.2)">放大字号</button>
+                    <button @click="$emit('enlarge-text', -0.2)">缩小字号</button>
+                    <hr>
+                </div>`
+        });
 
         const vm = new Vue({
             el: '#app',
@@ -51,9 +48,7 @@
                     { title: '标题3', content: '内容内容内容', id: 3 }
                 ]
             }
-        })
-
-
+        });
     </script>
 </body>
 

@@ -6,24 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="./vue.js"></script>
 </head>
 
 <body>
+    <div id="app">36547e54utyjdt</div>
 
-    <div id="app">
-        yuyu
-    </div>
-
+    <script src="../../js/vue.js"></script>
     <script>
         Vue.component('MyComponent', {
             template: `
                 <div>
-                    <slot></slot>
-                    <br>我是利用大驼峰命名的
+                    <slot></slot><br>
+                    我是利用大驼峰命名的组件。
                 </div>
                 `
-        })
+        });
 
         const vm = new Vue({
             el: '#app',
@@ -33,7 +30,6 @@
                 </div>
             `
         });
-
     </script>
 </body>
 

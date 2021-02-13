@@ -2,55 +2,54 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="./vue.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 
 <body>
-  <div id="app">
-    <base-input @focus.native="onFocus" @blur.native="onBlur"></base-input>
-    <br>
-    <base-input1 @focus="onFocus" @blur="onBlur"></base-input1>
+    <div id="app">
+        <base-input @focus.native="onFocus" @blur.native="onBlur"></base-input>
+        <br>
+        <base-input1 @focus="onFocus" @blur="onBlur"></base-input1>
+    </div>
 
-  </div>
 
-  <script>
-
-    Vue.component('base-input', {
-      template: `
+    <script src="../../js/vue.js"></script>
+    <script>
+        Vue.component('base-input', {
+            template: `
         <input type="text" />
       `
-    })
+        })
 
-    Vue.component('base-input1', {
-      template: `
+        Vue.component('base-input1', {
+            template: `
       <label>
         姓名：
         <input type="text" v-on="$listeners" />
       </label>
       `,
-      mounted() {
-        console.log(this.$listeners);
-      },
-    })
+            mounted() {
+                console.log(this.$listeners);
+            },
+        })
 
 
-    const vm = new Vue({
-      el: '#app',
-      data: {},
-      methods: {
-        onFocus() {
-          console.log('focus');
-        },
-        onBlur() {
-          console.log('Blur');
-        },
-      },
-    })
-  </script>
+        const vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                onFocus() {
+                    console.log('focus');
+                },
+                onBlur() {
+                    console.log('Blur');
+                },
+            },
+        })
+    </script>
 </body>
 
 </html>

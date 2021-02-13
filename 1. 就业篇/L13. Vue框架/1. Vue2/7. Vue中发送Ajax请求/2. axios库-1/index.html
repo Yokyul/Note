@@ -28,7 +28,7 @@
         </ul>
     </div>
 
-    <script src="./axios.js"></script>
+    <script src="../../js/axios.js"></script>
     <script src="../../js/vue.js"></script>
     <script>
         // 全局配置：
@@ -57,11 +57,11 @@
                 handleUpload() {
                     // 发送post请求
                     const { name, mail } = this;
-                    if(!name){
+                    if (!name) {
                         alert("请填写用户名");
                         return;
                     }
-                    if(!mail){
+                    if (!mail) {
                         alert("请填写邮箱");
                         return;
                     }
@@ -128,7 +128,7 @@
                 msg() {
                     if (this.msg === '') {
                         return;
-                    }else {
+                    } else {
                         alert(this.msg);
                     }
                     this.msg = '';

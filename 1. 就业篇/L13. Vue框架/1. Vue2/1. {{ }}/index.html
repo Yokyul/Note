@@ -11,21 +11,15 @@
 <body>
     <!-- 被控制的区域，又称：模板 -->
     <div id="app">
-        <!-- {{ msg }} -->
-        <!-- {{ 5201314 }}
-    {{ '婀娜多姿、亭亭玉立' }}
-    {{ true }}
-    {{ ['邓旭明', '小刘', '王小宝'] }} -->
-        <!-- {{ {name: 'dxm', age: '88'} }} -->
+        {{ 5201314 }}<br>
+        {{ '婀娜多姿、亭亭玉立' }}<br>
+        {{ true }}<br>
+        {{ ['邓旭明', '小刘', '王小宝'] }}<br>
+        {{ {name: 'dxm', age: '88'} }}<br>
 
-        <!-- {{ 1+1 }}
-    {{ !0 }}
-    {{ 1+1 === 3 ? '正常人' : '邓哥' }} -->
-
-        <!-- {{ var deng="shuaige" }} -->
-        <!-- {{ if(1+1 === 2) {
-      return 'common'
-    } }} -->
+        {{ 1+1 }}<br>
+        {{ !0 }}<br>
+        {{ 1+1 === 3 ? '正常人' : '邓哥' }}<br>
 
         {{ msg }}
     </div>
@@ -34,29 +28,23 @@
 
     <script src="../js/vue.js"></script>
     <script>
-        // const data = '你真帅';
-        // oDiv.innerText = data;
+        /* const oDiv = document.getElementById('app');
+        const data = '你真帅';
+        oDiv.innerText = data; */
 
-        // $mount  vm.$mount('#app');
-
-        // 插值表达式 {{ js }}
-        // 数据
-        // 数字、字符串、boolean、array、object，unefined\null
-        // 表达式
-        // 要写经过声明的数据，否则报错
         const vm = new Vue({
-            el: '#app',                     // 选中id为app的区域，类似于const oDiv = document.getElementById('app');
+            el: '#app', // 选中id为app的区域，类似于 `const oDiv = document.getElementById('app');`
             data: {
                 msg: '你真帅',
                 mrDeng: {
                     wife: '小刘',
                     son: '王小宝'
                 }
-            },
-            // template:`<div>yuyu
-            //   <slot></slot>
-            //   </div>`
+            }
         });
+
+        //手动挂载：$mount  
+        // vm.$mount('#app');
     </script>
 </body>
 

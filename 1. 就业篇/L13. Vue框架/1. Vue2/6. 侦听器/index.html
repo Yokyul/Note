@@ -10,14 +10,15 @@
 
 <body>
     <div id="app">
-        {{ name }}
-        <!-- {{ fullName }} -->
-        <!-- {{ msg }} -->
-        <!-- {{ obj }} -->
+        {{ name }}<br>
+        {{ msg }}<br>
+        {{ obj }}<br>
+        {{ fullName }}
     </div>
 
     <script src="../js/vue.js"></script>
     <script>
+        //通过 watch 选项
         const vm = new Vue({
             el: '#app',
             data: {
@@ -33,26 +34,24 @@
                 name: 'shanshan'
             },
             computed: {
-                // desc() {
-                //     //fdjdj
-                //     setTimeout(() => {
-                //         this.name = 'duyi';
-                //         console.log('bbb');
-                //     });
-                //     return this.name + '超美的';
-                // },
-                // fullName() {
-                //     //...
-                //     return this.fisrtName + this.lastName;
-                // }
+                desc() {
+                    setTimeout(() => {
+                        this.name = 'duyi';
+                        console.log('bbb');
+                    });
+                    return this.name + '超美的';
+                },
+                fullName() {
+                    return this.fisrtName + this.lastName;
+                }
             },
             methods: {
                 msgChange() {
-                    // console.log('ms')
                     console.log('msg的值改變啦');
                 }
             },
             watch: {
+                //1.值为函数
                 name: function (newVal) {
                     setTimeout(() => {
                         alert(newVal);
@@ -62,87 +61,76 @@
                     this.fullName = this.fisrtName + this.lastName;
                 },
                 lastName() {
-                    // this.fisrtName + this.lastName;
                     this.fullName = this.fisrtName + this.lastName;
 
                 },
-                // key: value,
-                // msg: function (newVal, oldVal) {
-                //   console.log(`newVal:${ newVal }`);
-                //   console.log(`oldVal:${ oldVal }`)
-                //   // console.log('msg的值改變啦');
-                // },
-                // msg: 'msgChange',
-                // msg: {
-                //   // key: value
-                //   handler: function () {
-                //     console.log('msg的值改變啦');
-                //   },
-                //   deep: Boolean
-                // },
-                // obj: {
-                //   handler () {
-                //     console.log('msg的值改變啦');
-                //   },
-                //   deep: true,
-                //   immediate: true
-                // },
-                // obj: [
-                //   'msgChange',
-                //   function () {},
-                //   {
-                //     handler () {}
-                //   }
-                // ],
-                // 'obj.name' () {
-                //   console.log('name 改變了');
-                // }
+                //2.值为函数名
+                msg: 'msgChange',
+                //3.值为对象
+                obj: {
+                    handler() {
+                        console.log('msg的值改變啦');
+                    },
+                    deep: true,
+                    immediate: true
+                },
+                //4.值为数组
+                obj: [
+                    'msgChange',
+                    function () { },
+                    {
+                        handler() { }
+                    }
+                ],
+                'obj.name'() {
+                    console.log('name 改變了');
+                }
             }
         })
 
-    // vm.$watch('msg', function () {
-    //   console.log('msg的值改變啦');
-    // }, {
-    //   deep: true,
-    //   immediate: true
-    // });
+        //通过 $watch 方法
+        /* vm.$watch('msg', function () {
+            console.log('msg的值改變啦');
+        }, {
+            deep: true,
+            immediate: true
+        }); */
 
-    // vm.$watch('msg', {
-    //   handler () {},
-    //   deep: Boolean,
-    //   immediate: Boolean
-    // });
+        /* vm.$watch('msg', {
+            handler() { },
+            deep: Boolean,
+            immediate: Boolean
+        }); */
 
-    // vm.$watch('obj.name', {
-    //   handler () {
-    //     console.log('name的值改變啦');
-    //   },
-    //   // deep: Boolean,
-    //   // immediate: Boolean
-    // });
+        /* vm.$watch('obj.name', {
+            handler() {
+                console.log('name的值改變啦');
+            },
+            // deep: Boolean,
+            // immediate: Boolean
+        }); */
 
 
-    // vm.$watch(function () {
-    //   return this.msg + this.obj.name;
-    // }, {
-    //   handler () {
-    //     console.log('name的值改變啦');
-    //   },
-    //   // deep: Boolean,
-    //   // immediate: Boolean
-    // });
+        /* vm.$watch(function () {
+            return this.msg + this.obj.name;
+        }, {
+            handler() {
+                console.log('name的值改變啦');
+            },
+            // deep: Boolean,
+            // immediate: Boolean
+        }); */
 
-    // var unwatch = vm.$watch('msg', function (newVal) {
-    //   // so something
-    //   if(unwatch) {
-    //     console.log('xxx');
-    //     unwatch();
-    //     return;
-    //   }
-    //   console.log('haha');
-    // }, {
-    //   immediate: true
-    // })
+        /* var unwatch = vm.$watch('msg', function (newVal) {
+            if (unwatch) {
+                console.log('xxx');
+                unwatch();
+                return;
+            }
+            console.log('haha');
+        }, {
+            immediate: true
+        }); */
 
     </script>
 </body>

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./vue.js"></script>
 </head>
 
 <body>
@@ -17,8 +16,8 @@
         <base-input2 :value.sync="name"></base-input2>
     </div>
 
+    <script src="../../js/vue.js"></script>
     <script>
-
         // v-bind .sync 语法糖 :prop @updata:prop
         Vue.component("base-input2", {
             props: {
