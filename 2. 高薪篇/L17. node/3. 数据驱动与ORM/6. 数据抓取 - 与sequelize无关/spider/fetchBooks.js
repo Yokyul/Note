@@ -2,12 +2,27 @@
 const axios = require("axios").default;
 const cheerio = require("cheerio");
 const Book = require("../models/Book");
+saveToDB();
+
+
 /**
- * 获取豆瓣读书网页的源代码
+ * 得到书籍信息，然后保存到数据库
  */
-async function getBooksHTML() {
-    const resp = await axios.get("https://book.douban.com/latest");
-    return resp.data;
+async function saveToDB() {
+    const books = await fetchAll();
+    await Book.bulkCreate(books);
+    console.log("抓取数据并保存到了数据库");
+}
+
+/**
+ * 获取所有的书籍信息
+ */
+async function fetchAll() {
+    const links = await getBookLinks(); //得到书籍的详情页地址
+    const proms = links.map((link) => {
+        return getBookDetail(link); //根据书籍详情页的地址，得到该书籍的详细信息
+    });
+    return Promise.all(proms);
 }
 
 /**
@@ -22,6 +37,14 @@ async function getBookLinks() {
         return href;
     }).get();           // cheerio 得到的是一个类数组。类似jQuery，我们可以通过.get() 方法将其转为数组。
     return links;
+}
+
+/**
+ * 获取豆瓣读书网页的源代码
+ */
+async function getBooksHTML() {
+    const resp = await axios.get("https://book.douban.com/latest");
+    return resp.data;
 }
 
 /**
@@ -49,25 +72,3 @@ async function getBookDetail(detailUrl) {
         author,
     };
 }
-
-/**
- * 获取所有的书籍信息
- */
-async function fetchAll() {
-    const links = await getBookLinks(); //得到书籍的详情页地址
-    const proms = links.map((link) => {
-        return getBookDetail(link);
-    });
-    return Promise.all(proms);
-}
-
-/**
- * 得到书籍信息，然后保存到数据库
- */
-async function saveToDB() {
-    const books = await fetchAll();
-    await Book.bulkCreate(books);
-    console.log("抓取数据并保存到了数据库");
-}
-
-saveToDB();
