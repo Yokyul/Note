@@ -1,7 +1,6 @@
 const numbers = getRandomNumbers(10);
-//将数组的每一项展开，依次作为参数传递，而不是把整个数组作为一个参数传递
-console.log(sum(...numbers));                //相当于传递了10个参数
-console.log(sum(1, 3, ...numbers, 3, 5));  
+console.log(sum(...numbers)); //相当于传递了10个参数
+console.log(sum(1, 3, ...numbers, 3, 5)); 
 
 
 /**

@@ -105,40 +105,129 @@ ES6为了解决这个困扰，为字符串提供了方法：`codePointAt` ，根
 ## 4.1 参数默认值
 
 1. **如何使用：**
-    在书写形参时，直接给形参赋值，赋的值即为默认值。
-    这样一来，当调用函数时，如果没有给对应的参数赋值（或者给它的值是undefined），则会自动使用默认值。
 
-2. **[扩展]对arguments的影响**
-    只要给函数加上参数默认值，该函数会自动变为严格模式下的规则：arguments和形参脱离
+在书写形参时，**直接给形参赋值，赋的值即为默认值**。这样一来，当调用函数时，如果没有给对应的参数赋值（或者给它的值是 `undefined` ），则会自动使用默认值。
 
-3. **[扩展]留意暂时性死区**
-    形参和ES6中的let或const声明一样，具有作用域，并且根据参数的声明顺序，存在暂时性死区。
+```js
+function sum(a, b = 1, c = 2) {
+    return a + b + c;
+}
 
+console.log(sum(10, undefined, undefined)); //13
+console.log(sum(11)); //14
+console.log(sum(1, undefined, 5)); //7
+```
+
+2. **[扩展] 对 arguments 的影响**
+
+只要给函数加上参数默认值，该函数会自动变为严格模式下的规则：arguments 和形参脱离。
+
+```js
+function test(a, b = 1) {
+    console.log("arugments：", arguments[0], arguments[1]); //arugments： 1 2
+    console.log("a:", a, "b:", b); //a: 1 b: 2
+    
+    a = 3;
+    console.log("arugments：", arguments[0], arguments[1]); //arugments： 1 2
+    console.log("a:", a, "b:", b); //a: 3 b: 2
+}
+
+test(1, 2);
+```
+
+3. **[扩展] 暂时性死区**
+
+形参和 `ES6` 中的 let 或 const 声明一样，都有作用域，并且根据参数的声明顺序，存在暂时性死区。
+
+```js
+function test(a = b, b) {
+    console.log(a, b); //报错：Cannot access 'b' before initialization。因为是先声明a，将b赋给a的时候，b还没有声明，还在暂时性死区中。
+}
+
+test(undefined, 2);
+```
 
 ## 4.2 剩余参数
 
 1. **arguments 存在的缺陷：**
+
 - 如果和形参配合使用，容易导致混乱。
-- 从语义上，使用arguments获取参数，由于形参缺失，无法从函数定义上理解函数的真实意图。
+- 从语义上，使用 arguments 获取参数，由于形参缺失，无法从函数定义上理解函数的真实意图。
 
 2. **如何解决那些缺陷？**
-- ES6的 剩余参数 专门用于收集末尾的所有参数，将其放置到一个形参数组中。
+
+- ES6的**剩余参数**专门用于收集末尾的所有参数，将其放置到一个形参数组中。
 - 剩余参数的语法:
-    ```js
-    function (...形参名){
-        // 其他语句
-    }
-    ```
+
+```js
+function (...形参名){
+    // 其他语句
+}
+```
+
 3. **剩余参数的细节：**
+
 - 一个函数，仅能出现一个剩余参数。
 - 一个函数，如果有剩余参数，剩余参数必须是最后一个参数。
 
+```js
+function sum(a, b, ...args) {
+    //args 是收集所有参数形成的一个数组。
+    let sum = 0;
+    for (let i = 0; i < args.length; i++) {
+        sum += args[i];
+    }
+    return sum;
+}
+
+console.log(sum(0, 0)); //0
+console.log(sum(0, 0, 1)); //1
+console.log(sum(0, 0, 1, 2)); //3
+console.log(sum(0, 0, 1, 2, 3)); //6
+console.log(sum(0, 0, 1, 2, 3, 4)); //10
+```
 
 ## 4.3 展开运算符
 
-- 使用方式：`...要展开的东西`
-> 对数组展开：ES6添加<br>对对象展开: ES7添加
+使用方式：`...要展开的东西`
+- 对数组展开：ES6 添加。
 
+```js
+const arr1 = [3, 67, 8, 5];
+const arr2 = [0, ...arr1, 1];
+
+console.log(arr2); //[ 0, 3, 67, 8, 5, 1 ]
+console.log(arr1 === arr2); //false
+```
+
+- 对对象展开：ES7 添加。
+
+```js
+const obj1 = {
+    name: "成哥",
+    age: 18,
+    love: "邓嫂",
+    address: {
+        country: "中国",
+        province: "黑龙江",
+        city: "哈尔滨"
+    }
+}
+
+// 浅克隆到obj2
+const obj2 = {
+    ...obj1,
+    name: "邓哥"
+};
+console.log(obj2);
+/* {
+    name: '邓哥',
+    age: 18,
+    love: '邓嫂',
+    address: { country: '中国', province: '黑龙江', city: '哈尔滨' }
+} */
+console.log(obj1.address === obj2.address); //true
+```
 
 ## 4.4 明确函数的双重用途
 
@@ -156,6 +245,36 @@ ES6为了解决这个困扰，为字符串提供了方法：`codePointAt` ，根
 new.target 
 // 该表达式，得到的是：如果没有使用new来调用函数，则返回undefined
 // 如果使用new调用函数，则得到的是new关键字后面的函数本身
+```
+
+3. **例子：**
+
+```js
+const p1 = new Person("袁", "进");
+console.log(p1.fullName); //袁进
+
+const p2 = Person("袁", "进");
+console.log(p2); //报错：该函数没有使用new来调用。
+
+const p3 = Person.call(p1, "袁", "进")
+console.log(p3); //报错：该函数没有使用new来调用。
+
+
+function Person(firstName, lastName) {
+    //判断是否是使用new的方式来调用的函数。
+    //过去的判断方式：
+    if (!(this instanceof Person)) {
+        throw new Error("该函数没有使用new来调用");
+    }
+    //ES6的判断方式：
+    if (new.target === undefined) {
+        throw new Error("该函数没有使用new来调用");
+    }
+    
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.fullName = `${firstName}${lastName}`;
+}
 ```
 
 ## 4.5 箭头函数
@@ -182,21 +301,55 @@ new.target
 // 3.如果箭头函数只有一条返回语句，可以省略大括号，和return关键字
 参数 => 返回值
 ```
+示例：
+```js
+const obj = {
+    count: 0,
+    start() {
+        setInterval(() => {
+            this.count++;
+            console.log(this.count);
+        }, 1000);
+    },
+    print() {
+        console.log(this); //{ count: 0, start: [Function: start], print: [Function: print] }
+        console.log(this.count); //0
+    }
+}
+
+// 箭头函数一般是解决this指向的问题，用在函数套函数里。
+obj.start();
+obj.print();
+```
 
 3. **箭头函数的细节:**
 
-- 箭头函数中，不存在 `this、 arguments、 new.target` 。如果使用了，则使用的是函数外层的对应的 `this、 arguments、 new.target` 。
+- 箭头函数中，不存在 `this`、 `arguments`、 `new.target`。如果使用了，则使用的是函数外层的对应的 `this`、 `arguments`、 `new.target`。
 - 箭头函数没有原型。
 - 箭头函数不能作为构造函数使用。
+
+```js
+// 细节1
+const obj = {
+    method() {
+        const func = () => {
+            console.log(this); //{ method: [Function: method] }
+            console.log(arguments); //[Arguments] { '0': 234 }
+        }
+        func();
+    }
+}
+obj.method(234);
+```
 
 4. **应用场景:**
 
 以下函数可以写成箭头函数：
-- 并不会被调用的临时性函数。比如：
-    1. 事件处理函数
-    2. 异步处理函数 (setInterval/setTimeout等)
-    3. 其他临时性的函数
-- 为了绑定外层this的函数
+- 并不会被调用的临时性函数。如：
+    1. 事件处理函数。
+    2. 异步处理函数。( `setInterval()` / `setTimeout()` 等)
+    3. 其他临时性的函数。
+- 为了绑定外层this的函数。
 - 在不影响其他代码的情况下，保持代码的简洁。最常见的：数组方法中的回调函数。
 
 <font color="red">注意：</font>在一个对象中，如果属性的值是函数，此时不用箭头函数。
@@ -583,29 +736,124 @@ a.print();
 使用ES6的一种语法规则，将一个对象或数组的某个属性提取到某个变量中。
 <font color="red">解构不会对被解构的目标造成任何影响。</font>
 
-2. **在解构中使用默认值**  **(index1)**
+2. **在解构中使用默认值**
 
-从对象中读取同名属性，放到变量中。读取不到的话，使用默认值：
+从对象中读取同名属性，放到变量中。读取不到的话，使用默认值。
 ```js
+//语法
 {同名变量 = 默认值}
 ```
-
-3. **非同名属性解构** **(index2)**
-
+示例：
 ```js
-{属性名:变量名}
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
+
+// 将user中的name, age, sex, address的值赋给变量name, age, sex, address
+
+/* 1.过去写法：
+let name, age, sex, address;
+name = user.name;
+age = user.age;
+sex = user.sex;
+address = user.address;
+console.log(name, age, sex, address);
+*/
+
+/* 2.ES6的写法：
+let name, age, sex, address;
+({ name, age, sex, address } = user);//对象的解构语句。将user中的name, age, sex, address的值赋给前面{}里的同名变量。
+console.log(name, age, sex, address);
+*/
+
+// 3.ES6写法的简写：
+// let { name, age, sex, address } = user;
+// console.log(name, age, sex, address);
+
+// 4.先定义5个变量，然后从对象中读取同名属性，放到变量中。读取不到的使用默认值，如：abc = 123
+let { name, age, sex, address, abc = 123 } = user;
+console.log(name, age, sex, address, abc); //kevin 11 男 { province: '四川', city: '成都' } 123
 ```
 
-4. **嵌套解构：**   **(index3)**
+3. **非同名属性解构**
+
+```js
+//语法
+{属性名:变量名}
+```
+示例：
+```js
+const user = {
+    name: "yuyu",
+    age: 18,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    },
+}
+// 非同名属性解构：
+
+// 1.先定义4个变量：name、age、gender、address，再从对象user中读取同名属性赋值（其中gender读取的是sex属性）
+// let { name, age, sex: gender, address } = user;
+// console.log(name, age, gender, address);
+
+// 2.从对象中读取同名属性，读取不到的使用默认值
+let { name, age, sex: gender, address, like: love = "guyu" } = user;
+console.log(name, age, gender, address, love); //yuyu 18 男 { province: '四川', city: '成都' } guyu
+```
+
+4. **嵌套解构**
 
 解构出对象中的对象的属性:
 ```js
+//语法
 {变量名：{对象中的对象的属性}}
 ```
+示例：
+```js
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
 
-5. **剩余项的收集：** **(index4)**
+//解构出user中的对象address的属性province
+const { address: { province } } = user;
+console.log(province); //四川
+```
 
-解构出对象的某些属性，然后将剩余的所有属性放到一个新的对象中。   
+5. **剩余项的收集**
+
+解构出对象的某些属性，然后将剩余的所有属性放到一个新的对象中。  
+
+```js
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
+
+// 解构出name，然后将剩余的所有属性，放到新的对象obj中。如下：
+// name: kevin
+// obj : {age:11, sex:"男", address:{...}}
+const { name, ...obj } = user;
+console.log(name, obj); //kevin { age: 11, sex: '男', address: { province: '四川', city: '成都' } }
+```
 
 ## 6.2 数组解构
 
@@ -670,13 +918,32 @@ console.log(a, b)
 
 ## 6.3 参数解构
 
-1. 将形参解构
+解构最常用于函数的参数解构。解构不能从 `undefined` 和 `null` 中解构出东西，会报错。
+如果不传参，形参就是 `undefined`，解构时会报错。可以通过使用默认值 (即形参={}) 来解决这一问题。
 
-2. 解构不能从 undefined 和 null 中解构出东西，会报错。
+```js
+// 参数解构：
 
-<font color="red">问题：</font>如果不传参，形参就是undefined，解构时会报错。
-<font color="red">解决方法：</font>使用默认值，即形参={}。之后就可以从形参解构出东西了。
+// 1.之前写法
+function ajaxOld(options) {
+    const defaultOptions = {
+        method: "get",
+        url: "/"
+    }
+    const opt = {
+        ...defaultOptions,
+        ...options
+    }
+    console.log(opt);
+}
 
+// 2.解构写法
+function ajax({ method = "get", url = "/" } = {}) {
+    console.log(method, url);
+}
+
+ajax(); //不传参，形参是undefined。
+```
 
 # 七、符号
 

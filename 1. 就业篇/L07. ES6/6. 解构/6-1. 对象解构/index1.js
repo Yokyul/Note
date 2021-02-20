@@ -30,5 +30,5 @@ console.log(name, age, sex, address);
 // console.log(name, age, sex, address);
 
 // 4.先定义5个变量，然后从对象中读取同名属性，放到变量中。读取不到的使用默认值，如：abc = 123
-let { name, age, sex, address, abc = 123 } = user
-console.log(name, age, sex, address, abc);
+let { name, age, sex, address, abc = 123 } = user;
+console.log(name, age, sex, address, abc); //kevin 11 男 { province: '四川', city: '成都' } 123

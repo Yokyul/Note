@@ -12,4 +12,4 @@ const user = {
 // name: kevin
 // obj : {age:11, sex:"男", address:{...}}
 const { name, ...obj } = user;
-console.log(name, obj);
+console.log(name, obj); //kevin { age: 11, sex: '男', address: { province: '四川', city: '成都' } }

@@ -11,28 +11,28 @@
 <body>
     <div id="divButtons"></div>
     <script>
-        let a = 123;//全局作用域定义a
+        let a = 1;
 
-        //1. 问题3的解决：undefined, 全局变量不会挂载到全局对象上。
-        console.log(window.a);    
+        //1. 问题3的解决: 全局变量不会挂载到全局对象上。
+        console.log(window.a); //undefined
 
         //2. 问题1的解决：不允许重复的变量声明。会检查到当前作用域（全局作用域）已声明了变量a，然后报错。  
         // let a = 456;
 
-        //3. 块级作用域定义a，例1
+        //3.1 块级作用域定义a，例1
         {
             let a = 456; 
-            console.log(a); //使用的是块级作用域中的a
+            console.log(a); //456
         }
-        console.log(a);
-        //块级作用域，例2
+        console.log(a); //1
+
+        //3.2 块级作用域，例2
         if (Math.random() < 0.5) {
-            let a = 123; //定义在当前块级作用域
-            console.log(a); //当前块级作用域中的a
-        }
-        else {
-            //这是另外一个块级作用域，该作用域中找不到a
-            console.log(a);
+            let c = 123;
+            console.log(c); //123
+        } else {
+            //另外一个块级作用域
+            console.log(c); //报错：c is not defined
         }
 
         //4. 问题2的解决: 无闭包问题。

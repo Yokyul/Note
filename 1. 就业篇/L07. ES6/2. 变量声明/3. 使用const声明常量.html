@@ -10,22 +10,22 @@
 
 <body>
     <script>
-        const a = 1;
-        a = 1;
-        console.log(a);
+        // const a = 1;
+        // a = 1; //报错，不能重新赋值。
+        // console.log(a);
 
         const b = {
             name: "kevin",
             age: 123
         };
-        b.name = "abc";
+        b.name = "abc"; //内存空间中的地址可变。
         console.log(b);
 
         var obj = {
             name: "kevin",
             age: 1
         }
-        for (const prop in obj) {
+        for (const prop in obj) { //for in 循环中，循环变量可以是常量。
             console.log(prop);
         }
     </script>

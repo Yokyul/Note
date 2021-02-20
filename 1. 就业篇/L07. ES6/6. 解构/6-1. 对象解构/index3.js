@@ -8,9 +8,6 @@ const user = {
     }
 }
 
-
 //解构出user中的对象address的属性province
 const { address: { province } } = user;
-console.log(province);
-
-
+console.log(province); //四川

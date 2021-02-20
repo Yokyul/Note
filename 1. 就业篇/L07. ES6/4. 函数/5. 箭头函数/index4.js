@@ -1,16 +1,11 @@
-
 // 细节1
-const func = () => {
-    console.log(this)
-}
-
 const obj = {
-    method: function(){
+    method() {
         const func = () => {
-            console.log(this)
-            console.log(arguments)
+            console.log(this); //{ method: [Function: method] }
+            console.log(arguments); //[Arguments] { '0': 234 }
         }
-        func()
+        func();
     }
 }
 obj.method(234);

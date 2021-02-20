@@ -16,7 +16,7 @@
         function print() {
             console.log(a)
         }
-        //...假设这里有1000行代码
+        //...1000行代码
         var a = 2;
         print();
 
@@ -33,13 +33,13 @@
 
 
         // 问题2.2 变量提升：闭包问题
-        var div = document.getElementById("divButtons")
+        var div = document.getElementById("divButtons");
         for (var i = 1; i <= 10; i++) {
             var btn = document.createElement("button");
             btn.innerHTML = "按钮" + i;
             div.appendChild(btn);
             btn.onclick = function () {
-                console.log(i);     //输出11
+                console.log(i); //11
             }
         }
         // 循环结束后，i：11
@@ -47,9 +47,9 @@
 
         // 问题3. 全局变量会挂载到全局对象上，从而导致全局对象 window 的属性被污染。比如你声明一个变量console，会重写window里原来的console方法
         var abc = "123";
-        console.log(window.abc);
-        var console = "abc";
-        console.log(console);
+        console.log(window.abc); //"123"
+        var alert = "abc";
+        console.log(alert); //"abc"
 
     </script>
 </body>
