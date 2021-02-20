@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-
     <div class="nav-box">
       <div class="logo">渡一教育</div>
       <div class="nav-list">
@@ -18,12 +17,10 @@
 </template>
 
 <script>
-
 export default {
-  name: 'app',
-  components: {
-  },
-}
+  name: "app",
+  components: {},
+};
 </script>
 
 <style scoped>
@@ -32,7 +29,7 @@ export default {
   justify-content: space-between;
   height: 60px;
   line-height: 60px;
-  background-color: #3385ff
+  background-color: #3385ff;
 }
 
 .nav-box .logo {
