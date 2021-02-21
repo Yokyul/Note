@@ -14,7 +14,8 @@
 > 之后的课程会介绍如何解决
 
 5. **学习本课程需要的前置知识有哪些？**
-> HTML+CSS、JavaScript（ES 5）
+- HTML+CSS、
+- JavaScript（ES5）
 
 # 二、变量声明
 
