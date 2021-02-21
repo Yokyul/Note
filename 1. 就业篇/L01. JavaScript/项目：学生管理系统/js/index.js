@@ -1,5 +1,4 @@
-
-// 1.判断有没有登录
+//1.判断有没有登录
 var username = getCookie('username');
 if (username) {
     var user = document.getElementsByClassName('username')[0];
@@ -9,13 +8,24 @@ if (username) {
 }
 
 var studentList = document.querySelector('.menu dd[data-id="student-list"]')
-// 存放所有的学生数据
-var tableDate = []
+var tableDate = []; // 存放所有的学生数据
+
+//2.获取学生列表数据，渲染到页面
+transferDate('/api/student/findAll', {}, function (data) {
+    tableDate = data
+    renderTablle(data);
+});
 
 
-// 2.绑定事件。
+
+
+
+
+/**
+ * 绑定事件。
+ */
 function bindEvent() {
-    // 2.1 通过事件委托，给所有dd元素绑定事件, 从而切换menu
+    //通过事件委托，给所有dd元素绑定事件, 从而切换menu
     var menu = document.querySelector('.menu');
     menu.onclick = function (e) {
         var target = e.target;
@@ -41,7 +51,7 @@ function bindEvent() {
         }
     }
 
-    // 2.2 新增学生
+    //新增学生页面
     var studentAddBtn = document.getElementById('add-submit');
     studentAddBtn.onclick = function (e) {
         e.preventDefault();
@@ -53,11 +63,11 @@ function bindEvent() {
                 alert('新增成功')
                 getStuList()
                 studentList.click()
-            })
+            });
         }
     }
 
-    // 2.3 编辑、删除功能
+    //编辑、删除功能
     var tbody = document.getElementById('tbody')
     var modal = document.getElementsByClassName('modal')[0]
     tbody.onclick = function (e) {
@@ -83,7 +93,7 @@ function bindEvent() {
         }
     }
 
-    // 2.4 点击修改按钮
+    //点击修改按钮
     var studentEditBtn = document.getElementById('edit-submit')
     studentEditBtn.onclick = function (e) {
         e.preventDefault();
@@ -99,7 +109,7 @@ function bindEvent() {
         }
     }
 
-    // 2.5 点击空白，编辑页消失
+    //点击空白，编辑页消失
     var modalForm = document.getElementsByClassName('modal-form')[0]
     modal.onclick = function () {
         modal.style.display = 'none'
@@ -109,21 +119,30 @@ function bindEvent() {
     }
 
 }
-bindEvent()
+bindEvent();
 
-// 获取某一节点的所有兄弟节点(以数组形式返回)
+
+
+/**
+ * 获取某一节点的所有兄弟节点(以数组形式返回)
+ * @param {*} node 
+ */
 function getSiblings(node) {
     var parentNode = node.parentNode;
     var children = parentNode.children;
     var result = [];
     for (var i = 0; i < children.length; i++) {
         if (children[i] != node) {
-            result.push(children[i])
+            result.push(children[i]);
         }
     }
     return result;
 }
-// 获取 新增学生 页面的表单数据,以对象形式返回
+
+/**
+ * 获取新增学生页面的表单数据(以对象形式返回)
+ * @param {*} form 
+ */
 function getFormData(form) {
     var name = form.name.value;
     var sex = form.sex.value;
@@ -139,12 +158,12 @@ function getFormData(form) {
     // 学号 4-16位数字 
     if (!(/^\d{4,16}$/.test(number))) {
         alert('学号应为4-16位数字')
-        return false
+        return false;
     }
     // 出生年份 4位数字 1920-2020
     if (!(birth < 2020 && birth > 1920)) {
         alert('出生年份应为4位数字，且在1920-2020之间')
-        return false
+        return false;
     }
     return {
         name: name,
@@ -156,31 +175,25 @@ function getFormData(form) {
         address: address,
     }
 }
-// 编辑表单的数据回填
+
+/**
+ * 编辑表单的数据回填
+ * @param {*} data 
+ */
 function renderEditForm(data) {
-    var editForm = document.getElementById('edit-student-form')
+    var editForm = document.getElementById('edit-student-form');
     for (var prop in data) {
         if (editForm[prop]) {
-            editForm[prop].value = data[prop]
+            editForm[prop].value = data[prop];
         }
     }
 }
 
-
-
-// 3.获取学生列表数据，渲染到页面
-function getStuList() {
-    transferDate('/api/student/findAll', {}, function (data) {
-        tableDate = data
-        // console.log(tableDate)
-        renderTablle(data)
-    })
-}
-getStuList()
-
-// 渲染函数
+/**
+ * 渲染函数
+ * @param {*} data 
+ */
 function renderTablle(data) {
-    // console.log(data)
     var str = '';
     for (i = 0; i < data.length; i++) {
         str += `<tr>
@@ -197,14 +210,12 @@ function renderTablle(data) {
         </td>
     </tr> `
         var tBody = document.getElementById('tbody')
-        tBody.innerHTML = str
+        tBody.innerHTML = str;
     }
 }
 
-
-// 发送get网络请求
 /**
- * 
+ * 发送ajax网络请求
  * @param {str} url 
  * @param {obj} data 
  * @param {fun} cb 
@@ -216,10 +227,9 @@ function transferDate(url, data, cb) {
     }
     ajax("GET", 'http://open.duyiedu.com' + url, str, function (result) {
         if (result.status == 'success') {
-            cb(result.data)
+            cb(result.data);
         } else {
-            console.log("yu")
-            alert(result.msg)
+            alert(result.msg);
         }
     }, true)
 }

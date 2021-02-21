@@ -16,22 +16,22 @@ function getScrollOffset() {
 
 
 // 查看视口尺寸
-function getViewportOffset(){
+function getViewportOffset() {
     if (window.innerWidth) {
         return {
-            w : window.innerWidth,
-            h : window.innerHeight
+            w: window.innerWidth,
+            h: window.innerHeight
         }
-    }else{
+    } else {
         if (document.compatMode === "BackCompat") {
             return {
-                w : document.body.clientWidth,
-                h : document.body.clientHeight
+                w: document.body.clientWidth,
+                h: document.body.clientHeight
             }
-        }else{
+        } else {
             return {
-                w : document.documentElement.clientWidth,
-                h : document.documentElement.clientHeight
+                w: document.documentElement.clientWidth,
+                h: document.documentElement.clientHeight
             }
         }
     }
@@ -39,61 +39,61 @@ function getViewportOffset(){
 
 
 // 获取给定元素elem的prop属性值
-function getStyle(elem,prop){
-    if(window.getComputedStyle){
-        return window.getComputedStyle(elem,null)[prop];
-    }else{
+function getStyle(elem, prop) {
+    if (window.getComputedStyle) {
+        return window.getComputedStyle(elem, null)[prop];
+    } else {
         return elem.currentStyle[prop];
     }
 }
 
 // 取消事件绑定
-function removeEvent(ele,type,handle){
-    if(ele.removeEventListener){
-        ele.removeEventListener(type,handle,false);
-    }else{
-        ele.detachEvent('on'+type,handle)
+function removeEvent(ele, type, handle) {
+    if (ele.removeEventListener) {
+        ele.removeEventListener(type, handle, false);
+    } else {
+        ele.detachEvent('on' + type, handle)
     }
 }
 
 
 // 给一个DOM对象封装该事件类型的处理函数
-function addEvent(ele,type,handle){
-    if(ele.addEventListener){
-        ele.addEventListener(type,handle,false)
-    }else{
-        if(ele.attachEvent){
-            ele.attachEvent('on'+type,function(){
+function addEvent(ele, type, handle) {
+    if (ele.addEventListener) {
+        ele.addEventListener(type, handle, false)
+    } else {
+        if (ele.attachEvent) {
+            ele.attachEvent('on' + type, function () {
                 handle.call(ele);
             })
-        }else{
-            ele['on'+type] = handle;
+        } else {
+            ele['on' + type] = handle;
         }
     }
 }
 
 // 取消事件冒泡
-function stopBubble(event){
-    if(event.stopPropagation){
+function stopBubble(event) {
+    if (event.stopPropagation) {
         event.stopPropagation();
-    }else{
+    } else {
         event.cancelBubble = true;
     }
 }
 
 
 // 阻止默认事件
-function cancelHandler(event){
-    if(event.preventDefault){
+function cancelHandler(event) {
+    if (event.preventDefault) {
         event.preventDefault();
-    }else{
+    } else {
         event.returnValue = false;
     }
 }
 
 
 // 判断是否需要加载资源
-function loadScript(url,callback) {
+function loadScript(url, callback) {
     var script = document.createElement('script');
     script.type = "text/javascript";
 

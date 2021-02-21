@@ -13,12 +13,12 @@
     <script>
         async function getProvinces() {
             const url = "http://101.132.72.36:5100/api/local";
-            const resp = await fetch(url)
+            const resp = await fetch(url);
             const result = await resp.json();
-            console.log(result)
+            console.log(result);
         }
 
-        document.querySelector("button").onclick = function() {
+        document.querySelector("button").onclick = function () {
             getProvinces();
         }
     </script>

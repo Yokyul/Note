@@ -1,4 +1,3 @@
-
 /**
  * 
  * @param {String} method 请求方式
@@ -35,6 +34,4 @@ function ajax(method, url, data, cb, isAsync) {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send(data);
     }
-
-
 }

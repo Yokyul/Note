@@ -5,18 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>学生管理系统登录</title>
-    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 
 <body>
     <form action="#" id="login">
-        <h2>登录
-            <a href="./reister.html">注册</a>
-        </h2>
+        <h2>登录<a href="./reister.html">注册</a></h2>
         <div>
-            <label for="account">
-                账号:
-            </label>
+            <label for="account">账号:</label>
             <input type="text" id="account">
         </div>
         <div>
@@ -29,28 +25,35 @@
             <input class="btn" type="reset" value="重置">
         </div>
     </form>
+
     <script src="./js/cookie.js"></script>
     <script src="./js/ajax.js"></script>
+
     <script>
         var submitBtn = document.getElementById('submit-btn');
         var form = document.getElementById('login');
+
         // 将用户名存储在cookie里面 方便学生管理系统界面校验用户登录状态
-        setCookie('username', '', -1)
+        // 一开始默认 username 为空
+        setCookie('username', '', -1);
 
         submitBtn.onclick = function (e) {
+            // 阻止默认行为--form表单会默认刷新
             e.preventDefault();
+
+            // form表单里的数据可以通过 form.password.value 的形式获取。
+            // 其中 password 可以是 id值，也可以是 name值
             var password = form.password.value;
             var account = form.account.value;
             if (password && account) {
-                var data = 'appkey=Q_A_Q_1590927055348&account=' + account + '&password=' + password;
-                ajax('POST', 'http://open.duyiedu.com/api/student/stuLogin', data, function (result) {
-                    if (result.status == 'success') {
+                var data = 'appkey=yuyu_1590927966045&account=' + account + '&password=' + password;
+                ajax('POST', 'http://open.duyiedu.com/api/student/stuLogin', data, function (res) {
+                    console.log(res);
+                    if (res.status == 'success') {
                         setCookie('username', account)
-                        // 校验成功之后跳转页面
                         location.href = './index.html';
-                        
                     } else {
-                        alert(result.msg);
+                        alert(res.msg);
                     }
                 }, true);
             }
