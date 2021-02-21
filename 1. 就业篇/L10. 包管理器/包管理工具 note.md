@@ -1,25 +1,26 @@
-# 一、包管理工具概述
+# 1. 包管理工具概述
 
-> 本门课程的前置知识：JavaScript、ES6、模块化、git
-> 本门课程的所有代码均书写在 nodejs 环境中，不涉及浏览器环境
+> 本门课程的前置知识：JavaScript、ES6、模块化、git。
+> 本门课程的所有代码均书写在 nodejs 环境中，不涉及浏览器环境。
 
-## 概念
+## 1.1 概念
 
-**模块（module）**
+- 模块（module）
 
-通常以单个文件形式存在的功能片段，入口文件通常称之为**入口模块**或**主模块**
+通常以单个文件形式存在的功能片段，入口文件通常称之为**入口模块**或**主模块**。
 
-**库（library，简称lib）**
+- 库（library，简称lib）
 
-以一个或多个模块组成的完整功能块，为开发中某一方面的问题提供完整的解决方案
+以一个或多个模块组成的完整功能块，为开发中某一方面的问题提供完整的解决方案。
 
-**包（package）**
+- 包（package）
 
-包含元数据的库，这些元数据包括：名称、描述、git主页、许可证协议、作者、依赖等等
+包含元数据的库，这些元数据包括：名称、描述、git主页、许可证协议、作者、依赖等等。
 
-![](assets/2019-12-13-10-39-18.png)
 
-## 背景
+![以上三个概念相互的关系](assets/2019-12-13-10-39-18.png)
+
+## 1.2 背景
 
 CommonJS 的出现，使 node 环境下的 JS 代码可以用模块更加细粒度的划分。一个类、一个函数、一个对象、一个配置等等均可以作为模块，这种细粒度的划分，是开发大型应用的基石。
 
@@ -27,19 +28,22 @@ CommonJS 的出现，使 node 环境下的 JS 代码可以用模块更加细粒�
 
 然而，在下载使用这些第三方库的时候，遇到难以处理的问题：
 
-- **下载过程繁琐**
-  - 进入官网或 github 主页
-  - 找到并下载相应的版本
-  - 拷贝到工程的目录中
-  - 如果遇到有同名的库，需要更改名称
-- **如果该库需要依赖其他库，还需要按照要求先下载其他库**
-- **开发环境中安装的大量的库如何在生产环境中还原，又如何区分**
-- **更新一个库极度麻烦**
-- **自己开发的库，如何在下一次开发使用**
+1. **下载过程繁琐**
 
-**以上问题，就是包管理工具要解决的问题**
+- 进入官网或 github 主页
+- 找到并下载相应的版本
+- 拷贝到工程的目录中
+- 如果遇到有同名的库，需要更改名称
 
-## 前端包管理器
+2. 如果该库需要依赖其他库，还需要按照要求先下载其他库
+3. 开发环境中安装的大量的库如何在生产环境中还原，又如何区分？
+4. 更新一个库极度麻烦。
+5. 自己开发的库，如何在下一次开发使用？
+
+**以上问题，就是包管理工具要解决的问题。**
+
+
+## 1.3 前端包管理器
 
 > 本门课程讲解的包管理器
 > npm：重点
@@ -58,8 +62,8 @@ npm 由三部分组成：
 
 - registry：入口
   - 可以把它想象成一个庞大的数据库
-  - 第三方库的开发者，将自己的库按照 npm 的规范，打包上传到数据库中
-  - 使用者通过统一的地址下载第三方包
+  - 第三方库的开发者，将自己的库按照 npm 的规范，打包上传到数据库中。
+  - 使用者通过统一的地址下载第三方包。
 - 官网：https://www.npmjs.com/
   - 查询包
   - 注册、登录、管理个人信息
@@ -67,18 +71,20 @@ npm 由三部分组成：
   - 这一部分是本门课讲解的重点
   - 安装好 npm 后，通过 CLI 来使用 npm 的各种功能
 
-> node 和 npm 是互相成就的，node 的出现让 npm 火了，npm 的火爆带动了大量的第三方库的发展，很多优秀的第三方库打包上传到了 npm，这些第三方库又为 node 带来了大量的用户
+> node 和 npm 是互相成就的，node 的出现让 npm 火了，npm 的火爆带动了大量的第三方库的发展，很多优秀的第三方库打包上传到了 npm，这些第三方库又为 node 带来了大量的用户。
 
 
-# 二、npm
+# 2. npm
 
 ## 2.1 包的安装
 
-> 安装（install）即下载包
-> 由于 npm 的官方 registry 服务器位于国外，可能受网速影响导致下载缓慢或失败。因此，安装好 npm 之后，需要重新设置 registry 的地址为国内地址。目前，淘宝 https://registry.npm.taobao.org 提供了国内的 registry 地址，先设置到该地址。设置方式为```npm config set registry https://registry.npm.taobao.org```。设置好后，通过命令```npm config get registry```进行检查
+> 由于 npm 的官方 registry 服务器位于国外，可能受网速影响导致下载缓慢或失败。因此，安装好 npm 之后，需要重新设置 registry 的地址为国内地址。目前，淘宝 https://registry.npm.taobao.org 提供了国内的 registry 地址，先设置到该地址。
+> 设置方式为： `npm config set registry https://registry.npm.taobao.org`。设置好后，通过命令`npm config get registry` 进行检查。
+
 > ![](assets/2019-12-16-10-25-13.png)
 
 npm 安装一个包，分为两种安装方式：
+
 1. **本地安装**
 
 使用命令:
@@ -108,11 +114,12 @@ npm i -g 包名
 
 <font color="red">将某个包进行全局安装，不是因为所有工程都要用到它，而是为了给所有工程提供全局的 CLI 工具。</font>
 大部分情况下，都不需要全局安装包，除非同时满足以下三个条件：
-  - 包的版本非常稳定，很少有大的更新
-  - 提供的 CLI 工具在各个工程中使用的非常频繁
-  - CLI 工具仅为开发环境提供支持，而非生产环境
+  - 包的版本非常稳定，很少有大的更新。
+  - 提供的 CLI 工具在各个工程中使用的非常频繁。
+  - CLI 工具仅为开发环境提供支持，而非生产环境。
 
 3. **补充**
+
 以上两种安装都可以同时安装多个包。如：
 ```shell
 npm i jquery lodash
@@ -153,8 +160,6 @@ npm 将每个使用 npm 的工程本身都看作是一个包，包的信息需�
 - keywords: 搜索关键字，发布包后，可以通过该数组中的关键字搜索到包
 
 > <font color="red">使用 `npm init --yes` 或 `npm init -y` 可以在生成配置文件时自动填充默认配置。</font>
-
-
 
 
 2. **配置文件最重要的作用：记录当前工程的依赖关系**
@@ -499,7 +504,7 @@ npm config delete 配置项
 
 > yarn 官网：https://www.yarnpkg.com/zh-Hans/
 
-yarn 是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具，**它仍然使用 npm 的registry**，不过提供了全新 CLI 来对包进行管理
+yarn 是由 Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具，**它仍然使用 npm 的registry**，不过提供了全新 CLI 来对包进行管理。
 
 过去，yarn 的出现极大的抢夺了 npm 的市场，甚至有人戏言，npm 只剩下一个 registry 了。
 
@@ -547,80 +552,95 @@ npm6 之后，可以说npm已经和yarn非常接近，甚至没有差距了。�
 
 1. **初始化**
 
-初始化：```yarn init [--yes/-y]```
+```shell
+yarn init [--yes/-y]
+```
 
 2. **安装**
 
-添加指定包：```yarn [global] add package-name [--dev/-D] [--exact/-E]```
+```shell
+# 添加指定包
+yarn [global] add package-name [--dev/-D] [--exact/-E]
 
-安装package.json中的所有依赖：```yarn install [--production/--prod]```
+# 安装package.json中的所有依赖
+yarn install [--production/--prod]
+```
 
 3. **脚本和本地CLI**
 
-运行脚本：```yarn run 脚本名``` 
+```shell
+# 运行脚本。start、stop、test可以省略run
+yarn run 脚本名
 
-> start、stop、test可以省略run
-
-运行本地安装的CLI：```yarn run CLI名```
+# 运行本地安装的CLI
+yarn run CLI名
+```
 
 4. **查询**
 
-查看bin目录：```yarn [global] bin```
+```shell
+# 查看bin目录
+yarn [global] bin
 
-查询包信息：```yarn info 包名 [子字段]```
+# 查询包信息
+yarn info 包名 [子字段]
 
-列举已安装的依赖：```yarn [global] list [--depth=依赖深度]```
+# 列举已安装的依赖。注意：yarn的list命令和npm的不同。yarn输出的信息更加丰富，包括顶级目录结构、每个包的依赖版本号。
+yarn [global] list [--depth=依赖深度]
+```
 
-> yarn的list命令和npm的list不同，yarn输出的信息更加丰富，包括顶级目录结构、每个包的依赖版本号
+> 
 
 5. **更新**
 
-列举需要更新的包：```yarn outdated```
+```shell
+# 列举需要更新的包
+yarn outdated
 
-更新包：```yarn [global] upgrade [包名]```
+# 更新包
+yarn [global] upgrade [包名]
+```
 
 6. **卸载**
 
-卸载包：```yarn remove 包名```
 
-## 3.3 yarn 的特别礼物
+```shell
+# 卸载包
+yarn remove 包名
+```
 
-在终端命令上，yarn不仅仅是对npm的命令做了一个改名，还增加了一些原本没有的命令，这些命令在某些时候使用起来非常方便
+## 3.3 yarn 的特有命令
 
-1. **yarn check**
+在终端命令上，yarn不仅仅是对npm的命令做了一个改名，还增加了一些原本没有的命令，这些命令在某些时候使用起来非常方便。
 
-使用```yarn check```命令，可以验证package.json文件的依赖记录和lock文件是否一致
+```shell
+# 验证package.json文件的依赖记录和lock文件是否一致。这对于防止篡改非常有用。
+yarn check
 
-这对于防止篡改非常有用
+# 检查本地安装的包有哪些已知漏洞，以表格的形式列出。漏洞级别分为以下几种：
+# - INFO：信息级别
+# - LOW: 低级别
+# - MODERATE：中级别
+# - HIGH：高级别
+# - CRITICAL：关键级别
+yarn audit
 
-2. **yarn audit**
+# 在控制台打印出为什么安装了这个包，哪些包会用到它。
+yarn why
 
-使用```yarn audit```命令，可以检查本地安装的包有哪些已知漏洞，以表格的形式列出，漏洞级别分为以下几种：
+# 一步完成安装和搭建脚手架。
+yarn create <脚手架名> <项目名>
+```
 
-- INFO：信息级别
-- LOW: 低级别
-- MODERATE：中级别
-- HIGH：高级别
-- CRITICAL：关键级别
+- **对 `yarn create` 的补充说明**
 
-3. **yarn why**
-
-使用```yarn why 包名```命令，可以在控制台打印出为什么安装了这个包，哪些包会用到它
-
-4. **yarn create**
-
-非常有趣的命令
-
-今后，我们会学习一些脚手架，所谓脚手架，就是使用一个命令来搭建一个工程结构
+所谓脚手架，就是使用一个命令来搭建一个工程结构。
 
 过去，我们都是使用如下的做法：
-
 1) 全局安装脚手架工具
 2) 使用全局命令搭建脚手架
 
-由于大部分脚手架工具都是以```create-xxx```的方式命名的，比如react的官方脚手架名称为```create-react-app```
-
-因此，可以使用```yarn create```命令来一步完成安装和搭建
+由于大部分脚手架工具都是以`create-xxx`的方式命名的，比如react的官方脚手架名称为`create-react-app`。因此，可以使用`yarn create`命令来一步完成安装和搭建。
 
 例如：
 
@@ -634,6 +654,7 @@ create-react-app my-app
 # 四、其他包管理器
 
 ## 4.1 cnpm
+
 > 官网地址：https://npm.taobao.org/
 
 为解决国内用户连接npm registry缓慢的问题，淘宝搭建了自己的registry，即淘宝npm镜像源

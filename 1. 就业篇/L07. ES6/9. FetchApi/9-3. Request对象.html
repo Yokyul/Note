@@ -10,8 +10,12 @@
 
 <body>
     <button>得到所有的省份数据</button>
+
     <script>
         let req;
+        document.querySelector("button").onclick = function () {
+            getProvinces();
+        }
 
         function getRequestInfo() {
             if (!req) {
@@ -23,14 +27,12 @@
         }
 
         async function getProvinces() {
-            const resp = await fetch(getRequestInfo())
+            const resp = await fetch(getRequestInfo());
             const result = await resp.json();
-            console.log(result)
+            console.log(result);
         }
 
-        document.querySelector("button").onclick = function () {
-            getProvinces();
-        }
+     
     </script>
 </body>
 

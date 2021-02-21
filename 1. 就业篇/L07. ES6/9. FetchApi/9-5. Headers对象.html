@@ -10,8 +10,12 @@
 
 <body>
     <button>得到所有的省份数据</button>
+
     <script>
         let req;
+        document.querySelector("button").onclick = function() {
+            getProvinces();
+        }
 
         function getCommonHeaders() {
             return new Headers({
@@ -50,10 +54,6 @@
         async function getJSON(resp) {
             const json = await resp.json();
             return json;
-        }
-
-        document.querySelector("button").onclick = function() {
-            getProvinces();
         }
     </script>
 </body>
