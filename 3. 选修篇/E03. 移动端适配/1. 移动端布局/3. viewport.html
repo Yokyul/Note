@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta 
+        name="viewport" 
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    >
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            width: 740px;
+            /* width: 365px; */
+            border: 5px solid #f00;
+            height: 100px;
+            background: green;
+        }
+
+        p {
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        viewport：视口（可视区窗口），通过meta标签设置。它决定了移动端页面是否正确显示。
+
+            1.未设置viewport：
+                - 屏幕(视口)的宽度默认为 980px，但不同的型号也会不同。
+                - 用document.documentElement.clientWidth方法获取
+
+                比如：在iPhone6 中，我们设置div 宽750px。此时的缩放比 = 设备像素 / css像素。即750/980=0.77
+                要知道，从普通屏转到高清屏，如果还保持 DPR=1 的话，图片就会缩小为 1/4，会看不清。更何况是DPR=0.77
+             
+=====================================================================================================================
+
+            2.设置了viewport，视口里的相关设置写在 content 里。
+                - width			视口的宽度，值为一个正整数，或字符串device-width（指设备的实际宽度，即css像素）。不建议设置数字（安卓设备有些不支持）
+                - height		视口的高度（与width一致），但我们一般不设置，毕竟有滚动条。
+                - user-scalable	是否允许用户或者浏览器进行页面缩放，值为no或yes，代表不允许与允许。不设置的话浏览器会自动缩放，它会尽可能的将页面内容都展示在视口。
+                - initial-scale	页面初始缩放值，值为一个数字（可以带小数）。
+                    注意：
+                        1.(initial-scale = 1) <==> (width=device-width)
+                        2.如果width 与 initial-scale 都设置了且值不等，那么就取大的值。
+
+                - minimum-scale	页面最小能够缩放的比例，值为一个数字（可以带小数）。
+                - maximum-scale	页面最大能够缩放的比例，值为一个数字（可以带小数）。
+
+=====================================================================================================================
+                    
+            3.注意：
+                1. 有的时候大家会见到同时写了不允许缩放，又写了最小与最大能够缩放的比例，那这样不是冲突了，为什么都已经写了不允许缩放了，还要写那些？
+                因为：这样做可以避免一些bug，具体如下：
+                    - 会有一些第三方的工具能够破坏 user-scalable。比方说一些给父母的手机把文字放大的工具，就会有可能。不过一般是没有问题的
+                    - 像iphone5下还会有黑边
+
+                2. ios10 不支持 user-scalable=no，后面事件解决（阻止document的touchstart的默认行为）
+
+                3. 两个重要公式：
+                    (initial-scale有值的情况下)
+                    - 缩放比 = css像素 / viewport宽度
+                    - viewport宽度 = css像素 / 缩放比
+
+                4. 实际开发过程中，标准的viewport 就是如下写法：
+                <meta 
+                    name="viewport" 
+                    content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+                >
+	 -->
+
+    <div></div>
+    <p>陈学辉</p>
+</body>
+
+</html>
