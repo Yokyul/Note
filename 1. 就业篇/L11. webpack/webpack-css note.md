@@ -1,6 +1,6 @@
 # 一、css工程化概述
 
-## 1.1 css的问题
+## 1.1 css 的问题
 
 1. **类名冲突的问题**
 
@@ -31,40 +31,34 @@
 
 在大型项目中，css也需要更细的拆分，这样有利于css代码的维护。
 
-比如，有一个做轮播图的模块，它不仅需要依赖js功能，还需要依赖css样式，既然依赖的js功能仅关心轮播图，那css样式也应该仅关心轮播图，由此类推，不同的功能依赖不同的css样式、公共样式可以单独抽离，这样就形成了不同于过去的css文件结构：文件更多、拆分的更细
+比如，有一个做轮播图的模块，它不仅需要依赖js功能，还需要依赖css样式，既然依赖的js功能仅关心轮播图，那css样式也应该仅关心轮播图，由此类推，不同的功能依赖不同的css样式、公共样式可以单独抽离，这样就形成了不同于过去的css文件结构：文件更多、拆分的更细。
 
-而同时，在真实的运行环境下，我们却希望文件越少越好，这种情况和JS遇到的情况是一致的
+而同时，在真实的运行环境下，我们却希望文件越少越好，这种情况和JS遇到的情况是一致的。因此，对于css，也需要工程化管理。
 
-因此，对于css，也需要工程化管理
+从另一个角度来说，css的工程化会遇到更多的挑战，因为css不像JS，它的语法本身经过这么多年并没有发生多少的变化（css3也仅仅是多了一些属性而已），对于css语法本身的改变也是一个工程化的课题。
 
-从另一个角度来说，css的工程化会遇到更多的挑战，因为css不像JS，它的语法本身经过这么多年并没有发生多少的变化（css3也仅仅是多了一些属性而已），对于css语法本身的改变也是一个工程化的课题
+## 1.2 如何解决
 
-## 1.2如何解决
-
-这么多年来，官方一直没有提出方案来解决上述问题
-
-一些第三方机构针对不同的问题，提出了自己的解决方案
+> 这么多年来，官方一直没有提出方案来解决上述问题。一些第三方机构针对不同的问题，提出了自己的解决方案。
 
 1. **解决类名冲突**
 
-一些第三方机构提出了一些方案来解决该问题，常见的解决方案如下：
+常见解决方案如下：
 
-**命名约定**
+(1) **命名约定**
 
-即提供一种命名的标准，来解决冲突，常见的标准有：
+即提供一种命名的标准，来解决冲突。常见的标准有：
+- `BEM`
+- `OOCSS`
+- `AMCSS`
+- `SMACSS`
+- `...`
 
-- BEM
-- OOCSS
-- AMCSS
-- SMACSS
-- 其他
+(2) **css in js**
 
-**css in js**
-
-这种方案非常大胆，它觉得，css语言本身几乎无可救药了，干脆直接用js对象来表示样式，然后把样式直接应用到元素的style中
+这种方案非常大胆，它觉得 css 语言本身几乎无可救药了，干脆直接用js对象来表示样式，然后把样式直接应用到元素的style中。
 
 这样一来，css变成了一个一个的对象，就可以完全利用到js语言的优势，你可以：
-
 - 通过一个函数返回一个样式对象
 - 把公共的样式提取到公共模块中返回
 - 应用js的各种特性操作对象，比如：混合、提取、拆分
@@ -72,11 +66,10 @@
 
 > 这种方案在手机端的React Native中大行其道
 
-**css module**
+(3) **css module**
 
-非常有趣和好用的css模块化方案，编写简单，绝对不重名
-
-具体的课程中详细介绍
+非常有趣和好用的css模块化方案，编写简单，绝对不重名。
+具体的课程中详细介绍。
 
 2. **解决重复样式的问题**
 
@@ -97,28 +90,20 @@
 
 3. **解决css文件细分问题**
 
-这一部分，就要依靠构建工具，例如webpack来解决了
-
-利用一些loader或plugin来打包、合并、压缩css文件
+这一部分，就要依靠构建工具(如：webpack)来解决了。利用一些 `loader` 或 `plugin` 来打包、合并、压缩css文件。
 
 
+# 二、利用 webpack 拆分 css
 
+要拆分css，就必须把css当成像js那样的模块；要把css当成模块，就必须有一个构建工具（webpack），它具备合并代码的能力。
 
-# 二、利用webpack拆分css
-
-要拆分css，就必须把css当成像js那样的模块；要把css当成模块，就必须有一个构建工具（webpack），它具备合并代码的能力
-
-而webpack本身只能读取css文件的内容、将其当作JS代码进行分析，因此，会导致错误。
-
-于是，就必须有一个loader，能够将css代码转换为js代码。
+而webpack本身只能读取css文件的内容、将其当作JS代码进行分析，因此会导致错误。于是，就必须有一个 `loader`，能够将css代码转换为js代码。
 
 ## 2.1 css-loader
 
-css-loader的作用，就是将css代码转换为js代码
+`css-loader` 的作用：将css代码转换为js代码。它的处理原理极其简单：将css代码作为字符串导出。
 
-它的处理原理极其简单：将css代码作为字符串导出
-
-**例1：**
+1. **仅css代码**
 
 ```css
 .red{
@@ -126,17 +111,18 @@ css-loader的作用，就是将css代码转换为js代码
 }
 ```
 
-经过css-loader转换后变成js代码：
+经过 `css-loader` 转换后变成js代码：
 
 ```js
 module.exports = `.red{
     color:"#f40";
 }`
+
+// 上面的js代码是简化后的，不代表真实的css-loader的转换后代码。
+// css-loader转换后的代码会有些复杂，同时会导出更多的信息，但核心思想不变。
 ```
 
-> 上面的js代码是经过我简化后的，不代表真实的css-loader的转换后代码，css-loader转换后的代码会有些复杂，同时会导出更多的信息，但核心思想不变
-
-**例2：css代码依赖其他非css文件**
+2. **css代码依赖其他非css文件**
 
 ```css
 .red{
@@ -145,7 +131,7 @@ module.exports = `.red{
 }
 ```
 
-经过css-loader转换后变成js代码：
+经过 `css-loader` 转换后变成js代码：
 
 ```js
 var import1 = require("./bg.png");
@@ -155,7 +141,7 @@ module.exports = `.red{
 }`;
 ```
 
-这样一来，经过webpack的后续处理，会把依赖```./bg.png```添加到模块列表，然后再将代码转换为：
+这样一来，经过webpack的后续处理，会把依赖`./bg.png`添加到模块列表，然后再将代码转换为：
 
 ```js
 var import1 = __webpack_require__("./src/bg.png");
@@ -164,12 +150,10 @@ module.exports = `.red{
     background:url("${import1}")
 }`;
 ```
-由于webpack打包时无法识别js文件以外的文件，所以需要使用```file-loader```或者```url-loader```将png文件转化为js文件。
+由于webpack打包时无法识别js文件以外的文件，所以需要使用 `file-loader` 或者 `url-loader` 将png文件转化为js文件。
 
 
-
-
-**例3：css代码依赖其他css文件。**
+3. **css代码依赖其他css文件**
 
 ```css
 @import "./reset.css";
@@ -191,16 +175,16 @@ module.exports = `${import1}
 }`;
 ```
 
-总结，css-loader干了什么：
+4. **总结：css-loader做了什么？**
 
-1. 将css文件的内容作为字符串导出
-2. 将css中的其他依赖作为require导入，以便webpack分析依赖
+- 将css文件的内容作为字符串导出。
+- 将css中的其他依赖作为require导入，以便webpack分析依赖。
 
 ## 2.2 style-loader
 
-由于css-loader仅提供了将css转换为字符串导出的能力，剩余的事情要交给其他loader或plugin来处理
+`css-loader` 仅提供了将css转换为字符串导出的能力，剩余的事情要交给其他loader或plugin来处理。
 
-style-loader可以将css-loader转换后的代码进一步处理，将css-loader导出的字符串加入到页面的style元素中
+`style-loader` 可以将css-loader转换后的代码进一步处理，将 `css-loader` 导出的字符串加入到页面的style元素中。
 
 例如：
 
@@ -210,7 +194,7 @@ style-loader可以将css-loader转换后的代码进一步处理，将css-loader
 }
 ```
 
-经过css-loader转换后变成js代码：
+经过 `css-loader` 转换后变成js代码：
 
 ```js
 module.exports = `.red{
@@ -218,7 +202,7 @@ module.exports = `.red{
 }`
 ```
 
-经过style-loader转换后变成：
+经过 `style-loader` 转换后变成：
 
 ```js
 module.exports = `.red{
@@ -229,10 +213,10 @@ var styleElem = document.createElement("style");
 styleElem.innerHTML = style;
 document.head.appendChild(styleElem);
 module.exports = {}
-```
 
-> 以上代码均为简化后的代码，并不代表真实的代码
-> style-loader有能力避免同一个样式的重复导入，因为有模块记录。
+// 以上代码均为简化后的代码，并不代表真实的代码。
+// 同时 `style-loader` 有能力避免同一个样式的重复导入，因为有模块记录。
+```
 
 
 
@@ -240,13 +224,9 @@ module.exports = {}
 
 ## 3.1 BEM
 
-BEM是一套针对css类样式的命名规范。
+BEM是一套针对css类样式的命名规范。全称：`Block Element Modifier`。
 
-> 其他命名方法还有：OOCSS、AMCSS、SMACSS等等
-
-BEM全称是：**B**lock **E**lement **M**odifier
-
-一个完整的BEM类名：block__element_modifier，例如：```banner__dot_selected```，可以表示：轮播图中，处于选中状态的小圆点
+一个完整的BEM类名：block__element_modifier。例如：`banner__dot_selected`，可以表示：轮播图中，处于选中状态的小圆点。
 
 ![](assets/2020-01-31-09-53-31.png)
 
@@ -258,10 +238,10 @@ BEM全称是：**B**lock **E**lement **M**odifier
 
 在某些大型工程中，如果使用BEM命名法，还可能会增加一个前缀，来表示类名的用途，常见的前缀有：
 
-- **l**: layout，表示这个样式是用于布局的
-- **c**: component，表示这个样式是一个组件，即一个功能区域
-- **u**: util，表示这个样式是一个通用的、工具性质的样式
-- **j**: javascript，表示这个样式没有实际意义，是专门提供给js获取元素使用的。
+- `l`: layout，表示这个样式是用于布局的
+- `c`: component，表示这个样式是一个组件，即一个功能区域
+- `u`: util，表示这个样式是一个通用的、工具性质的样式
+- `j`: javascript，表示这个样式没有实际意义，是专门提供给js获取元素使用的。
 
 
 
@@ -302,23 +282,22 @@ const styles = {
 ## 3.3 css module
 
 > 通过命名规范来限制类名太过死板，而css in js虽然足够灵活，但是书写不便。
-> css module 开辟一种全新的思路来解决类名冲突的问题
+> css module 开辟一种全新的思路来解决类名冲突的问题。
 
 1. **思路**
 
 css module 遵循以下思路解决类名冲突问题：
-
-- css的类名冲突往往发生在大型项目中
-- 大型项目往往会使用构建工具（webpack等）搭建工程
-- 构建工具允许将css样式切分为更加精细的模块
-- 同JS的变量一样，每个css模块文件中难以出现冲突的类名，冲突的类名往往发生在不同的css模块文件中
-- 只需要保证构建工具在合并样式代码后不会出现类名冲突即可
+- css的类名冲突往往发生在大型项目中。
+- 大型项目往往会使用构建工具（webpack等）搭建工程。
+- 构建工具允许将css样式切分为更加精细的模块。
+- 同JS的变量一样，每个css模块文件中难以出现冲突的类名，冲突的类名往往发生在不同的css模块文件中。
+- 只需要保证构建工具在合并样式代码后不会出现类名冲突即可。
 
 ![](assets/2020-01-31-13-54-37.png)
 
 2. **实现原理**
 
-在webpack中，作为处理css的css-loader，它实现了css module的思想，要启用css module，需要将css-loader的配置 `modules` 设置为 `true` 。
+在webpack中，作为处理css的 `css-loader`，它实现了css module的思想，要启用css module，需要将css-loader的配置 `modules` 设置为 `true` 。
 
 css-loader的实现方式如下：
 
@@ -384,23 +363,21 @@ style-loader为了我们更加方便的应用类名，会去除掉其他信息�
 
 ## 4.1 CSS预编译器
 
-1. **基本原理**
-
 编写css时，受限于css语言本身，常常难以处理一些问题：
-
 - 重复的样式值：例如常用颜色、常用尺寸
 - 重复的代码段：例如绝对定位居中、清除浮动
 - 重复的嵌套书写
 
-由于官方迟迟不对css语言本身做出改进，一些第三方机构开始想办法来解决这些问题
+由于官方迟迟不对css语言本身做出改进，一些第三方机构开始想办法来解决这些问题。其中一种方案，便是预编译器。
 
-其中一种方案，便是预编译器
+1. **基本原理**
 
-预编译器的原理很简单，即使用一种更加优雅的方式来书写样式代码，通过一个编译器，将其转换为可被浏览器识别的传统css代码
+预编译器的原理：首先使用一种更加优雅的方式来书写样式代码，然后通过一个编译器将其转换为可被浏览器识别的传统css代码。
 
 ![](assets/2020-02-03-11-48-45.png)
 
-目前，最流行的预编译器有**LESS**和**SASS**，由于它们两者特别相似，因此仅学习一种即可（本课程学习LESS）
+目前，最流行的预编译器有**LESS**和**SASS**。
+由于它们两者特别相似，因此仅学习一种即可（本课程学习LESS）
 
 ![](assets/2020-02-03-11-50-05.png)
 
@@ -413,24 +390,23 @@ style-loader为了我们更加方便的应用类名，会去除掉其他信息�
 
 2. **LESS的安装和使用**
 
-从原理可知，要使用LESS，必须要安装LESS编译器
+- 安装LESS编译器
 
-LESS编译器是基于node开发的，可以通过npm下载安装
-
+从原理可知，要使用LESS，必须要安装LESS编译器。它是基于node开发的，可以通过npm下载安装。
 ```shell
 npm i -D less
 ```
 
-安装好了less之后，它提供了一个CLI工具`lessc`，通过该工具即可完成编译
+- 使用 `lessc` 编译
 
+less提供了一个CLI工具`lessc`，通过该工具即可完成编译。
 ```shell
 lessc less代码文件 编译后的文件
 ```
 
-试一试:
+- 示例
 
-新建一个`index.less`文件，编写内容如下：
-
+新建一个`index.less`文件。
 ```less
 // less代码
 @red: #f40;
@@ -932,28 +908,28 @@ body {
 
 # 五、抽离css文件
 
-目前，css代码被css-loader转换后，交给的是style-loader进行处理。
+目前，css代码被 `css-loader` 转换后，交给的是 `style-loader` 进行处理。
 
-style-loader使用的方式是用一段js代码，将样式加入到style元素中。
+`style-loader` 使用的方式是用一段js代码，将样式加入到style元素中。而实际的开发中，我们往往希望依赖的样式最终形成一个css文件，可以通过 `mini-css-extract-plugin` 库实现。
 
-而实际的开发中，我们往往希望依赖的样式最终形成一个css文件
 
-此时，就需要用到一个库： `mini-css-extract-plugin` 
+## 5.1 mini-css-extract-plugin
 
-该库提供了1个plugin和1个loader
+1. **该库提供了1个plugin和1个loader**
 
-- plugin：负责生成css文件
-- loader：负责记录要生成的css文件的内容，同时导出开启css-module后的样式对象
+- `plugin`：负责生成css文件
+- `loader`：负责记录要生成的css文件的内容，同时导出开启css-module后的样式对象。
 
-使用方式：
+2. **使用方式**
 
 ```js
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader?modules"]
+                test: /\.css$/, 
+                use: [MiniCssExtractPlugin.loader, "css-loader?modules"]
             }
         ]
     },
@@ -963,10 +939,10 @@ module.exports = {
 }
 ```
 
-**配置生成的文件名**
+3. **配置生成的文件名**
 
-同`output.filename`的含义一样，即根据chunk生成的样式文件名
+同`output.filename`的含义一样，即根据chunk生成的样式文件名。
 
-配置生成的文件名，例如`[name].[contenthash:5].css`
+配置生成的文件名，例如`[name].[contenthash:5].css`。
 
-默认情况下，每个chunk对应一个css文件
+默认情况下，每个chunk对应一个css文件。

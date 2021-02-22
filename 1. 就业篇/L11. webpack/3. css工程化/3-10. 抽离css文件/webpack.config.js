@@ -1,6 +1,6 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-var { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+var { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     mode: "development",
@@ -15,10 +15,12 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/, use: [MiniCssExtractPlugin.loader, "css-loader?modules"]
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, "css-loader?modules"]
             },
             {
-                test: /\.jpg$/, use: {
+                test: /\.jpg$/,
+                use: {
                     loader: "file-loader",
                     options: {
                         name: "img/[hash:5].[ext]"

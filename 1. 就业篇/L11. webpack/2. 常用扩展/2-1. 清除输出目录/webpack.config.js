@@ -1,4 +1,4 @@
-var { CleanWebpackPlugin } = require("clean-webpack-plugin")
+var { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     mode: "development",
@@ -7,6 +7,6 @@ module.exports = {
         filename: "[name].[chunkhash:5].js"
     },
     plugins: [
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
     ]
 }
