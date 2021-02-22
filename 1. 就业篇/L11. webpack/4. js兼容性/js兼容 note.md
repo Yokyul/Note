@@ -1,4 +1,4 @@
-## babel的安装和使用
+## 1. babel 的安装和使用
 
 > 官网：https://babeljs.io/
 > 民间中文网：https://www.babeljs.cn/
@@ -9,7 +9,7 @@ babel一词来自于希伯来语，直译为巴别塔。巴别塔象征着统一
 
 ![](assets/2020-02-07-10-12-01.png)
 
-而今天的JS世界缺少一座巴别塔，不同版本的浏览器能识别的ES标准并不相同，就导致了开发者面对不同版本的浏览器要使用不同的语言，和古巴比伦一样，前端开发也面临着这样的困境。
+而今天的JS世界缺少一座巴别塔，不同版本的浏览器能识别的ES标准并不相同，就导致了开发者面对不同版本的浏览器要使用不同的语言。和古巴比伦一样，前端开发也面临着这样的困境。
 
 `babel` 的出现，就是用于解决这样的问题。它是一个编译器，可以把不同标准书写的语言，编译为统一的、能被各种浏览器识别的语言。
 
@@ -19,21 +19,20 @@ babel一词来自于希伯来语，直译为巴别塔。巴别塔象征着统一
 
 ![](assets/2020-02-07-10-27-30.png)
 
-2. **babel的安装**
+2. **babel 的安装**
 
-babel可以和构建工具联合使用，也可以独立使用。
+babel 可以和构建工具联合使用，也可以独立使用。
 
 如果要独立的使用babel，需要安装下面两个库：
-- @babel/core：babel核心库，提供了编译所需的所有api
-- @babel/cli：提供一个命令行工具，调用核心库的api完成编译
+- @babel/core：babel核心库，提供了编译所需的所有 API。
+- @babel/cli：提供一个命令行工具，调用核心库的 API 完成编译。
 
 ```shell
 npm i -D @babel/core @babel/cli
 ```
 
-3. **babel的使用**
+3. **babel 的命令行使用**
 
-@babel/cli的使用极其简单，使用命令：
 ```shell
 # 按文件编译
 babel 要编译的文件 -o 编辑结果文件
@@ -42,11 +41,11 @@ babel 要编译的文件 -o 编辑结果文件
 babel 要编译的整个目录 -d 编译结果放置的目录
 ```
 
-4. **babel的配置**
+4. **babel 的配置**
 
-可以看到，babel本身没有做任何事情，真正的编译要依托于<font color="red">babel插件</font>和<font color="red">babel预设</font>来完成。
+可以看到，babel本身没有做任何事情，真正的编译要依托于 <font color="red">babel 插件</font> 和 <font color="red">babel 预设</font> 来完成。
 
-> babel预设和postcss预设含义一样，是多个插件的集合体，用于解决一系列常见的兼容问题
+> babel 预设和 postcss 预设含义一样，是多个插件的集合体，用于解决一系列常见的兼容问题
 
 如何告诉babel要使用哪些插件或预设呢？需要通过一个配置文件 `.babelrc` 。
 
@@ -58,11 +57,9 @@ babel 要编译的整个目录 -d 编译结果放置的目录
 ```
 
 
-## babel预设
+## 2. babel 预设
 
-babel有多种预设，最常见的预设是：`@babel/preset-env` 。
-
-`@babel/preset-env` 可以让你使用最新的JS语法，而无需针对每种语法转换设置具体的插件。
+babel有多种预设，最常见的预设是：`@babel/preset-env` 。它可以让你使用最新的JS语法，而无需针对每种语法转换设置具体的插件。
 
 1. **配置**
 
@@ -76,7 +73,7 @@ babel有多种预设，最常见的预设是：`@babel/preset-env` 。
 
 2. **兼容的浏览器**
 
-`@babel/preset-env` 需要根据兼容的浏览器范围来确定如何编译。和postcss一样，可以使用文件 `.browserslistrc` 来描述浏览器的兼容范围。
+`@babel/preset-env` 需要根据兼容的浏览器范围来确定如何编译。和 postcss 一样，可以使用文件 `.browserslistrc` 来描述浏览器的兼容范围。
 
 ```
 last 3 version
