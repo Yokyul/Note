@@ -6,8 +6,8 @@ func();
 
 new Promise(resolve => {
     resolve();
-})
+});
 
-async function method(){
-    
+async function method() {
+
 }
