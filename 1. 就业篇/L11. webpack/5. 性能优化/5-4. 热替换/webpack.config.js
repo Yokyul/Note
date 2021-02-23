@@ -7,9 +7,9 @@ module.exports = {
     open: true,
     hot: true
   },
-  module:{
-    rules:[
-      {test:/\.css$/, use:["style-loader", "css-loader"]}
+  module: {
+    rules: [
+      { test: /\.css$/, use: ["style-loader", "css-loader"] }
     ]
   },
   plugins: [
