@@ -7,7 +7,7 @@
 */
 
 (function (modules) {
-    var moduleExports = {};                                 // 用于缓存模块的导出结果
+    var moduleExports = {}; //用于缓存模块的导出结果
     /*
         最终缓存对象的结果：
         moduleExports = {
@@ -19,22 +19,22 @@
     // __webpack_require函数相当于是运行一个模块，得到模块导出结果。
     // 参数：moduleId，即模块的路径。
     function __webpack_require(moduleId) { 
-        if (moduleExports[moduleId]) {                      // 检查是否有缓存
+        if (moduleExports[moduleId]) { //检查是否有缓存
             return moduleExports[moduleId];
         }
 
-        var func = modules[moduleId];                       // 得到该模块对应的函数
+        var func = modules[moduleId]; //得到该模块对应的函数
         var module = {
             exports: {}
         }
-        func(module, module.exports, __webpack_require);    // 运行模块
-        var result = module.exports;                        // 得到模块导出的结果
-        moduleExports[moduleId] = result;                   // 将结果缓存起来
+        func(module, module.exports, __webpack_require); //运行模块
+        var result = module.exports; //得到模块导出的结果
+        moduleExports[moduleId] = result; //将结果缓存起来
         return result;
     }
 
     // 执行入口模块
-    return __webpack_require("./src/index.js");             // __webpack_require函数相当于是运行一个模块，得到模块导出结果
+    return __webpack_require("./src/index.js"); //__webpack_require函数相当于是运行一个模块，得到模块导出结果
 
 })(
     // 该对象保存了所有的模块，以及模块对应的代码
@@ -50,6 +50,3 @@
         }
     }
 );
-
-
-
