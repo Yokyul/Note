@@ -1,3 +1,3 @@
 import "./c"
 
-console.log("module b")
+console.log("module b");

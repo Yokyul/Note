@@ -1,2 +1,3 @@
-require("./a")
+require("./a");
+
 console.log("hello webpack");

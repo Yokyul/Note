@@ -1,2 +1,2 @@
-require("./b")
-console.log("module a")
+require("./b");
+console.log("module a");
