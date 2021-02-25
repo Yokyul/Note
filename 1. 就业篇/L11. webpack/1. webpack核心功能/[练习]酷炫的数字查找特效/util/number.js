@@ -1,7 +1,6 @@
 import isPrime from "./isPrime"
 
 export default class NumberTimer {
-
     constructor(duration = 500) {
         this.duration = duration;
         this.number = 1; //当前的数字
