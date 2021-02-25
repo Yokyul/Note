@@ -1,6 +1,6 @@
-var baseConfig = require("./webpack.base")
-var devConfig = require("./webpack.dev")
-var proConfig = require("./webpack.pro")
+const baseConfig = require("./webpack.base");
+const devConfig = require("./webpack.dev");
+const proConfig = require("./webpack.pro");
 
 module.exports = function (env) {
     if (env && env.pro) {
