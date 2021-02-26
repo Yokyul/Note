@@ -4,7 +4,7 @@ function createUser(loginId, loginPwd, nickName) {
         console.log("Id：", this.loginId, ", name：", this.nickName);
     }
     return {
-        loginId,                // 原来写法：loginId：loginId
+        loginId, //原来写法：loginId：loginId
         loginPwd,
         nickName,
         say: sayHello,
@@ -19,7 +19,7 @@ u.say();
 const user1 = {
     name: "姬成",
     age: 100,
-    sayHello(){                 // 原来写法：sayHello: function(){}
+    sayHello(){ //原来写法：sayHello: function(){}
         console.log(this.name, this.age)
     }
 }

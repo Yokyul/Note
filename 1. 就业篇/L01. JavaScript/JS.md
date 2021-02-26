@@ -282,7 +282,108 @@ console.log(num); //1
 
 # 2. 函数
 
+编程讲究高内聚，弱偶合。
 
-## 2.1 
+## 2.1 定义方式
+
+1. **函数声明**
+
+函数就是另一个类型的变量。声明一个函数 test，如下
+
+```js
+function test() {
+    函数体
+}
+```
+函数名起名：开发规范要求，函数名和变量名如果由多个单词拼接，必须符合小驼峰原则（第一个单词首字母小写，后面的首字母大写）
+
+```js
+function theFistNameO(){} 
+console.log(theFirstName); //function theFistName(){}。打印出来的是函数体
+```
+
+c语言和 c++，他们打印指针，会输出指针的地址，而js这种弱数据语言（解释性语言）永远不输出地址，而是输出地址指向房间。
 
 
+2. **函数表达式**
+
+表达式有两种定义方式。
+
+- 命名函数表达式
+
+```js
+var test = function abc() {
+    document.write("a");
+}
+
+console.log(test); //function abc() { document.write("a"); }
+console.log(test.name); //abc
+console.log(abc); //报错：abc is not defined。因为表达式会忽略name。上面这个函数的函数名 name 是 abc。
+```
+
+
+在上面例子中，`function abc() {document.write("a");}` 这一部分叫表达式。它会忽略 abc这个名字，会变成匿名函数表达式，所以不如直接写成匿名函数。
+
+- 匿名函数表达式（常用，一般说的函数表达式就是匿名函数表达式）
+
+```js
+var test = function() {
+    document.write("a");
+}
+console.log(test.name); //test
+```
+
+
+## 2.2 参数
+
+1. **形参、实参**
+
+形参可以比实参多，实参也可以比形参多。
+
+```js
+function sum(a,b){
+    document.write(a);
+}
+sum(11, 2, 3); //11
+```
+
+```js
+function sum(a, b, c,d) {
+    document.write(a);
+    document.write(d);
+}
+sum(11, 2, 3); //11,undefined
+```
+
+
+2. arguments（ 实参列表）
+
+在每一个函数里面都有一个隐式属性arguments （ 实参列表）
+
+```js
+function sum(a) {
+    console.log(arguments);
+    console.log(a.length); //形参长度：形参名.length
+    console.log(arguments.length); //实参长度
+}
+sum(11, 2, 3); //[11, 2, 3]，undefined, 3
+```
+
+
+
+
+
+
+
+```js
+
+```
+
+
+```js
+
+```
+
+```js
+
+```
