@@ -1,5 +1,5 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: "development",
@@ -30,7 +30,7 @@ module.exports = {
     ],
     devServer: {
         open: true,
-        openPage: "html/index.html",        // 服务器会打开的页面地址，可以不写index.html，会根据index配置自动添加。
+        openPage: "html/index.html", //服务器会打开的页面地址，可以不写index.html，会根据index配置自动添加。
     },
     stats: {
         modules: false,
